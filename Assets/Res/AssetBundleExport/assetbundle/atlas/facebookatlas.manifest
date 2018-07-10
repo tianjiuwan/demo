@@ -1,0 +1,27 @@
+ManifestFileVersion: 0
+CRC: 1453039474
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: b3dbcf6940576d3e418643413fa57575
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: b474380d27eb4bc856799e9c585c4864
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Res/AssetBundle/Atlas/FaceBookAtlas/11120002.png
+- Assets/Res/AssetBundle/Atlas/FaceBookAtlas/11120010.png
+- Assets/Res/AssetBundle/Atlas/FaceBookAtlas/11120007.png
+- Assets/Res/AssetBundle/Atlas/FaceBookAtlas/11120006.png
+- Assets/Res/AssetBundle/Atlas/FaceBookAtlas/11120005.png
+- Assets/Res/AssetBundle/Atlas/FaceBookAtlas/11120008.png
+- Assets/Res/AssetBundle/Atlas/FaceBookAtlas/11120009.png
+- Assets/Res/AssetBundle/Atlas/FaceBookAtlas/11120001.png
+- Assets/Res/AssetBundle/Atlas/FaceBookAtlas/11120003.png
+- Assets/Res/AssetBundle/Atlas/FaceBookAtlas/11120004.png
+Dependencies: []

@@ -1,0 +1,24 @@
+ManifestFileVersion: 0
+CRC: 814508820
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: e285c7f7b56076e1bc7bacfc92ef77b2
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: b474380d27eb4bc856799e9c585c4864
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Res/AssetBundle/Atlas/CommonAtlas/chosenKuang.png
+- Assets/Res/AssetBundle/Atlas/CommonAtlas/chosenNew1.png
+- Assets/Res/AssetBundle/Atlas/CommonAtlas/BgRight.png
+- Assets/Res/AssetBundle/Atlas/CommonAtlas/chosenNew2.png
+- Assets/Res/AssetBundle/Atlas/CommonAtlas/chosenKuang1.png
+- Assets/Res/AssetBundle/Atlas/CommonAtlas/chiping.png
+- Assets/Res/AssetBundle/Atlas/CommonAtlas/biaotiBg.png
+Dependencies: []

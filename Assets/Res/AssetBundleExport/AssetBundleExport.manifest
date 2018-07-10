@@ -1,0 +1,47 @@
+ManifestFileVersion: 0
+CRC: 2657070126
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: assetbundle/atlas/commonatlas
+      Dependencies: {}
+    Info_1:
+      Name: assetbundle/atlas/facebookatlas
+      Dependencies: {}
+    Info_2:
+      Name: assetbundle/atlas/teamatlas
+      Dependencies: {}
+    Info_3:
+      Name: assetbundle/textures/common/cz_0
+      Dependencies: {}
+    Info_4:
+      Name: assetbundle/textures/common/cz_1
+      Dependencies: {}
+    Info_5:
+      Name: assetbundle/textures/common/cz_2
+      Dependencies: {}
+    Info_6:
+      Name: assetbundle/textures/common/cz_3
+      Dependencies: {}
+    Info_7:
+      Name: assetbundle/textures/common/cz_4
+      Dependencies: {}
+    Info_8:
+      Name: assetbundle/textures/common/cz_5
+      Dependencies: {}
+    Info_9:
+      Name: assetbundle/textures/common/cz_6
+      Dependencies: {}
+    Info_10:
+      Name: assetbundle/textures/common/cz_7
+      Dependencies: {}
+    Info_11:
+      Name: assetbundle/textures/common/cz_8
+      Dependencies: {}
+    Info_12:
+      Name: assetbundle/textures/common/cz_9
+      Dependencies: {}
+    Info_13:
+      Name: assetbundle/prefabs/ui/testui
+      Dependencies:
+        Dependency_0: assetbundle/atlas/commonatlas

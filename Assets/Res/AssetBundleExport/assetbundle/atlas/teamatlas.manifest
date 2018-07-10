@@ -1,0 +1,21 @@
+ManifestFileVersion: 0
+CRC: 3055379761
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: c40fea7d03a4a8f2ad715312827108e2
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: b474380d27eb4bc856799e9c585c4864
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Res/AssetBundle/Atlas/TeamAtlas/KFSJ_4.png
+- Assets/Res/AssetBundle/Atlas/TeamAtlas/KFSJ_3.png
+- Assets/Res/AssetBundle/Atlas/TeamAtlas/KFSJ_1.png
+- Assets/Res/AssetBundle/Atlas/TeamAtlas/KFSJ_2.png
+Dependencies: []

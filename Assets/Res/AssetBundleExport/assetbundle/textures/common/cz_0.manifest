@@ -1,0 +1,18 @@
+ManifestFileVersion: 0
+CRC: 1253457379
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 035035bc1fa11d48d7b7a7716bbd91d8
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: b474380d27eb4bc856799e9c585c4864
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Res/AssetBundle/Textures/Common/CZ_0.png
+Dependencies: []
