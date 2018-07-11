@@ -20,6 +20,16 @@ public enum E_PoolType
     Level,
     Global,
 }
+/// <summary>
+/// 加载类型
+/// ui model ...
+/// </summary>
+public enum E_LoadType
+{
+    None,
+    UI,
+    Model,
+}
 
 public class Define
 {

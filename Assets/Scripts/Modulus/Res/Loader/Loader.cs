@@ -3,6 +3,7 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class Loader
 {
@@ -67,8 +68,12 @@ public class Loader
         if (Application.platform == RuntimePlatform.WindowsEditor
             || Application.platform == RuntimePlatform.WindowsPlayer)
         {
-            byte[] buffer = File.ReadAllBytes(path);
+            string fullPath = Path.Combine(Application.dataPath+ "/res/AssetBundleExport", path);
+            Debug.Log(fullPath);
+            byte[] buffer = File.ReadAllBytes(fullPath);
+            Debug.Log(buffer.Length);
             req = AssetBundle.LoadFromMemoryAsync(buffer);
+            //AssetDatabase.LoadAssetAtPath
             yield return req;
         }
         else

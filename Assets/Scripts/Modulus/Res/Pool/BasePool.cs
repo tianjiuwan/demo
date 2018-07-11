@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class BasePool
@@ -7,8 +8,10 @@ public class BasePool
     public BasePool(string path)
     {
         this.path = path;
+        this.name = Path.GetFileNameWithoutExtension(this.path);
     }
     private string path;
+    private string name;
     private E_PoolType poolType = E_PoolType.None;
     private double useTime = 0;
     private List<Action<GameObject>> handlers = new List<Action<GameObject>>();
@@ -52,7 +55,7 @@ public class BasePool
             Debug.LogError("ab加载失败 path " + this.path);
             return;
         }
-        UnityEngine.Object obj = ab.LoadAsset(this.path);
+        UnityEngine.Object obj = ab.LoadAsset(this.name);
         tempObj = GameObject.Instantiate(obj) as GameObject;
         for (int i = 0; i < handlers.Count; i++)
         {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 /// <summary>
@@ -8,8 +9,20 @@ using UnityEngine;
 /// </summary>
 public class ResMgr
 {
-    //获取
-    public void get(string path, Action<GameObject> callBack)
+    private static ResMgr instance;
+    public static ResMgr Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = new ResMgr();
+            }
+            return instance;
+        }
+    }
+    //获取 暂时依赖外部给路径
+    public void get(string path, Action<GameObject> callBack, E_LoadType loadType = E_LoadType.None)
     {
         PoolMgr.Instance.get(path, callBack);
     }
@@ -27,6 +40,22 @@ public class ResMgr
     public void destroy(GameObject obj)
     {
         GameObject.Destroy(obj, 0.3f);
+    }
+
+    private string getPath(string name,E_LoadType loadType) {
+        string path = "";
+        switch (loadType) {
+            case E_LoadType.None:
+                break;
+            case E_LoadType.UI:
+                Path.Combine("assetbundle/prefabs/ui", name);
+                break;
+            case E_LoadType.Model:
+                break;
+            default:
+                break;
+        }
+        return path;
     }
 }
 

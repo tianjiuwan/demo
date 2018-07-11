@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// 加载管理器
 /// </summary>
-public class LoaderMgr
+public class LoaderMgr : MonoBehaviour
 {
     private static LoaderMgr instance;
     public static LoaderMgr Instance
@@ -14,14 +14,23 @@ public class LoaderMgr
         {
             if (instance == null)
             {
-                instance = new LoaderMgr();
+                GameObject go = new GameObject("LoaderMgr");
+                instance = go.AddComponent<LoaderMgr>();
             }
             return instance;
         }
     }
+    public void initialize()
+    {
+
+    }
+    //存一个loader字典
     private Dictionary<string, Loader> loaderPool = new Dictionary<string, Loader>();
+    //存一个loader队列
+    private Queue<Loader> loaderQueue = new Queue<Loader>();
+
     //添加一个loader
-    public void addTask(string path, Action<bool, string,AssetBundle> callBack)
+    public void addTask(string path, Action<bool, string, AssetBundle> callBack)
     {
         if (loaderPool.ContainsKey(path))
         {
@@ -29,17 +38,18 @@ public class LoaderMgr
             return;
         }
         //获取ab所有依赖 先把依赖加入加载列表 todo
-        AssetBundleManifest assetBundleManifest = null;//初始化获取依赖 todo
-        string[] deps = assetBundleManifest.GetAllDependencies(path);
-        for (int i = 0; i < deps.Length; i++)
-        {
-            if (!AssetCacheMgr.Instance.isHas(deps[i]))
-            {
-                addTask(deps[i], null);
-            }
-        }
+        //AssetBundleManifest assetBundleManifest = null;//初始化获取依赖 todo
+        //string[] deps = assetBundleManifest.GetAllDependencies(path);
+        //for (int i = 0; i < deps.Length; i++)
+        //{
+        //    if (!AssetCacheMgr.Instance.isHas(deps[i]))
+        //    {
+        //        addTask(deps[i], null);
+        //    }
+        //}
         Loader loader = new Loader(path, callBack);
         loaderPool.Add(path, loader);
+        loaderQueue.Enqueue(loader);
     }
     //加载完毕移除loader
     public void remove(Loader loader)
@@ -50,11 +60,28 @@ public class LoaderMgr
         }
     }
     //中断
-    public void unLoad(string path, Action<bool,string, AssetBundle> callBack)
+    public void unLoad(string path, Action<bool, string, AssetBundle> callBack)
     {
         if (loaderPool.ContainsKey(path))
         {
             loaderPool[path].removeHandler(callBack);
+        }
+    }
+
+    private string removeKey = "";
+    private List<Loader> lst = new List<Loader>();
+    //暂时用mono update tick
+    private void Update()
+    {
+        if (this.loaderQueue.Count <= 0) return;
+        Loader loader = this.loaderQueue.Peek();
+        if (loader.loaderStatus == E_LoaderStatus.Waiting) AssetCoroutine.Instance.doLoad(loader);
+        if (loader.loaderStatus == E_LoaderStatus.Loading) return;
+        if (loader.loaderStatus == E_LoaderStatus.Finish)
+        {
+            string key = loader.path;
+            if (this.loaderPool.ContainsKey(key)) this.loaderPool.Remove(key);
+            this.loaderQueue.Dequeue();
         }
     }
 }
