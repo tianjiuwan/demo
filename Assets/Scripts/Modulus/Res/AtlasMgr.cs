@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
+using System.IO;
 
 /// <summary>
 /// 图集管理器
@@ -14,7 +16,7 @@ public class AtlasMgr
 {
     private Dictionary<string, string> atlasPool = new Dictionary<string, string>();
     private Dictionary<string, List<Action<Sprite>>> callPool = new Dictionary<string, List<Action<Sprite>>>();
-
+    private const string editorPre = Define.editorPre;
     //初始化 解析图集配置
     public void initialize()
     {
@@ -29,11 +31,16 @@ public class AtlasMgr
     public void setImageByName(string name, Action<Sprite> callBack)
     {
         string key = getAtlasPath(name);
+        if (Application.platform == RuntimePlatform.WindowsEditor) {
+            //编辑器下面是否加载整个图集文件夹 缓存？todo
+            callBack(AssetDataBaseMgr.load<Sprite>(Path.Combine(editorPre+key, name)));
+            return;
+        }
         if (AssetCacheMgr.Instance.isHas(key))
         {
-            AssetBundle ab = AssetCacheMgr.Instance.get(key);
+            PackAsset pka = AssetCacheMgr.Instance.get(key);
             if (callBack != null)
-                callBack.Invoke(ab.LoadAsset<Sprite>(name));
+                callBack.Invoke(pka.getObj<Sprite>(name));
             return;
         }
         //需要加载图集ab     
@@ -46,13 +53,13 @@ public class AtlasMgr
     }
 
     //加载ab完成
-    private void onLoadFinish(bool isSuccess, string name, AssetBundle ab)
+    private void onLoadFinish(bool isSuccess, string name, PackAsset pka)
     {
         if (isSuccess)
         {
             if (callPool.ContainsKey(name)) {
                 List<Action<Sprite>> handlers = callPool[name];
-                Sprite sp = ab.LoadAsset<Sprite>(name);
+                Sprite sp = pka.getObj<Sprite>(name);
                 for (int i = 0; i < handlers.Count; i++)
                 {
                     handlers[i].Invoke(sp);

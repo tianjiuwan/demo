@@ -33,5 +33,14 @@ public enum E_LoadType
 
 public class Define
 {
+    /// <summary>
+    /// 编辑器下面资源的前缀
+    /// </summary>
+    public const string editorPre = "Assets/Res/";
+    /// <summary>
+    /// ab资源前缀
+    /// </summary>
+    public const string abPre = "Assets/Res/AssetBundleExport/";
+
 }
 

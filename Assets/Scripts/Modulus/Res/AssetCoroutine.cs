@@ -11,8 +11,16 @@ public class AssetCoroutine : MonoBehaviour
         {
             if (instance == null)
             {
-                GameObject go = new GameObject("AssetCoroutine");
-                instance = go.AddComponent<AssetCoroutine>();
+                GameObject go = GameObject.Find("AssetCoroutine");
+                if (go == null)
+                {
+                    go = new GameObject("AssetCoroutine");                    
+                    instance = go.AddComponent<AssetCoroutine>();
+                    GameObject.DontDestroyOnLoad(go);
+                }
+                else {
+                    instance = go.GetComponent<AssetCoroutine>();
+                }
             }
             return instance;
         }

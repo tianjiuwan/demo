@@ -2,16 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AppMain : MonoBehaviour {
+public class AppMain : MonoBehaviour
+{
 
 
-	void Start () {
+    void Start()
+    {
         LoaderMgr.Instance.initialize();
-        ResMgr.Instance.get(@"AssetBundle\Prefabs\ui\TestUI", (go) =>
-        {
-            go.transform.position = Vector3.zero;
-        });
+        ManifsetMgr.Instance.initislize();
+
     }
-	
+
+
+    private void OnApplicationQuit()
+    {
+
+    }
 
 }

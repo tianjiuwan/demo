@@ -19,19 +19,24 @@ public class AssetCacheMgr
             return instance;
         }
     }
-    private Dictionary<string, AssetBundle> cachePool = new Dictionary<string, AssetBundle>();
-    //add
-    public void add(string name, AssetBundle ab)
+    private Dictionary<string, PackAsset> cachePool = new Dictionary<string, PackAsset>();
+
+    //主要提供给编辑器查看
+    public List<PackAsset> getAll() {
+        return new List<PackAsset>(cachePool.Values);
+    }
+    //add name = path 
+    public void add(string name, PackAsset passet)
     {
         if (cachePool.ContainsKey(name))
         {
             Debug.LogError("重复创建了ab " + name);
             return;
         }
-        cachePool.Add(name, ab);
+        cachePool.Add(name, passet);
     }
     //get
-    public AssetBundle get(string name)
+    public PackAsset get(string name)
     {
         return cachePool[name];
     }
@@ -40,5 +45,36 @@ public class AssetCacheMgr
     {
         return cachePool.ContainsKey(name);
     }
+    //add ref
+    public void addRef(string key) {
+        if (cachePool.ContainsKey(key)) {
+            cachePool[key].addRefCount();
+        }
+    }
+    //sub ref
+    public void subRef(string key)
+    {
+        if (cachePool.ContainsKey(key))
+        {
+            cachePool[key].subRefCount();
+        }
+    }
 
+    //释放所有ab
+    public void unloadAllAssetBundle(bool isAllLoaded=false) {
+        List<string> unloadKeys = new List<string>();
+        foreach (var item in cachePool)
+        {
+           bool isUnload=  item.Value.unload();
+            if (isUnload) {
+                unloadKeys.Add(item.Key);
+            }
+        }
+        for (int i = 0; i < unloadKeys.Count; i++)
+        {
+            cachePool.Remove(unloadKeys[i]);
+        }        
+    }
+
+    
 }

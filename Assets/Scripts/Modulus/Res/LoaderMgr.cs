@@ -12,11 +12,19 @@ public class LoaderMgr : MonoBehaviour
     {
         get
         {
-            if (instance == null)
-            {
-                GameObject go = new GameObject("LoaderMgr");
-                instance = go.AddComponent<LoaderMgr>();
-            }
+            if (instance == null) {
+                GameObject go = GameObject.Find("LoaderMgr");
+                if (go == null)
+                {
+                    go = new GameObject("LoaderMgr");
+                    instance = go.AddComponent<LoaderMgr>();
+                    GameObject.DontDestroyOnLoad(go);
+                }
+                else
+                {
+                    instance = go.GetComponent<LoaderMgr>();
+                }
+            }            
             return instance;
         }
     }
@@ -28,25 +36,29 @@ public class LoaderMgr : MonoBehaviour
     private Dictionary<string, Loader> loaderPool = new Dictionary<string, Loader>();
     //存一个loader队列
     private Queue<Loader> loaderQueue = new Queue<Loader>();
+    //获取queue数量
+    public int getQueueCount() {
+        return loaderQueue.Count;
+    }
 
     //添加一个loader
-    public void addTask(string path, Action<bool, string, AssetBundle> callBack)
+    public void addTask(string path, Action<bool, string, PackAsset> callBack)
     {
         if (loaderPool.ContainsKey(path))
         {
             loaderPool[path].addHandler(callBack);
             return;
         }
-        //获取ab所有依赖 先把依赖加入加载列表 todo
-        //AssetBundleManifest assetBundleManifest = null;//初始化获取依赖 todo
-        //string[] deps = assetBundleManifest.GetAllDependencies(path);
-        //for (int i = 0; i < deps.Length; i++)
-        //{
-        //    if (!AssetCacheMgr.Instance.isHas(deps[i]))
-        //    {
-        //        addTask(deps[i], null);
-        //    }
-        //}
+        //获取ab所有依赖 先把依赖加入加载列表
+        List<string> deps = new List<string>();
+        ManifsetMgr.Instance.getDeps(path,ref deps);
+        for (int i = 0; i < deps.Count; i++)
+        {
+            if (!AssetCacheMgr.Instance.isHas(deps[i]))
+            {
+                addTask(deps[i], null);
+            }
+        }
         Loader loader = new Loader(path, callBack);
         loaderPool.Add(path, loader);
         loaderQueue.Enqueue(loader);
@@ -60,7 +72,7 @@ public class LoaderMgr : MonoBehaviour
         }
     }
     //中断
-    public void unLoad(string path, Action<bool, string, AssetBundle> callBack)
+    public void unLoad(string path, Action<bool, string, PackAsset> callBack)
     {
         if (loaderPool.ContainsKey(path))
         {
@@ -84,4 +96,5 @@ public class LoaderMgr : MonoBehaviour
             this.loaderQueue.Dequeue();
         }
     }
+
 }

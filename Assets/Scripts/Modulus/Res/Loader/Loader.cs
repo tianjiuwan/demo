@@ -9,29 +9,29 @@ public class Loader
 {
     public string path;
     public E_LoaderStatus loaderStatus = E_LoaderStatus.Waiting;
-    private List<Action<bool,string, AssetBundle>> handlers = null;
+    private List<Action<bool, string, PackAsset>> handlers = null;
 
     public Loader(string path)
     {
         this.path = path;
     }
-    public Loader(string path, Action<bool, string,AssetBundle> callBack)
+    public Loader(string path, Action<bool, string, PackAsset> callBack)
     {
         this.path = path;
         addHandler(callBack);
     }
 
     //add handler
-    public void addHandler(Action<bool, string,AssetBundle> callBack)
+    public void addHandler(Action<bool, string, PackAsset> callBack)
     {
         if (handlers == null)
         {
-            handlers = new List<Action<bool,string, AssetBundle>>();
+            handlers = new List<Action<bool, string, PackAsset>>();
         }
         handlers.Add(callBack);
     }
     //remove handler
-    public void removeHandler(Action<bool, string,AssetBundle> callBack)
+    public void removeHandler(Action<bool, string, PackAsset> callBack)
     {
         if (handlers != null && handlers.Contains(callBack))
         {
@@ -39,15 +39,18 @@ public class Loader
         }
     }
     //load finish
-    private void onLoadFinish(AssetBundle ab)
+    private void onLoadFinish(PackAsset pka)
     {
         LoaderMgr.Instance.remove(this);
         if (handlers != null)
         {
-            bool isSuccess = ab != null;
+            bool isSuccess = pka != null;
             for (int i = 0; i < handlers.Count; i++)
             {
-                handlers[i].Invoke(isSuccess, path,ab);
+                if (handlers[i] != null)
+                {
+                    handlers[i].Invoke(isSuccess, path, pka);
+                }
             }
         }
     }
@@ -59,35 +62,29 @@ public class Loader
         if (AssetCacheMgr.Instance.isHas(path))
         {
             onLoadFinish(AssetCacheMgr.Instance.get(path));
-            loaderStatus = E_LoaderStatus.Loading;
+            loaderStatus = E_LoaderStatus.Finish;
             yield break;
         }
-        //加载ab
-        AssetBundleCreateRequest req;
+        PackAsset pka = null;
         //PC
-        if (Application.platform == RuntimePlatform.WindowsEditor
-            || Application.platform == RuntimePlatform.WindowsPlayer)
+        if (Application.platform == RuntimePlatform.Android)
         {
-            string fullPath = Path.Combine(Application.dataPath+ "/res/AssetBundleExport", path);
-            Debug.Log(fullPath);
-            byte[] buffer = File.ReadAllBytes(fullPath);
-            Debug.Log(buffer.Length);
-            req = AssetBundle.LoadFromMemoryAsync(buffer);
-            //AssetDatabase.LoadAssetAtPath
-            yield return req;
+            string assetPath = Path.Combine(Define.editorPre, path + ".prefab");
+            UnityEngine.Object obj = AssetDataBaseMgr.load<UnityEngine.Object>(assetPath);
+            yield return obj;
+            pka = new PackAsset(path, obj);
         }
         else
         {
             //mobile
-            req = AssetBundle.LoadFromFileAsync(path);
+            string assetPath = Path.Combine(Define.abPre, path);
+            AssetBundleCreateRequest req = AssetBundle.LoadFromFileAsync(assetPath);
             yield return req;
+            pka = new PackAsset(path, req.assetBundle);
         }
-        if (req.isDone)
-        {
-            //add to cache
-            AssetCacheMgr.Instance.add(path, req.assetBundle);
-            onLoadFinish(req.assetBundle);
-        }
-        loaderStatus = E_LoaderStatus.Loading;
+        //add to cache
+        AssetCacheMgr.Instance.add(path, pka);
+        onLoadFinish(pka);
+        loaderStatus = E_LoaderStatus.Finish;
     }
 }
