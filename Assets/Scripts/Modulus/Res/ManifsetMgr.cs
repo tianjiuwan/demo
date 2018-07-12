@@ -29,7 +29,7 @@ public class ManifsetMgr
     void loadManifest()
     {
         //LoadFromFile不可以有.assetbundle后缀
-        var bundle = AssetBundle.LoadFromFile(manifestPath);
+        AssetBundle bundle = AssetBundle.LoadFromFile(manifestPath);
         assetBundleManifest = bundle.LoadAsset<AssetBundleManifest>("AssetBundleManifest");
         // 压缩包释放掉
         bundle.Unload(false);

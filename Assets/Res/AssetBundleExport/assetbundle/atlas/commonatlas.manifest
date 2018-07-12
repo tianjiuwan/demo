@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1351080098
+CRC: 3839441811
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: d95dd8d9239ab7bc0d565f730dede546
+    Hash: 81ea1b1ba448d614cf630e8736a1e38a
   TypeTreeHash:
     serializedVersion: 2
     Hash: b474380d27eb4bc856799e9c585c4864
@@ -16,9 +16,17 @@ ClassTypes:
 Assets:
 - Assets/Res/AssetBundle/Atlas/CommonAtlas/chosenKuang.png
 - Assets/Res/AssetBundle/Atlas/CommonAtlas/chosenNew1.png
+- Assets/Res/AssetBundle/Atlas/CommonAtlas/DW_Saiji.png
+- Assets/Res/AssetBundle/Atlas/CommonAtlas/DW_xianfuzhengf.png
+- Assets/Res/AssetBundle/Atlas/CommonAtlas/DW_qingtong1.png
+- Assets/Res/AssetBundle/Atlas/CommonAtlas/DW_wangzhe1.png
+- Assets/Res/AssetBundle/Atlas/CommonAtlas/DW_wangzhe.png
 - Assets/Res/AssetBundle/Atlas/CommonAtlas/BgRight.png
 - Assets/Res/AssetBundle/Atlas/CommonAtlas/chosenNew2.png
 - Assets/Res/AssetBundle/Atlas/CommonAtlas/chosenKuang1.png
+- Assets/Res/AssetBundle/Atlas/CommonAtlas/DW_wenziBg.png
+- Assets/Res/AssetBundle/Atlas/CommonAtlas/DW_qingtong.png
 - Assets/Res/AssetBundle/Atlas/CommonAtlas/chiping.png
+- Assets/Res/AssetBundle/Atlas/CommonAtlas/DW_Kuang.png
 - Assets/Res/AssetBundle/Atlas/CommonAtlas/biaotiBg.png
 Dependencies: []

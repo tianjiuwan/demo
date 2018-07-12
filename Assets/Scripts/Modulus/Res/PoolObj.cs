@@ -16,8 +16,10 @@ public class PoolObj : MonoBehaviour
     {
         if (dyRefs == null)
             dyRefs = new List<string>();
-        if (!dyRefs.Contains(path))
+        if (!dyRefs.Contains(path)) {
             dyRefs.Add(path);
+            AssetCacheMgr.Instance.addRef(path);
+        }       
     }
     public List<string> getDyRefs()
     {

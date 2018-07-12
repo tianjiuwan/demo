@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System.IO;
+using System.Text;
 
 public class BuildAsset
 {
@@ -149,4 +150,55 @@ public class BuildAsset
     {
         return Path.GetFileNameWithoutExtension(filePath);
     }
+
+
+    //atals资源路径
+    private const string atlasPath = "Res/AssetBundle/Atlas";
+    private const string atlasBundlePre = "AssetBundle/Atlas/";
+    private const string atlasCfgName = "Res/AssetBundle/cfgs/atlasCfg.txt";
+    [MenuItem("Assets/打包相关/导出图集配置", false, 6001)]
+    public static void exportAtlasCfg()
+    {
+        Dictionary<string, string> map = new Dictionary<string, string>();
+        //遍历atlas下面的所有文件夹
+        List<string> floders = FileUtils.getAllFolder(Path.Combine(Application.dataPath, atlasPath));
+        //存一个字典 key = iconName val = path(assetBundleName)
+        for (int i = 0; i < floders.Count; i++)
+        {
+            string[] files = Directory.GetFiles(floders[i]);
+            for (int k = 0; k < files.Length; k++)
+            {
+                if (files[k].EndsWith(".meta")) continue;
+                if (files[k].EndsWith(".txt")) continue;
+                string iconName = Path.GetFileNameWithoutExtension(files[k]);
+                int index = floders[i].IndexOf("AssetBundle");
+                string bundleName = floders[i].Substring(index);
+                bundleName = bundleName.Replace("\\", "/").ToLower();
+                map.Add(iconName, bundleName);
+            }
+        }
+        //删除一下文件
+        string cfg = Path.Combine(Application.dataPath, atlasCfgName);
+        if (File.Exists(cfg))
+        {
+            File.Delete(cfg);
+        }
+        //开始写入  F:\GithubPro\demo\Assets\Res\AssetBundle\Atlas/common
+        FileStream fs = File.Create(cfg);
+        using (StreamWriter sw = new StreamWriter(fs, Encoding.UTF8))
+        {
+            foreach (var item in map)
+            {
+                StringBuilder buder = new StringBuilder();
+                buder.Append(item.Key);
+                buder.Append(':');
+                buder.Append(item.Value);
+                sw.WriteLine(buder.ToString());
+            }
+        }
+        fs.Close();
+        fs.Dispose();
+        AssetDatabase.Refresh();
+    }
 }
+

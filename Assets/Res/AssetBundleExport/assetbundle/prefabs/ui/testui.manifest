@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1703461787
+CRC: 4071283397
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 3aed5cd5825f5db5390391eac5fb61a7
+    Hash: 245925ffa3bcda25f4d374814d79f1d9
   TypeTreeHash:
     serializedVersion: 2
     Hash: 72fcfa1a74b27af4856e63f48fa870e6
@@ -27,3 +27,4 @@ Dependencies:
 - F:/GithubPro/demo/Assets/Res/AssetBundleExport/assetbundle/atlas/commonatlas
 - F:/GithubPro/demo/Assets/Res/AssetBundleExport/assetbundle/atlas/facebookatlas
 - F:/GithubPro/demo/Assets/Res/AssetBundleExport/assetbundle/atlas/teamatlas
+- F:/GithubPro/demo/Assets/Res/AssetBundleExport/assetbundle/atlas/guildatlas

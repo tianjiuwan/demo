@@ -76,8 +76,8 @@ public class Loader
         }
         else
         {
-            //mobile
-            string assetPath = Path.Combine(Define.abPre, path);
+            //mobile            
+            string assetPath = Path.Combine(Define.abPre,this.path);
             AssetBundleCreateRequest req = AssetBundle.LoadFromFileAsync(assetPath);
             yield return req;
             pka = new PackAsset(path, req.assetBundle);

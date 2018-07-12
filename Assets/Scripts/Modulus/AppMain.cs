@@ -10,7 +10,7 @@ public class AppMain : MonoBehaviour
     {
         LoaderMgr.Instance.initialize();
         ManifsetMgr.Instance.initislize();
-
+        AtlasMgr.Instance.initialize();
     }
 
 

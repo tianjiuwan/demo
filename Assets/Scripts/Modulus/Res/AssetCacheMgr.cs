@@ -62,18 +62,11 @@ public class AssetCacheMgr
 
     //释放所有ab
     public void unloadAllAssetBundle(bool isAllLoaded=false) {
-        List<string> unloadKeys = new List<string>();
         foreach (var item in cachePool)
         {
-           bool isUnload=  item.Value.unload();
-            if (isUnload) {
-                unloadKeys.Add(item.Key);
-            }
+              item.Value.unload();
         }
-        for (int i = 0; i < unloadKeys.Count; i++)
-        {
-            cachePool.Remove(unloadKeys[i]);
-        }        
+        cachePool.Clear();   
     }
 
     

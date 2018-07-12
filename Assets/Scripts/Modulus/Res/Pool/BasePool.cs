@@ -113,7 +113,7 @@ public class BasePool
         }
         LoaderMgr.Instance.unLoad(this.path, onLoaderFinish);
     }
-    //实例化一个obj调用一次add ref
+    //实例化一个obj调用一次add ref 静态引用
     private void addRef() {
         for (int i = 0; i < depends.Count; i++)
         {
@@ -121,7 +121,7 @@ public class BasePool
         }
         AssetCacheMgr.Instance.addRef(this.path);
     }
-    //销毁pool obj
+    //销毁pool obj 静态引用
     private void subRef()
     {
         for (int i = 0; i < depends.Count; i++)
@@ -141,10 +141,19 @@ public class BasePool
         cacheLst = null;
         GameObject.Destroy(this.poolRoot.gameObject, 0.3f);
     }
+    //销毁一个obj 释放静态和动态引用
     private void destroyObj(GameObject obj) {
         if (obj != null) {
-            GameObject.Destroy(obj, 0.3f);
             subRef();
+            PoolObj po = obj.GetComponent<PoolObj>();
+            if (po != null&& po.getDyRefs()!=null) {
+                List<string> dyRef = po.getDyRefs();
+                for (int i = 0; i < dyRef.Count; i++)
+                {
+                    AssetCacheMgr.Instance.subRef(dyRef[i]);
+                }
+            }
+            GameObject.Destroy(obj, 0.3f);          
         }
     }
 

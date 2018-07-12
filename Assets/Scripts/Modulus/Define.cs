@@ -41,6 +41,13 @@ public class Define
     /// ab资源前缀
     /// </summary>
     public const string abPre = "Assets/Res/AssetBundleExport/";
+    public const string atlasBundleName = "AssetBundle/cfgs/atlasCfg";
+
+    //定义meunItem index
+    public int buildAsssetBundle = 1001;
+    public int clearAssetBundle = 1002;
+    public int clearAssetBundleName = 5001;
+    public int exportAtlasCfg = 6001; 
+
 
 }
-
