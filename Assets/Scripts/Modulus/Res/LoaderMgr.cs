@@ -80,11 +80,16 @@ public class LoaderMgr : MonoBehaviour
         }
     }
 
-    private string removeKey = "";
-    private List<Loader> lst = new List<Loader>();
+
+    private float checkCacheSec = 10;
+    private float lastCheckTime = 0;
     //暂时用mono update tick
     private void Update()
     {
+        if (Time.timeSinceLevelLoad - lastCheckTime >= checkCacheSec) {
+            AssetCacheMgr.Instance.doCheck();
+            lastCheckTime = Time.timeSinceLevelLoad;
+        }
         if (this.loaderQueue.Count <= 0) return;
         Loader loader = this.loaderQueue.Peek();
         if (loader.loaderStatus == E_LoaderStatus.Waiting) AssetCoroutine.Instance.doLoad(loader);

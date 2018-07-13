@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
+/// <summary>
+/// 基础gameobject池子
+/// modelPool应该重写回收方法和getObj方法(禁用和启用animator)
+/// 其他池子根据需求
+/// </summary>
 public class BasePool
 {
     public BasePool(string path)
@@ -39,25 +44,20 @@ public class BasePool
             return cacheLst.Count;
         }
     }
-    private GameObject tempObj = null;
-    public int TempCount {
-        get {
-            return tempObj == null ? 0 : 1;
-        }
-    }
 
     //获取
     public void get(Action<GameObject> callBack)
     {
-        //如果tempObj是空 add handler并创建loader加载
-        if (tempObj == null)
+        //如果有这个ab
+        if (!AssetCacheMgr.Instance.isHas(this.path))
         {
             handlers.Add(callBack);
             LoaderMgr.Instance.addTask(path, onLoaderFinish);
             return;
         }
-        //如果tempObj不是空 
-        callBack.Invoke(getObj());
+        else {
+            callBack.Invoke(getObj());
+        }
     }
 
     //loader加载完成回调
@@ -68,15 +68,13 @@ public class BasePool
             Debug.LogError("ab加载失败 path " + this.path);
             return;
         }
-        tempObj = GameObject.Instantiate(pka.Obj) as GameObject;        
-        tempObj.transform.SetParent(this.poolRoot);
-        tempObj.transform.localPosition = Vector3.zero;
-        addRef();
-        for (int i = 0; i < handlers.Count; i++)
-        {            
-            handlers[i].Invoke(getObj());
+        if (handlers.Count > 0) {
+            for (int i = 0; i < handlers.Count; i++)
+            {
+                handlers[i].Invoke(getObj());
+            }
+            handlers.Clear();
         }
-        handlers.Clear();
     }
 
     private GameObject getObj() {
@@ -88,10 +86,12 @@ public class BasePool
             cacheLst.RemoveAt(0);
         }
         else {
-            //如果tempObj不是空 且cacheLst<=0 实例化
-            go = GameObject.Instantiate(tempObj);            
+            //来这里一定可以获取到PackAsset
+            PackAsset pka = AssetCacheMgr.Instance.get(this.path);
+            go = GameObject.Instantiate(pka.Obj)as GameObject;            
             PoolObj po = go.AddComponent<PoolObj>();
             po.path = this.path;
+            po.stRefs = this.depends;
             addRef();
         }
         return go;
@@ -111,7 +111,7 @@ public class BasePool
         {
             handlers.Remove(callBack);
         }
-        LoaderMgr.Instance.unLoad(this.path, onLoaderFinish);
+       //LoaderMgr.Instance.unLoad(this.path, onLoaderFinish);
     }
     //实例化一个obj调用一次add ref 静态引用
     private void addRef() {
@@ -132,7 +132,6 @@ public class BasePool
     }
     //销毁池子
     public void dispose() {
-        destroyObj(this.tempObj);
         for (int i = 0; i < cacheLst.Count; i++)
         {
             destroyObj(cacheLst[i]);
@@ -153,7 +152,7 @@ public class BasePool
                     AssetCacheMgr.Instance.subRef(dyRef[i]);
                 }
             }
-            GameObject.Destroy(obj, 0.3f);          
+            GameObject.Destroy(obj, 0.3f);
         }
     }
 

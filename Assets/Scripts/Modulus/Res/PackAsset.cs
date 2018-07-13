@@ -78,6 +78,7 @@ public class PackAsset
     /// <summary>
     /// 释放ab
     /// 是否卸载所有loaded根据refCount判断
+    /// 卸载完成需要从cache中移除
     /// </summary>
     /// <param name="isAllLoaded"></param>
     public void unload()
@@ -85,12 +86,23 @@ public class PackAsset
         bool isUnloadAll = refCount <= 0;
         if (this.ab != null)
         {
-            this.ab.Unload(isUnloadAll);
-            Debug.Log(this.path + " ab unload " + isUnloadAll.ToString());
+            this.ab.Unload(isUnloadAll);            
             if (!isUnloadAll)
                 Resources.UnloadUnusedAssets();
         }
     }
-
+    /// <summary>
+    /// check的时候 只有在引用计数小于0 才会释放ab
+    /// </summary>
+    /// <returns></returns>
+    public bool doCheck()
+    {
+        bool isUnloadAll = refCount <= 0;
+        if (this.ab != null&& isUnloadAll)
+        {
+            this.ab.Unload(isUnloadAll);
+        }
+        return isUnloadAll;
+    }
 }
 

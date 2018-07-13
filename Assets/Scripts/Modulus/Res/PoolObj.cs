@@ -7,22 +7,33 @@ using UnityEngine;
 /// </summary>
 public class PoolObj : MonoBehaviour
 {
-    //obj路径 获取静态依赖列表
+    //obj abPath
     public string path;
-
+    //静态依赖列表
+    public List<string> stRefs = null;
     //动态依赖列表
     private List<string> dyRefs = null;
     public void addRefPath(string path)
     {
-        if (dyRefs == null)
+        if (dyRefs == null) {
             dyRefs = new List<string>();
-        if (!dyRefs.Contains(path)) {
+        }
+        //动态静态里面都不包含
+        if (!dyRefs.Contains(path) && !isHas(path))
+        {
             dyRefs.Add(path);
             AssetCacheMgr.Instance.addRef(path);
-        }       
+        }
     }
     public List<string> getDyRefs()
     {
         return dyRefs;
     }
+    //静态列表是否已经包含
+    private bool isHas(string key)
+    {
+        if (stRefs == null) return false;
+        return stRefs.Contains(key);
+    }
+
 }

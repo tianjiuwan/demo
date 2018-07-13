@@ -68,6 +68,25 @@ public class AssetCacheMgr
         }
         cachePool.Clear();   
     }
-
-    
+    /// <summary>
+    /// 检查一次所有AB的引用情况
+    /// refCount小等于0 remove
+    /// </summary>
+    public void doCheck() {
+        List<string> removeKeys = new List<string>();
+        foreach (var item in cachePool)
+        {
+            bool isAll= item.Value.doCheck();
+            if (isAll) {
+                removeKeys.Add(item.Key);
+            }
+        }
+        if (removeKeys.Count > 0) {
+            for (int i = 0; i < removeKeys.Count; i++)
+            {
+                cachePool.Remove(removeKeys[i]);
+            }
+        }
+        Debug.Log("检查一个ab缓存：removeCount " + removeKeys.Count);
+    }    
 }

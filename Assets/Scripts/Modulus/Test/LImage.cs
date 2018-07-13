@@ -18,7 +18,7 @@ public class LImage : MonoBehaviour
                 Image img = this.gameObject.GetComponent<Image>();
                 if (img != null)
                 {
-                    AtlasMgr.Instance.setImageByName("KFSJ_1", (sp, abName) =>
+                    AtlasMgr.Instance.setImageByName("TFJH_change", (sp, abName) =>
                     {
                         img.sprite = sp;
                         //增加引用

@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 2181069846
+CRC: 324823026
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -17,7 +17,6 @@ AssetBundleManifest:
         Dependency_0: assetbundle/atlas/commonatlas
         Dependency_1: assetbundle/atlas/facebookatlas
         Dependency_2: assetbundle/atlas/teamatlas
-        Dependency_3: assetbundle/atlas/guildatlas
     Info_4:
       Name: assetbundle/textures/common/cz_0
       Dependencies: {}

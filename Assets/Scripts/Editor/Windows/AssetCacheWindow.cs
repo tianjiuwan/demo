@@ -119,7 +119,6 @@ public class AssetCacheWindow : EditorWindow
             GUILayout.Label("PoolName: " + bp.Name, GUILayout.Width(160), GUILayout.Height(30));
             GUILayout.Label("PoolType: " + bp.PoolType, GUILayout.Width(100), GUILayout.Height(30));
             GUILayout.Label("CacheCount: " + bp.CacheCount, GUILayout.Width(100), GUILayout.Height(30));
-            GUILayout.Label("TempCount: " + bp.TempCount, GUILayout.Width(100), GUILayout.Height(30));
             GUILayout.EndHorizontal();
         }
         GUILayout.EndScrollView();

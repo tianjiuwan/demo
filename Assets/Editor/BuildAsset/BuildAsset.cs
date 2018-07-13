@@ -13,8 +13,6 @@ public class BuildAsset
     private const string exportABPath = "Assets/Res/AssetBundleExport";
     //图集文件夹 图集文件夹下面的每个文件夹打一个ab
     private const string atlasPathSuff = "Atlas";
-    //需要打包的资源类型
-    private const string assetTypes = "(*.png|*.prefab)";
 
     [MenuItem("Tools/打包相关/BuildAsset", false, 1001)]
     public static void build()

@@ -70,13 +70,20 @@ public class AtlasMgr
 
     private string getAtlasPath(string icon)
     {
-        return atlasPool[icon];
+        if (atlasPool.ContainsKey(icon)) {
+            return atlasPool[icon];
+        }
+        return null;
     }
 
     //对外接口
     public void setImageByName(string name, Action<Sprite,string> callBack)
     {
         string key = getAtlasPath(name);
+        if (string.IsNullOrEmpty(key)) {
+            Debug.LogError("sprite不存在图集中 请重新导出图集配置 " + name);
+            return;
+        }
         if (Application.platform == RuntimePlatform.Android)
         {
             //编辑器下面是否加载整个图集文件夹 缓存？todo
