@@ -43,6 +43,10 @@ public class Define
     public const string abPre = "Assets/Res/AssetBundleExport/";
     public const string atlasBundleName = "AssetBundle/cfgs/atlasCfg";
 
+
+    public const int checkAssetBundleCacheSec = 10;
+    public const int checkBasePoolSec = 60;
+
     //定义meunItem index
     public int buildAsssetBundle = 1001;
     public int clearAssetBundle = 1002;

@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 324823026
+CRC: 2671783941
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -53,3 +53,22 @@ AssetBundleManifest:
     Info_15:
       Name: assetbundle/atlas/guildatlas
       Dependencies: {}
+    Info_16:
+      Name: assetbundle/prefabs/model/role_superman/animator/role_superman_controller
+      Dependencies:
+        Dependency_0: assetbundle/prefabs/model/role_superman/clips/die
+        Dependency_1: assetbundle/prefabs/model/role_superman/clips/idle
+        Dependency_2: assetbundle/prefabs/model/role_superman/clips/run
+    Info_17:
+      Name: assetbundle/prefabs/model/role_superman/clips/die
+      Dependencies: {}
+    Info_18:
+      Name: assetbundle/prefabs/model/role_superman/clips/idle
+      Dependencies: {}
+    Info_19:
+      Name: assetbundle/prefabs/model/role_superman/clips/run
+      Dependencies: {}
+    Info_20:
+      Name: assetbundle/prefabs/model/role_superman/model/role_superman
+      Dependencies:
+        Dependency_0: assetbundle/prefabs/model/role_superman/animator/role_superman_controller

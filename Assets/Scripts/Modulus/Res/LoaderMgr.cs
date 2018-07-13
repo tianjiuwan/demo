@@ -80,15 +80,21 @@ public class LoaderMgr : MonoBehaviour
         }
     }
 
-
-    private float checkCacheSec = 10;
+    //检查AB缓存
     private float lastCheckTime = 0;
+    //检查gameObject缓存
+    private float lastCehckPoolTime = 0;
     //暂时用mono update tick
     private void Update()
     {
-        if (Time.timeSinceLevelLoad - lastCheckTime >= checkCacheSec) {
+        if (Time.timeSinceLevelLoad - lastCheckTime >= Define.checkAssetBundleCacheSec) {
             AssetCacheMgr.Instance.doCheck();
             lastCheckTime = Time.timeSinceLevelLoad;
+        }
+        if (Time.timeSinceLevelLoad - lastCehckPoolTime >= Define.checkBasePoolSec)
+        {
+            PoolMgr.Instance.checkPools();
+            lastCehckPoolTime = Time.timeSinceLevelLoad;
         }
         if (this.loaderQueue.Count <= 0) return;
         Loader loader = this.loaderQueue.Peek();

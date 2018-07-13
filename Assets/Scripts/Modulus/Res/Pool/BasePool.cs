@@ -36,7 +36,7 @@ public class BasePool
             return poolType.ToString();
         }
     }
-    private double useTime = 0;
+    public double useTime = 0;
     private List<Action<GameObject>> handlers = new List<Action<GameObject>>();
     private List<GameObject> cacheLst = new List<GameObject>();
     public int CacheCount {
@@ -94,6 +94,8 @@ public class BasePool
             po.stRefs = this.depends;
             addRef();
         }
+        //更新一下使用时间
+        this.useTime = TimeUtils.getSecTime();
         return go;
     }
 
@@ -132,6 +134,7 @@ public class BasePool
     }
     //销毁池子
     public void dispose() {
+        this.handlers.Clear();
         for (int i = 0; i < cacheLst.Count; i++)
         {
             destroyObj(cacheLst[i]);

@@ -13,11 +13,6 @@ public class ImportAsset : AssetPostprocessor
     private const string atlasPath = "Assets/Res/AssetBundle/Atlas";
     private const string texturesPath = "Assets/Res/AssetBundle/Textures";
 
-    public void OnPostprocessModel(GameObject fbx)
-    {
-
-    }
-
     /// <summary>
     /// 当导入一个texture
     /// 如果导入的是atlas里面的icon
