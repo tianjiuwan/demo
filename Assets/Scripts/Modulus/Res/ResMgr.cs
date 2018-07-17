@@ -57,5 +57,10 @@ public class ResMgr
         }
         return path;
     }
+
+    public void tick() {
+        Debug.Log("zz");
+    }
+
 }
 

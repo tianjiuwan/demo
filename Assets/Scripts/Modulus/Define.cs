@@ -31,6 +31,18 @@ public enum E_LoadType
     Model,
 }
 
+/// <summary>
+/// 
+/// </summary>
+public enum E_SkillEventType
+{
+    None,
+    Audio,
+    Effect,
+    Damage,
+    Move,
+}
+
 public class Define
 {
     /// <summary>

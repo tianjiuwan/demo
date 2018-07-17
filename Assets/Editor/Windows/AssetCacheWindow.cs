@@ -79,6 +79,13 @@ public class AssetCacheWindow : EditorWindow
         GUILayout.Space(10);
         GUILayout.EndVertical();
         GUILayout.Space(20);
+        if (GUILayout.Button("Add Main Skill", GUILayout.Width(150), GUILayout.Height(30)))
+        {
+            int index = LogicFrame.Instance.FrameIndex;            
+            BaseSkill skill = new BaseSkill(MathUtils.UniqueID, index,null);
+            SkillMgr.Instance.addMainSkill(skill);
+        }
+        GUILayout.Space(20);
         if (GUILayout.Button("销毁所有池子", GUILayout.Width(150), GUILayout.Height(30)))
         {
             PoolMgr.Instance.disposePools();
