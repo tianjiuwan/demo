@@ -89,7 +89,7 @@ public class ExcelExportTool
         }
     }
     //写入一整张表
-    private static string expPath = Path.Combine(Application.dataPath, "LuaScripts/Config");
+    private static string expPath = Path.Combine(Application.dataPath, "LuaScripts/Scripts/Config");
     public static void writeTest(Dictionary<int, List<string>> dict, string tableName)
     {
         if (!Directory.Exists(expPath))
