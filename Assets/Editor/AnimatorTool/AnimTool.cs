@@ -14,6 +14,7 @@ public class AnimInfo
     public int startIndex;//起始帧
     public int endIndex;//结束帧
     public bool isLoop = false;
+    public float speed = 1;
 }
 
 /// <summary>
@@ -80,6 +81,7 @@ public class AnimTool
         }
         //先导出动画切片
         List<AnimInfo> clips = new List<AnimInfo>();
+        Dictionary<string, AnimInfo> infos = new Dictionary<string, AnimInfo>();
         getClips(excelPath, ref clips);
         var modelImporter = AssetImporter.GetAtPath(getRelativePath(animPath)) as ModelImporter;
         if (modelImporter == null) return;
@@ -96,6 +98,7 @@ public class AnimTool
             tempClip.loopTime = clips[i].isLoop;
             tempClip.wrapMode = clips[i].isLoop ? WrapMode.Loop : WrapMode.Default;
             animations[i] = tempClip;
+            infos.Add(clips[i].animName, clips[i]);
         }
         modelImporter.clipAnimations = animations;
         UnityEngine.Object[] objs = AssetDatabase.LoadAllAssetsAtPath(getRelativePath(animPath));
@@ -140,6 +143,10 @@ public class AnimTool
             int y = item.Key == "idle" ? 0 : startY * 80;
             animState = stateMachine.AddState(item.Key, new Vector2(startX, y));
             animState.motion = item.Value;
+            if (infos.ContainsKey(item.Key))
+            {
+                animState.speed = infos[item.Key].speed;
+            }
             if (item.Key == "idle")
             {
                 stateMachine.defaultState = animState;
@@ -203,6 +210,7 @@ public class AnimTool
             info.startIndex = int.Parse(clipInfo[1]);
             info.endIndex = int.Parse(clipInfo[2]);
             info.isLoop = int.Parse(clipInfo[3]) == 1;
+            info.speed = clipInfo[4] == null ? 1 : float.Parse(clipInfo[4]);
             clips.Add(info);
         }
     }

@@ -43,6 +43,14 @@ public enum E_SkillEventType
     Move,
 }
 
+public enum E_FsmState {
+    Stand,
+    HorizontalMove,
+    VerticalMove,
+    SuperArmor,
+    Stiff,
+}
+
 public class Define
 {
     /// <summary>

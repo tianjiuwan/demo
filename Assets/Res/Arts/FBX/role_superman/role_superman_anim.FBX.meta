@@ -85,6 +85,8 @@ ModelImporter:
     7400002: idle
     7400004: run
     7400006: die
+    7400008: attack
+    7400010: hart
     9500000: //RootNode
     13700000: juese1
   externalObjects: {}
@@ -118,8 +120,8 @@ ModelImporter:
     - serializedVersion: 16
       name: idle
       takeName: 
-      firstFrame: 3
-      lastFrame: 15
+      firstFrame: 2
+      lastFrame: 40
       wrapMode: 2
       orientationOffsetY: 0
       level: 0
@@ -176,6 +178,62 @@ ModelImporter:
       takeName: 
       firstFrame: 36
       lastFrame: 45
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 0
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: attack
+      takeName: 
+      firstFrame: 380
+      lastFrame: 395
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 0
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: hart
+      takeName: 
+      firstFrame: 550
+      lastFrame: 570
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
