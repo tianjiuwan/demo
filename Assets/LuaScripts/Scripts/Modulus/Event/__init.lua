@@ -1,0 +1,1 @@
+require "Assets.LuaScripts.Scripts.Modulus.Event.EventMgr"

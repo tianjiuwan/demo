@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 332608044
+CRC: 1917317748
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 1e608365b8627fdcdba84d02aef215aa
+    Hash: 8b6250588f89f94ac5df241acb571b25
   TypeTreeHash:
     serializedVersion: 2
     Hash: 46daa0ab816e68f527f38fb18aec3007
@@ -19,3 +19,8 @@ Dependencies:
 - F:/GithubPro/demo/Assets/Res/AssetBundleExport/assetbundle/prefabs/model/role_superman/clips/die
 - F:/GithubPro/demo/Assets/Res/AssetBundleExport/assetbundle/prefabs/model/role_superman/clips/idle
 - F:/GithubPro/demo/Assets/Res/AssetBundleExport/assetbundle/prefabs/model/role_superman/clips/run
+- F:/GithubPro/demo/Assets/Res/AssetBundleExport/assetbundle/prefabs/model/role_superman/clips/attack
+- F:/GithubPro/demo/Assets/Res/AssetBundleExport/assetbundle/prefabs/model/role_superman/clips/hart
+- F:/GithubPro/demo/Assets/Res/AssetBundleExport/assetbundle/prefabs/model/role_superman/clips/jumpdown
+- F:/GithubPro/demo/Assets/Res/AssetBundleExport/assetbundle/prefabs/model/role_superman/clips/jumpup
+- F:/GithubPro/demo/Assets/Res/AssetBundleExport/assetbundle/prefabs/model/role_superman/clips/liedown

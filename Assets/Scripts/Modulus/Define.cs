@@ -43,12 +43,48 @@ public enum E_SkillEventType
     Move,
 }
 
-public enum E_FsmState {
+public enum E_FsmState
+{
     Stand,
+
+    FlyAir,
+    PassivityFly,
+    InitiativeFly,
+    FixedFly,
+    CurveMove,
     HorizontalMove,
-    VerticalMove,
+
     SuperArmor,
     Stiff,
+}
+
+public enum E_JumpState
+{
+    None,
+    Up,
+    Down,
+}
+
+/// <summary>
+/// 实体类型
+/// </summary>
+public enum E_EntityType
+{
+    None,
+    Player,
+    Monster,
+    Npc,
+}
+
+/// <summary>
+/// 实体加载状态
+/// </summary>
+public enum E_EntityLoadState
+{
+    Waiting,
+    Loading,
+    Finish,
+    Invaild,
 }
 
 public class Define
@@ -71,7 +107,7 @@ public class Define
     public int buildAsssetBundle = 1001;
     public int clearAssetBundle = 1002;
     public int clearAssetBundleName = 5001;
-    public int exportAtlasCfg = 6001; 
+    public int exportAtlasCfg = 6001;
 
 
 }

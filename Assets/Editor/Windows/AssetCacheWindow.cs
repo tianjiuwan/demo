@@ -30,13 +30,15 @@ public class AssetCacheWindow : EditorWindow
     private Vector2 poolPos = Vector3.zero;
     private List<GameObject> testLoadObjs = new List<GameObject>();
     private GameObject uiRoot;
+    private int roleIndex = 100000000;
     private void OnGUI()
     {
         if (!isInit) return;
-        if (!Application.isPlaying) {
+        if (!Application.isPlaying)
+        {
             testLoadObjs.Clear();
             return;
-        } 
+        }
         GUILayout.BeginVertical();
         GUILayout.BeginHorizontal();
         GUILayout.Space(20);
@@ -49,7 +51,7 @@ public class AssetCacheWindow : EditorWindow
                 go.transform.position = Vector3.zero;
                 testLoadObjs.Add(go);
                 if (uiRoot == null)
-                     uiRoot = GameObject.Find("grid");
+                    uiRoot = GameObject.Find("grid");
                 if (uiRoot != null)
                 {
                     go.transform.SetParent(uiRoot.transform);
@@ -68,21 +70,24 @@ public class AssetCacheWindow : EditorWindow
             }
         }
         GUILayout.Space(10);
-        if (GUILayout.Button("实例化一个role_superman", GUILayout.Width(220), GUILayout.Height(30)))
+        if (GUILayout.Button("创建实体 ", GUILayout.Width(220), GUILayout.Height(30)))
         {
-            ResMgr.Instance.get(@"AssetBundle\Prefabs\model\role_superman\model\role_superman", (go) =>
-            {
-                go.transform.SetParent(null);
-                go.transform.position = Vector3.zero;
-            });
+            EntityData data = new EntityData();
+            data.playerId = roleIndex;
+            data.height = 2f;
+            data.heightOffset = 1f;
+            data.radius = 0.3f;
+            data.resName = @"AssetBundle\Prefabs\model\role_superman\model\role_superman";
+            EntityMgr.Instance.createEntity(data);
+            roleIndex++;
         }
         GUILayout.Space(10);
         GUILayout.EndVertical();
         GUILayout.Space(20);
         if (GUILayout.Button("Add Main Skill", GUILayout.Width(150), GUILayout.Height(30)))
         {
-            int index = LogicFrame.Instance.FrameIndex;            
-            BaseSkill skill = new BaseSkill(MathUtils.UniqueID, index,null);
+            int index = LogicFrame.Instance.FrameIndex;
+            BaseSkill skill = new BaseSkill(MathUtils.UniqueID, index, null);
             SkillMgr.Instance.addMainSkill(skill);
         }
         GUILayout.Space(20);

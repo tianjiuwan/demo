@@ -23,24 +23,25 @@ public class HorizontalMoveState : BaseState
     {
         this.dir = (Vector3)args[0];
         this.dis = (float)args[1];
-        this.dir = this.dir.normalized * 0.1f/ scale;
-        this.endFrame = UnityEngine.Mathf.FloorToInt(this.dis * 10* scale);
+        this.dir = this.dir.normalized * 0.1f / scale;
+        this.endFrame = UnityEngine.Mathf.FloorToInt(this.dis * 10 * scale);
     }
 
     public override void onUpdate()
-    {        
+    {
         if (tickFrame > endFrame)
         {
             this.onExit();
             return;
         }
-        this.agent.transform.position += this.dir;
+        //this.agent.transform.position += this.dir;
+        this.agent.ccMove(this.dir);
         tickFrame++;
     }
     public override void onExit()
     {
         tickFrame = 1;
         this.agent.transFsm(E_FsmState.Stand, null);
-        this.agent.transAnim("idle");
+        this.agent.transAnim("idle",0.2f);
     }
 }

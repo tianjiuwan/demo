@@ -87,6 +87,6 @@ public class AssetCacheMgr
                 cachePool.Remove(removeKeys[i]);
             }
         }
-        Debug.Log("检查一个ab缓存：removeCount " + removeKeys.Count);
+        //Debug.Log("检查一个ab缓存：removeCount " + removeKeys.Count);
     }    
 }

@@ -15,11 +15,13 @@ public class FsmAgent
         this.statePool.Add(state.sType, state);
     }
 
-    public void transFsm(E_FsmState flag,params object[] args) {
+    public E_FsmState transFsm(E_FsmState flag,params object[] args) {
         if (statePool.ContainsKey(flag)) {
             nextState = statePool[flag];
             nextState.onEnter(args);
+            return flag;
         }
+        return nowState.sType;
     }
 
     public void onUpdate() {

@@ -24,6 +24,7 @@ public class AppMain : MonoBehaviour
 #endif         
         lua = new LuaState();
         lua.Start();
+        LuaBinder.Bind(lua);
         //如果移动了ToLua目录，自己手动修复吧，只是例子就不做配置了
         string fullPath = Path.Combine(Application.dataPath, "LuaScripts/Scripts");
         lua.AddSearchPath(fullPath);
