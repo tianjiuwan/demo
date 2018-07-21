@@ -32,8 +32,20 @@ public static class LuaExtend
     }
     #endregion
     #region logger
-    public static void log(string str) {
+    public static void log(string str)
+    {
         Debug.Log(str);
+    }
+    #endregion
+
+    #region Input
+    public static void inputAddListener(Action<KeyCode> handler)
+    {
+        InputMgr.Instance.addListener(handler);
+    }
+    public static void inputRemoveListener(Action<KeyCode> handler)
+    {
+        InputMgr.Instance.removeListener(handler);
     }
     #endregion
 

@@ -16,7 +16,7 @@ public class FlyAirState : BaseState
     }
 
     //重力
-    private float gravity = 2f;
+    private float gravity = 1.5f;
     //加速度 向上向下衰减
     private float acceleratedSpeed = 0.1f;
     //加速度总量
@@ -25,6 +25,9 @@ public class FlyAirState : BaseState
     protected float upSpeed = 0f;
     //向上衰减
     protected float dampingSpeed = 0.1f;
+    //坠落时候的高度
+    protected float fallHeight = 0;
+
     //jumpstate
     private E_JumpState jumpState = E_JumpState.None;
     protected E_JumpState JumpState
@@ -33,11 +36,18 @@ public class FlyAirState : BaseState
         {
             if (jumpState == value) return;
             jumpState = value;
+            //计算一个坠落时候的高度
+            RaycastHit info;
+            if (Physics.Raycast(this.agent.Trans.position, Vector3.down, out info, 100))
+            {
+                fallHeight = info.distance;
+            }
             onJumpStateChange(jumpState);
         }
     }
 
-    public virtual void onJumpStateChange(E_JumpState state) {
+    public virtual void onJumpStateChange(E_JumpState state)
+    {
 
     }
 
@@ -45,7 +55,8 @@ public class FlyAirState : BaseState
     //1 speed浮空力度
     public override void onEnter(params object[] args)
     {
-        this.upSpeed = (float)args[0];
+        float sp = (float)args[0];
+        this.upSpeed += sp;
     }
 
     public override void onUpdate()
@@ -56,6 +67,7 @@ public class FlyAirState : BaseState
             this.JumpState = E_JumpState.Up;
             this.agent.ccMove(Vector3.up * Time.deltaTime * this.upSpeed);
             this.upSpeed -= this.dampingSpeed;
+            currAccSpeed = 0;
         }
         else
         {
@@ -73,8 +85,9 @@ public class FlyAirState : BaseState
         jumpState = E_JumpState.None;
         currAccSpeed = 0f;
         this.upSpeed = 0f;
+        this.fallHeight = 0;
         this.agent.transFsm(E_FsmState.Stand, null);
-        this.agent.transAnim("idle",0.4f);        
+        this.agent.transAnim("idle", 0.4f);
     }
 }
 

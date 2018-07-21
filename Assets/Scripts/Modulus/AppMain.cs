@@ -13,6 +13,7 @@ public class AppMain : MonoBehaviour
 
     void Start()
     {
+        InputMgr.Instance.initialize();
         LogicFrame.Instance.initialize();
         LoaderMgr.Instance.initialize();
         ManifsetMgr.Instance.initislize();
@@ -25,7 +26,7 @@ public class AppMain : MonoBehaviour
         lua = new LuaState();
         lua.Start();
         LuaBinder.Bind(lua);
-        //如果移动了ToLua目录，自己手动修复吧，只是例子就不做配置了
+        DelegateFactory.Register();
         string fullPath = Path.Combine(Application.dataPath, "LuaScripts/Scripts");
         lua.AddSearchPath(fullPath);
         lua.DoFile("__init.lua");

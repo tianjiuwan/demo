@@ -102,6 +102,12 @@ public class BaseEntity : MonoBehaviour
             this.transFsm(E_FsmState.PassivityFly, new object[] { 5f });
             this.transAnim("lieDown");
         }
+        //被击 浮空2
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            this.transFsm(E_FsmState.PassivityFly, new object[] { 1.5f });
+            this.transAnim("lieDown");
+        }
     }
 
     #region 实体提供接口

@@ -19,6 +19,7 @@ public class DelegateFactory
 		dict.Clear();
 		dict.Add(typeof(System.Action), factory.System_Action);
 		dict.Add(typeof(System.Action<UnityEngine.GameObject>), factory.System_Action_UnityEngine_GameObject);
+		dict.Add(typeof(System.Action<UnityEngine.KeyCode>), factory.System_Action_UnityEngine_KeyCode);
 		dict.Add(typeof(UnityEngine.Events.UnityAction), factory.UnityEngine_Events_UnityAction);
 		dict.Add(typeof(System.Predicate<int>), factory.System_Predicate_int);
 		dict.Add(typeof(System.Action<int>), factory.System_Action_int);
@@ -35,6 +36,7 @@ public class DelegateFactory
 
 		DelegateTraits<System.Action>.Init(factory.System_Action);
 		DelegateTraits<System.Action<UnityEngine.GameObject>>.Init(factory.System_Action_UnityEngine_GameObject);
+		DelegateTraits<System.Action<UnityEngine.KeyCode>>.Init(factory.System_Action_UnityEngine_KeyCode);
 		DelegateTraits<UnityEngine.Events.UnityAction>.Init(factory.UnityEngine_Events_UnityAction);
 		DelegateTraits<System.Predicate<int>>.Init(factory.System_Predicate_int);
 		DelegateTraits<System.Action<int>>.Init(factory.System_Action_int);
@@ -51,6 +53,7 @@ public class DelegateFactory
 
 		TypeTraits<System.Action>.Init(factory.Check_System_Action);
 		TypeTraits<System.Action<UnityEngine.GameObject>>.Init(factory.Check_System_Action_UnityEngine_GameObject);
+		TypeTraits<System.Action<UnityEngine.KeyCode>>.Init(factory.Check_System_Action_UnityEngine_KeyCode);
 		TypeTraits<UnityEngine.Events.UnityAction>.Init(factory.Check_UnityEngine_Events_UnityAction);
 		TypeTraits<System.Predicate<int>>.Init(factory.Check_System_Predicate_int);
 		TypeTraits<System.Action<int>>.Init(factory.Check_System_Action_int);
@@ -67,6 +70,7 @@ public class DelegateFactory
 
 		StackTraits<System.Action>.Push = factory.Push_System_Action;
 		StackTraits<System.Action<UnityEngine.GameObject>>.Push = factory.Push_System_Action_UnityEngine_GameObject;
+		StackTraits<System.Action<UnityEngine.KeyCode>>.Push = factory.Push_System_Action_UnityEngine_KeyCode;
 		StackTraits<UnityEngine.Events.UnityAction>.Push = factory.Push_UnityEngine_Events_UnityAction;
 		StackTraits<System.Predicate<int>>.Push = factory.Push_System_Predicate_int;
 		StackTraits<System.Action<int>>.Push = factory.Push_System_Action_int;
@@ -297,6 +301,63 @@ public class DelegateFactory
 	}
 
 	void Push_System_Action_UnityEngine_GameObject(IntPtr L, System.Action<UnityEngine.GameObject> o)
+	{
+		ToLua.Push(L, o);
+	}
+
+	class System_Action_UnityEngine_KeyCode_Event : LuaDelegate
+	{
+		public System_Action_UnityEngine_KeyCode_Event(LuaFunction func) : base(func) { }
+		public System_Action_UnityEngine_KeyCode_Event(LuaFunction func, LuaTable self) : base(func, self) { }
+
+		public void Call(UnityEngine.KeyCode param0)
+		{
+			func.BeginPCall();
+			func.Push(param0);
+			func.PCall();
+			func.EndPCall();
+		}
+
+		public void CallWithSelf(UnityEngine.KeyCode param0)
+		{
+			func.BeginPCall();
+			func.Push(self);
+			func.Push(param0);
+			func.PCall();
+			func.EndPCall();
+		}
+	}
+
+	public System.Action<UnityEngine.KeyCode> System_Action_UnityEngine_KeyCode(LuaFunction func, LuaTable self, bool flag)
+	{
+		if (func == null)
+		{
+			System.Action<UnityEngine.KeyCode> fn = delegate(UnityEngine.KeyCode param0) { };
+			return fn;
+		}
+
+		if(!flag)
+		{
+			System_Action_UnityEngine_KeyCode_Event target = new System_Action_UnityEngine_KeyCode_Event(func);
+			System.Action<UnityEngine.KeyCode> d = target.Call;
+			target.method = d.Method;
+			return d;
+		}
+		else
+		{
+			System_Action_UnityEngine_KeyCode_Event target = new System_Action_UnityEngine_KeyCode_Event(func, self);
+			System.Action<UnityEngine.KeyCode> d = target.CallWithSelf;
+			target.method = d.Method;
+			return d;
+		}
+	}
+
+	bool Check_System_Action_UnityEngine_KeyCode(IntPtr L, int pos)
+	{
+		return TypeChecker.CheckDelegateType(typeof(System.Action<UnityEngine.KeyCode>), L, pos);
+	}
+
+	void Push_System_Action_UnityEngine_KeyCode(IntPtr L, System.Action<UnityEngine.KeyCode> o)
 	{
 		ToLua.Push(L, o);
 	}

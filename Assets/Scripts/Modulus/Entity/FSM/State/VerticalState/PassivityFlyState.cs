@@ -11,7 +11,7 @@ public class PassivityFlyState : FlyAirState
     {
     }
     //多大加速度会被弹起
-    private float spring = 3;
+    private float spring = 2f;
 
     public override void onUpdate()
     {
@@ -20,18 +20,19 @@ public class PassivityFlyState : FlyAirState
 
     public override void onExit()
     {
-       // Debug.LogError(this.currAccSpeed);
-        if (this.currAccSpeed >= spring)
+        //Debug.LogError(this.fallHeight);
+        if (this.fallHeight >= spring)
         {
-            this.upSpeed = this.currAccSpeed*0.6f;
-            this.currAccSpeed = 0;
+            this.upSpeed = spring + this.fallHeight * 0.1f;
+            this.fallHeight = 0;
         }
-        else {
+        else
+        {
             currAccSpeed = 0f;
             this.upSpeed = 0f;
             this.agent.transFsm(E_FsmState.Stand, null);
-            this.agent.transAnim("idle",0.2f);
-        }        
+            this.agent.transAnim("idle", 0.2f);
+        }
     }
 
 

@@ -36,6 +36,7 @@ public static class CustomSettings
     {        
         _DT(typeof(Action)),
         _DT(typeof(Action<GameObject>)),
+        _DT(typeof(Action<KeyCode>)),
         _DT(typeof(UnityEngine.Events.UnityAction)),
         _DT(typeof(System.Predicate<int>)),
         _DT(typeof(System.Action<int>)),
