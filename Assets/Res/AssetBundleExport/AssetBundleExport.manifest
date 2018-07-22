@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 3343964754
+CRC: 163250941
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -105,4 +105,126 @@ AssetBundleManifest:
       Dependencies: {}
     Info_29:
       Name: assetbundle/modeltextures/role_001
+      Dependencies: {}
+    Info_30:
+      Name: assetbundle/prefabs/model/role_fistgirl/animator/role_fistgirl_controller
+      Dependencies:
+        Dependency_0: assetbundle/prefabs/model/role_fistgirl/clips/attack1
+        Dependency_1: assetbundle/prefabs/model/role_fistgirl/clips/attack2
+        Dependency_2: assetbundle/prefabs/model/role_fistgirl/clips/attack3
+        Dependency_3: assetbundle/prefabs/model/role_fistgirl/clips/attack4
+        Dependency_4: assetbundle/prefabs/model/role_fistgirl/clips/attack5
+        Dependency_5: assetbundle/prefabs/model/role_fistgirl/clips/attack6
+        Dependency_6: assetbundle/prefabs/model/role_fistgirl/clips/attack7
+        Dependency_7: assetbundle/prefabs/model/role_fistgirl/clips/attack8
+        Dependency_8: assetbundle/prefabs/model/role_fistgirl/clips/ueattack
+    Info_31:
+      Name: assetbundle/prefabs/model/role_fistgirl/clips/attack1
+      Dependencies: {}
+    Info_32:
+      Name: assetbundle/prefabs/model/role_fistgirl/clips/attack2
+      Dependencies: {}
+    Info_33:
+      Name: assetbundle/prefabs/model/role_fistgirl/clips/attack3
+      Dependencies: {}
+    Info_34:
+      Name: assetbundle/prefabs/model/role_fistgirl/clips/attack4
+      Dependencies: {}
+    Info_35:
+      Name: assetbundle/prefabs/model/role_fistgirl/clips/attack5
+      Dependencies: {}
+    Info_36:
+      Name: assetbundle/prefabs/model/role_fistgirl/clips/attack6
+      Dependencies: {}
+    Info_37:
+      Name: assetbundle/prefabs/model/role_fistgirl/clips/attack7
+      Dependencies: {}
+    Info_38:
+      Name: assetbundle/prefabs/model/role_fistgirl/clips/attack8
+      Dependencies: {}
+    Info_39:
+      Name: assetbundle/prefabs/model/role_fistgirl/clips/ueattack
+      Dependencies: {}
+    Info_40:
+      Name: assetbundle/prefabs/model/role_fistgirl/model/role_fistgirl
+      Dependencies:
+        Dependency_0: assetbundle/prefabs/model/role_fistgirl/animator/role_fistgirl_controller
+        Dependency_1: assetbundle/modeltextures/12
+        Dependency_2: assetbundle/modeltextures/3dch2040_1
+    Info_41:
+      Name: assetbundle/prefabs/model/role_ueman/animator/role_ueman_controller
+      Dependencies:
+        Dependency_0: assetbundle/prefabs/model/role_ueman/clips/attack1
+        Dependency_1: assetbundle/prefabs/model/role_ueman/clips/attack2
+        Dependency_2: assetbundle/prefabs/model/role_ueman/clips/behit1
+        Dependency_3: assetbundle/prefabs/model/role_ueman/clips/behit2
+        Dependency_4: assetbundle/prefabs/model/role_ueman/clips/die
+        Dependency_5: assetbundle/prefabs/model/role_ueman/clips/fistleftgo
+        Dependency_6: assetbundle/prefabs/model/role_ueman/clips/fistthreego
+        Dependency_7: assetbundle/prefabs/model/role_ueman/clips/fisttwogo
+        Dependency_8: assetbundle/prefabs/model/role_ueman/clips/getup
+        Dependency_9: assetbundle/prefabs/model/role_ueman/clips/idle
+        Dependency_10: assetbundle/prefabs/model/role_ueman/clips/jumpdown
+        Dependency_11: assetbundle/prefabs/model/role_ueman/clips/jumpup
+        Dependency_12: assetbundle/prefabs/model/role_ueman/clips/fistrightgo
+        Dependency_13: assetbundle/prefabs/model/role_ueman/clips/leftleggo
+        Dependency_14: assetbundle/prefabs/model/role_ueman/clips/jumploop
+        Dependency_15: assetbundle/prefabs/model/role_ueman/clips/bowright
+    Info_42:
+      Name: assetbundle/prefabs/model/role_ueman/clips/attack1
+      Dependencies: {}
+    Info_43:
+      Name: assetbundle/prefabs/model/role_ueman/clips/attack2
+      Dependencies: {}
+    Info_44:
+      Name: assetbundle/prefabs/model/role_ueman/clips/behit1
+      Dependencies: {}
+    Info_45:
+      Name: assetbundle/prefabs/model/role_ueman/clips/behit2
+      Dependencies: {}
+    Info_46:
+      Name: assetbundle/prefabs/model/role_ueman/clips/die
+      Dependencies: {}
+    Info_47:
+      Name: assetbundle/prefabs/model/role_ueman/clips/fistleftgo
+      Dependencies: {}
+    Info_48:
+      Name: assetbundle/prefabs/model/role_ueman/clips/fistthreego
+      Dependencies: {}
+    Info_49:
+      Name: assetbundle/prefabs/model/role_ueman/clips/fisttwogo
+      Dependencies: {}
+    Info_50:
+      Name: assetbundle/prefabs/model/role_ueman/clips/getup
+      Dependencies: {}
+    Info_51:
+      Name: assetbundle/prefabs/model/role_ueman/clips/idle
+      Dependencies: {}
+    Info_52:
+      Name: assetbundle/prefabs/model/role_ueman/clips/jumpdown
+      Dependencies: {}
+    Info_53:
+      Name: assetbundle/prefabs/model/role_ueman/clips/jumpup
+      Dependencies: {}
+    Info_54:
+      Name: assetbundle/prefabs/model/role_ueman/model/role_ueman
+      Dependencies:
+        Dependency_0: assetbundle/prefabs/model/role_ueman/animator/role_ueman_controller
+    Info_55:
+      Name: assetbundle/modeltextures/12
+      Dependencies: {}
+    Info_56:
+      Name: assetbundle/modeltextures/3dch2040_1
+      Dependencies: {}
+    Info_57:
+      Name: assetbundle/prefabs/model/role_ueman/clips/fistrightgo
+      Dependencies: {}
+    Info_58:
+      Name: assetbundle/prefabs/model/role_ueman/clips/leftleggo
+      Dependencies: {}
+    Info_59:
+      Name: assetbundle/prefabs/model/role_ueman/clips/jumploop
+      Dependencies: {}
+    Info_60:
+      Name: assetbundle/prefabs/model/role_ueman/clips/bowright
       Dependencies: {}

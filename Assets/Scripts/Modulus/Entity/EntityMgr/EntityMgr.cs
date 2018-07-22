@@ -17,7 +17,16 @@ public class EntityMgr
         }
     }
 
-    private Dictionary<int, BaseEntity> epool = new Dictionary<int, BaseEntity>();
+    private BaseEntity mainPlayer = null;
+    public BaseEntity MainPlayer
+    {
+        get
+        {
+            return this.mainPlayer;
+        }
+    }
+
+    public Dictionary<int, BaseEntity> epool = new Dictionary<int, BaseEntity>();
     private Dictionary<E_EntityType, List<BaseEntity>> tpool = new Dictionary<E_EntityType, List<BaseEntity>>();
 
     public void createEntity(EntityData data)
@@ -32,11 +41,17 @@ public class EntityMgr
         role.setData(data);
         role.loadModel();
         epool.Add(data.playerId, role);
+        if (MainPlayer == null)
+        {
+            mainPlayer = role;
+        }
     }
 
     public void recyleEntity(BaseEntity role)
     {
 
     }
+
+    
 }
 

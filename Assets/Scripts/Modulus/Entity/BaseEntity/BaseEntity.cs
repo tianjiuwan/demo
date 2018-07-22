@@ -63,6 +63,13 @@ public class BaseEntity : MonoBehaviour
     }
     //实体数据
     private EntityData roleData;
+    public int UID
+    {
+        get
+        {
+            return this.roleData.playerId;
+        }
+    }
 
     private void Start()
     {
@@ -73,41 +80,6 @@ public class BaseEntity : MonoBehaviour
     {
         if (this.fsm != null)
             fsm.onUpdate();
-        //水平位移 前进
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            this.transFsm(E_FsmState.HorizontalMove, new object[] { this.transform.forward, 1f });
-            this.transAnim("attack");
-        }
-        //水平位移 被击退
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            this.transFsm(E_FsmState.HorizontalMove, new object[] { this.transform.forward * -1, 1f });
-            this.transAnim("hart");
-        }
-        //被击飞 曲线移动        
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            this.transFsm(E_FsmState.CurveMove, new object[] { new Vector3(0, 0, 0), 6f, 6f });
-            this.transAnim("lieDown");
-        }
-        //浮空 主动
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            this.transFsm(E_FsmState.InitiativeFly, new object[] { 6f });
-        }
-        //被击 浮空
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            this.transFsm(E_FsmState.PassivityFly, new object[] { 5f });
-            this.transAnim("lieDown");
-        }
-        //被击 浮空2
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            this.transFsm(E_FsmState.PassivityFly, new object[] { 1.5f });
-            this.transAnim("lieDown");
-        }
     }
 
     #region 实体提供接口

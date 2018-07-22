@@ -31,6 +31,7 @@ public class AssetCacheWindow : EditorWindow
     private List<GameObject> testLoadObjs = new List<GameObject>();
     private GameObject uiRoot;
     private int roleIndex = 100000000;
+    private int startZ = 2;
     private void OnGUI()
     {
         if (!isInit) return;
@@ -77,7 +78,9 @@ public class AssetCacheWindow : EditorWindow
             data.height = 2f;
             data.heightOffset = 1f;
             data.radius = 0.3f;
-            data.resName = @"AssetBundle\Prefabs\model\role_superman\model\role_superman";
+            data.initPosition = new Vector3(10, 0, startZ);
+            startZ++;
+            data.resName = @"AssetBundle\Prefabs\model\role_ueman\model\role_ueman";
             EntityMgr.Instance.createEntity(data);
             roleIndex++;
         }

@@ -10,9 +10,12 @@ using System.Text;
 
 public class AnimInfo
 {
+    public string modelName;//模型名称
     public string animName;//动画名称
     public int startIndex;//起始帧
     public int endIndex;//结束帧
+    public string nextName;//播放完成指向
+    public float nextExitTime = 0;//融合时间
     public bool isLoop = false;
     public float speed = 1;
 }
@@ -28,6 +31,7 @@ public class AnimTool
     private const string orgPath = "Assets/Res/Arts/FBX";
     //导出模型 切片 animator的路径
     private const string expPath = "Res/AssetBundle/Prefabs/Model";
+    private const string defaultAnim = "idle";
 
     [MenuItem("Assets/动画工具/导入选中模型", false, 1001)]
     public static void exportFbx()
@@ -38,13 +42,13 @@ public class AnimTool
         Object obj = Selection.activeObject;
         if (obj == null)
         {
-            EditorUtility.DisplayDialog("请选中正确的FBX模型文件", "请确定", "OK");
+            EditorUtility.DisplayDialog("请选中正确的FBX模型文件1", "请确定", "OK");
             return;
         }
         string path = AssetDatabase.GetAssetPath(obj);
-        if (!path.EndsWith(".FBX"))
+        if (!path.EndsWith(".FBX") && !path.EndsWith(".fbx"))
         {
-            EditorUtility.DisplayDialog("请选中正确的FBX模型文件", "请确定", "OK");
+            EditorUtility.DisplayDialog("请选中正确的FBX模型文件2", "请确定", "OK");
             return;
         }
         //先导入动画切片//同一个模型文件夹下面的命名规范 动画fbx以anim结尾 模型fbx以org结尾
@@ -83,37 +87,64 @@ public class AnimTool
         List<AnimInfo> clips = new List<AnimInfo>();
         Dictionary<string, AnimInfo> infos = new Dictionary<string, AnimInfo>();
         getClips(excelPath, ref clips);
-        var modelImporter = AssetImporter.GetAtPath(getRelativePath(animPath)) as ModelImporter;
-        if (modelImporter == null) return;
-        modelImporter.animationType = ModelImporterAnimationType.Generic;
-        modelImporter.importAnimation = true;
-        modelImporter.generateAnimations = ModelImporterGenerateAnimations.GenerateAnimations;
-        ModelImporterClipAnimation[] animations = new ModelImporterClipAnimation[clips.Count];
+        //ModelImporterClipAnimation[] animations = new ModelImporterClipAnimation[clips.Count];
+        List<string> usedModelsPath = new List<string>();
+        Dictionary<string, List<ModelImporterClipAnimation>> usedClipsMap = new Dictionary<string, List<ModelImporterClipAnimation>>();
         for (int i = 0; i < clips.Count; i++)
         {
+            string useModelPath = "";
+            string modelName = "";
+            if (string.IsNullOrEmpty(clips[i].modelName) || clips[i].modelName == "null")
+            {
+                useModelPath = getRelativePath(animPath);
+                modelName = Path.GetFileNameWithoutExtension(useModelPath);
+            }
+            else
+            {
+                string defaultModelPath = getRelativePath(animPath);
+                string defaultModelName = Path.GetFileNameWithoutExtension(defaultModelPath);
+                useModelPath = defaultModelPath.Replace(defaultModelName, clips[i].modelName);
+                modelName = clips[i].modelName;
+            }
+            var clipModelImporter = AssetImporter.GetAtPath(useModelPath) as ModelImporter;
+            if (clipModelImporter == null) continue;
+            clipModelImporter.animationType = ModelImporterAnimationType.Generic;
+            clipModelImporter.importAnimation = true;
+            clipModelImporter.generateAnimations = ModelImporterGenerateAnimations.GenerateAnimations;
             ModelImporterClipAnimation tempClip = new ModelImporterClipAnimation();
             tempClip.name = clips[i].animName;
             tempClip.firstFrame = clips[i].startIndex;
             tempClip.lastFrame = clips[i].endIndex;
             tempClip.loopTime = clips[i].isLoop;
             tempClip.wrapMode = clips[i].isLoop ? WrapMode.Loop : WrapMode.Default;
-            animations[i] = tempClip;
+            if (!usedClipsMap.ContainsKey(modelName)) usedClipsMap.Add(modelName, new List<ModelImporterClipAnimation>());
+            usedClipsMap[modelName].Add(tempClip);
+            if (!usedModelsPath.Contains(useModelPath)) usedModelsPath.Add(useModelPath);
             infos.Add(clips[i].animName, clips[i]);
         }
-        modelImporter.clipAnimations = animations;
-        UnityEngine.Object[] objs = AssetDatabase.LoadAllAssetsAtPath(getRelativePath(animPath));
-        for (int i = 0; i < objs.Length; i++)
+        for (int i = 0; i < usedModelsPath.Count; i++)
         {
-            if (objs[i] is AnimationClip && !objs[i].name.StartsWith("_"))
+            string usedModelPath = usedModelsPath[i];
+            var clipModelImporter = AssetImporter.GetAtPath(usedModelPath) as ModelImporter;
+            if (clipModelImporter == null) continue;
+            string modelName = Path.GetFileNameWithoutExtension(usedModelPath);
+            clipModelImporter.clipAnimations = usedClipsMap[modelName].ToArray();
+            AssetDatabase.ImportAsset(clipModelImporter.assetPath);
+
+            UnityEngine.Object[] objs = AssetDatabase.LoadAllAssetsAtPath(usedModelPath);
+            for (int k = 0; k < objs.Length; k++)
             {
-                AnimationClip old = objs[i] as AnimationClip;
-                AnimationClip newClip = new AnimationClip();
-                EditorUtility.CopySerialized(old, newClip);
-                string savaPath = Path.Combine(clipsPath, newClip.name + ".anim");
-                AssetDatabase.CreateAsset(newClip, savaPath);
+                if (objs[k] is AnimationClip && !objs[k].name.StartsWith("_") && !objs[k].name.StartsWith("Take"))
+                {
+                    AnimationClip old = objs[k] as AnimationClip;
+                    AnimationClip newClip = new AnimationClip();
+                    EditorUtility.CopySerialized(old, newClip);
+                    string savaPath = Path.Combine(clipsPath, newClip.name + ".anim");
+                    AssetDatabase.CreateAsset(newClip, savaPath);
+                }
             }
         }
-        AssetDatabase.ImportAsset(modelImporter.assetPath);
+
         //创建Animator
         string animatorName = floderName + "_Controller.controller";
         string acSavePath = Path.Combine(animatorPath, animatorName);
@@ -134,24 +165,47 @@ public class AnimTool
         int startY = 1;
         int startX = 300;
         AnimatorState animState = new AnimatorState();
-        if (!dictClips.ContainsKey("idle"))
+        if (!dictClips.ContainsKey(defaultAnim))
         {
             Debug.LogError("没有配置idle动画 请检查 " + excelPath);
         }
         foreach (var item in dictClips)
         {
-            int y = item.Key == "idle" ? 0 : startY * 80;
-            animState = stateMachine.AddState(item.Key, new Vector2(startX, y));
+            int y = item.Key == defaultAnim ? 200 : startY * 80;
+            int x = item.Key == defaultAnim ? 0 : startX;
+            animState = stateMachine.AddState(item.Key, new Vector2(x, y));
             animState.motion = item.Value;
             if (infos.ContainsKey(item.Key))
             {
                 animState.speed = infos[item.Key].speed;
             }
-            if (item.Key == "idle")
+            if (item.Key == defaultAnim)
             {
                 stateMachine.defaultState = animState;
             }
-            startY = item.Key == "idle" ? startY : startY + 1;
+            startY = item.Key == defaultAnim ? startY : startY + 1;
+        }
+        //动画全部加入再连线
+        ChildAnimatorState[] states = stateMachine.states;
+        Dictionary<string, AnimatorState> stateMap = new Dictionary<string, AnimatorState>();
+        for (int i = 0; i < states.Length; i++)
+        {
+            stateMap.Add(states[i].state.name, states[i].state);
+        }
+        for (int i = 0; i < states.Length; i++)
+        {
+            ChildAnimatorState currState = states[i];
+            string animName = currState.state.name;
+            if (infos.ContainsKey(animName) && !string.IsNullOrEmpty(infos[animName].nextName))
+            {
+                string nextName = infos[animName].nextName;
+                float exitTime = infos[animName].nextExitTime;
+                if (!stateMap.ContainsKey(nextName)) continue;
+                AnimatorState nextState = stateMap[nextName];
+                AnimatorStateTransition cond = currState.state.AddTransition(nextState);
+                cond.hasExitTime = true;
+                cond.exitTime = exitTime;
+            }
         }
         ac.name = animatorName;
         //导出prefab赋值Animator
@@ -211,6 +265,9 @@ public class AnimTool
             info.endIndex = int.Parse(clipInfo[2]);
             info.isLoop = int.Parse(clipInfo[3]) == 1;
             info.speed = clipInfo[4] == null ? 1 : float.Parse(clipInfo[4]);
+            info.nextName = clipInfo.Count <= 5 ? "" : clipInfo[5].ToString();
+            info.nextExitTime = clipInfo.Count <= 6 ? 0 : float.Parse(clipInfo[6]);
+            info.modelName = clipInfo.Count <= 7 ? "" : clipInfo[7].ToString();
             clips.Add(info);
         }
     }
