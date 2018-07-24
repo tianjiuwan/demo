@@ -16,6 +16,7 @@ public class EntityDataWrap
 		L.RegVar("resName", get_resName, set_resName);
 		L.RegVar("entityType", get_entityType, set_entityType);
 		L.RegVar("initPosition", get_initPosition, set_initPosition);
+		L.RegVar("initAngle", get_initAngle, set_initAngle);
 		L.EndClass();
 	}
 
@@ -177,6 +178,25 @@ public class EntityDataWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_initAngle(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			EntityData obj = (EntityData)o;
+			UnityEngine.Vector3 ret = obj.initAngle;
+			ToLua.Push(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index initAngle on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int set_playerId(IntPtr L)
 	{
 		object o = null;
@@ -306,6 +326,25 @@ public class EntityDataWrap
 		catch(Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e, o, "attempt to index initPosition on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_initAngle(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			EntityData obj = (EntityData)o;
+			UnityEngine.Vector3 arg0 = ToLua.ToVector3(L, 2);
+			obj.initAngle = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index initAngle on a nil value");
 		}
 	}
 }

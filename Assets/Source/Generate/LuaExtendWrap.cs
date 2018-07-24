@@ -15,6 +15,7 @@ public class LuaExtendWrap
 		L.RegFunction("log", log);
 		L.RegFunction("inputAddListener", inputAddListener);
 		L.RegFunction("inputRemoveListener", inputRemoveListener);
+		L.RegFunction("getUID", getUID);
 		L.EndStaticLibs();
 	}
 
@@ -107,8 +108,9 @@ public class LuaExtendWrap
 		{
 			ToLua.CheckArgsCount(L, 1);
 			EntityData arg0 = (EntityData)ToLua.CheckObject<EntityData>(L, 1);
-			LuaExtend.entityMgrCreate(arg0);
-			return 0;
+			BaseEntity o = LuaExtend.entityMgrCreate(arg0);
+			ToLua.Push(L, o);
+			return 1;
 		}
 		catch (Exception e)
 		{
@@ -157,6 +159,22 @@ public class LuaExtendWrap
 			System.Action<UnityEngine.KeyCode> arg0 = (System.Action<UnityEngine.KeyCode>)ToLua.CheckDelegate<System.Action<UnityEngine.KeyCode>>(L, 1);
 			LuaExtend.inputRemoveListener(arg0);
 			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int getUID(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 0);
+			int o = LuaExtend.getUID();
+			LuaDLL.lua_pushinteger(L, o);
+			return 1;
 		}
 		catch (Exception e)
 		{

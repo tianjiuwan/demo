@@ -70,6 +70,44 @@ public class BaseEntity : MonoBehaviour
             return this.roleData.playerId;
         }
     }
+    /*
+   * cast skill 1001
+   * 走20帧
+   * 1帧
+   * ｛
+   *     锁定 int 等级xx
+   *     动作 string (动画名称)
+   * 音效 audioId->cfg(音效id找配置 播放音效)
+   *     特效 effectId->cfg(特效id找配置 播放特效)
+   *     位移 moveId->cfg(位移id找配置 位移参数 垂直or水平or曲线 位移参数...方向 距离)
+   * ｝
+   * 10帧｛
+   *     伤害 attackId->cfg(攻击id找配置 检测范围扇形or矩形or距离 检测参数...打击效果hitId(这次打击效果 浮空or击退 锁定等级xx) )
+   * ｝
+   * 
+   * 配置在lua那边解析 C# tick lua skillPool
+   * 
+   */
+
+
+    /// <summary>
+    ///实体锁定等级(用于实体移动 释放技能等验证)
+    ///0可以移动 释放技能 (技能配置一个锁定等级字段 指定了则需求指定锁定等级 不指定则可以释放)
+    ///大于0无法移动 释放技能 一般都需要0等级 如果技能指定锁定等级 则判断锁定等级释放技能
+    ///玩家受击 锁定等级定位到10000起 这个时候无法移动 绝大部分技能无法释放 但是可能有反击技能（受到某种攻击可以释放的技能）
+    /// </summary>
+    private int lockLevel = 0;
+    public int LockLevel
+    {
+        get
+        {
+            return this.lockLevel;
+        }
+        set
+        {
+            this.lockLevel = value;
+        }
+    }
 
     private void Start()
     {
@@ -122,13 +160,28 @@ public class BaseEntity : MonoBehaviour
     {
         if (this.Prefab == null)
         {
-            ResMgr.Instance.get(roleData.resName, (go) =>
-            {
-                go.transform.SetParent(this.Trans);
-                go.transform.localPosition = Vector3.zero;
-                this.prefab = go;
-                initialize();
-            });
+            this.loadState = E_EntityLoadState.Loading;
+            ResMgr.Instance.get(roleData.resName, loadFinish);
+        }
+    }
+    private void loadFinish(GameObject go)
+    {
+        go.transform.SetParent(this.Trans);
+        go.transform.localPosition = Vector3.zero;
+        this.prefab = go;
+        this.loadState = E_EntityLoadState.Finish;
+        initialize();
+    }
+
+    public void onDispose()
+    {
+        if (this.LoadState == E_EntityLoadState.Loading)
+        {
+            ResMgr.Instance.unLoad(roleData.resName, loadFinish);
+        }
+        if (this.Prefab != null)
+        {
+            ResMgr.Instance.recyle(this.Prefab);
         }
     }
     /// <summary>

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using LuaInterface;
 
 public class LogicFrame
 {
@@ -25,10 +26,14 @@ public class LogicFrame
             return frameIndex;
         }
     }
-    public void initialize()
+    private LuaState luaState = null;
+    LuaFunction luaFunc = null;
+    public void initialize(LuaState state)
     {
         //if (frameTick != null) return;
         //frameTick = new Thread(startThread);
+        luaState = state;
+        luaFunc = luaState.GetFunction("TimeMgr.tick");
         AssetCoroutine.Instance.StartCoroutine(tick());
     }
 
@@ -36,7 +41,10 @@ public class LogicFrame
         while (true) {
             yield return new WaitForEndOfFrame();
             frameIndex++;
-            SkillMgr.Instance.tick(frameIndex);
+            //SkillMgr.Instance.tick(frameIndex);
+            if (luaFunc != null) {
+                luaFunc.Call(frameIndex);
+            }
         }
     }
 }

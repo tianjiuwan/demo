@@ -13,8 +13,7 @@ public class AppMain : MonoBehaviour
 
     void Start()
     {
-        InputMgr.Instance.initialize();
-        LogicFrame.Instance.initialize();
+        InputMgr.Instance.initialize();        
         LoaderMgr.Instance.initialize();
         ManifsetMgr.Instance.initislize();
         AtlasMgr.Instance.initialize();
@@ -30,6 +29,7 @@ public class AppMain : MonoBehaviour
         string fullPath = Path.Combine(Application.dataPath, "LuaScripts/Scripts");
         lua.AddSearchPath(fullPath);
         lua.DoFile("__init.lua");
+        LogicFrame.Instance.initialize(lua);
     }
 
 

@@ -59,6 +59,7 @@ public static class CustomSettings
         //_GT(typeof(TestExport.Space)),
         //-------------------------------------------------------------------        
         _GT(typeof(EntityData)),
+        _GT(typeof(EntityExtend)),
         _GT(typeof(LuaExtend)),
         _GT(typeof(LuaInjectionStation)),
         _GT(typeof(InjectType)),

@@ -26,9 +26,9 @@ public static class LuaExtend
     }
     #endregion
     #region EntityMgr导出
-    public static void entityMgrCreate(EntityData data)
+    public static BaseEntity entityMgrCreate(EntityData data)
     {
-        EntityMgr.Instance.createEntity(data);
+       return  EntityMgr.Instance.createEntity(data);
     }
     #endregion
     #region logger
@@ -46,6 +46,12 @@ public static class LuaExtend
     public static void inputRemoveListener(Action<KeyCode> handler)
     {
         InputMgr.Instance.removeListener(handler);
+    }
+    #endregion
+
+    #region  数学相关
+    public static int getUID() {
+        return MathUtils.UniqueID;
     }
     #endregion
 

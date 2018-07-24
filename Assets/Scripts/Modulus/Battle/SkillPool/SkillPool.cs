@@ -16,10 +16,7 @@ public class SkillPool
  * 缓存技能池 netSkillPool(不应该计算伤害,只播放音效特效,伤害包由服务器同步)
  * 缓存技能池 mainSkillPool(播放音效特效，计算伤害列表并发给服务器验算)
  * 客户端走每一帧 tick池子
- * 
- * 模型动画 animator or animation 
- * 
- * 
+ *
  */
     public class SkillCfg
     {

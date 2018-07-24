@@ -29,11 +29,11 @@ public class EntityMgr
     public Dictionary<int, BaseEntity> epool = new Dictionary<int, BaseEntity>();
     private Dictionary<E_EntityType, List<BaseEntity>> tpool = new Dictionary<E_EntityType, List<BaseEntity>>();
 
-    public void createEntity(EntityData data)
+    public BaseEntity createEntity(EntityData data)
     {
         if (epool.ContainsKey(data.playerId))
         {
-            return;
+            return epool[data.playerId];
         }
         GameObject go = new GameObject(data.playerId.ToString());
         go.transform.position = data.initPosition;
@@ -45,6 +45,7 @@ public class EntityMgr
         {
             mainPlayer = role;
         }
+        return role;
     }
 
     public void recyleEntity(BaseEntity role)
@@ -52,6 +53,19 @@ public class EntityMgr
 
     }
 
-    
+    public BaseEntity getEntity(int id)
+    {
+        if (epool.ContainsKey(id))
+        {
+            return epool[id];
+        }
+        return null;
+    }
+    public T getEntity<T>(int id) where T : BaseEntity
+    {
+        return epool[id] as T;
+    }
+
+
 }
 

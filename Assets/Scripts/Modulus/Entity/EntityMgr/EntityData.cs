@@ -11,5 +11,6 @@ public class EntityData
     public string resName;//资源名称
     public int entityType;//实体类型
     public Vector3 initPosition = Vector3.one;//初始位置
+    public Vector3 initAngle = Vector3.zero;
 }
 
