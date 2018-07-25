@@ -27,7 +27,12 @@ public static class EntityExtend
             role.transFsm(eFlag, args);
         }
     }
-    //实体fsm状态
+    #region 搜索相关
+    //距离搜索
+    public static List<int> searchByDistance(int searchId,float distance) {
+        return  SearchUtils.getByDistance(searchId, distance);
+    }
+    #endregion
 
 
 }

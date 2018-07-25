@@ -9,6 +9,7 @@ public class EntityExtendWrap
 		L.BeginStaticLibs("EntityExtend");
 		L.RegFunction("transAnim", transAnim);
 		L.RegFunction("transFsm", transFsm);
+		L.RegFunction("searchByDistance", searchByDistance);
 		L.EndStaticLibs();
 	}
 
@@ -56,6 +57,24 @@ public class EntityExtendWrap
 			object[] arg2 = ToLua.ToParamsObject(L, 3, count - 2);
 			EntityExtend.transFsm(arg0, arg1, arg2);
 			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int searchByDistance(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 2);
+			int arg0 = (int)LuaDLL.luaL_checknumber(L, 1);
+			float arg1 = (float)LuaDLL.luaL_checknumber(L, 2);
+			System.Collections.Generic.List<int> o = EntityExtend.searchByDistance(arg0, arg1);
+			ToLua.PushSealed(L, o);
+			return 1;
 		}
 		catch (Exception e)
 		{

@@ -5,14 +5,17 @@ using UnityEngine;
 public class SearchUtils
 {
     //距离检测
-    public static List<BaseEntity> getByDistance(BaseEntity caster, float distance)
+    public static List<int> getByDistance(int caster, float distance)
     {
-        List<BaseEntity> lst = new List<BaseEntity>();
+        BaseEntity casterRole = EntityMgr.Instance.getEntity(caster);
+        if (casterRole == null)
+            return null;
+        List<int> lst = new List<int>();
         foreach (var item in EntityMgr.Instance.epool)
         {
-            if (item.Value.UID == caster.UID) continue;
-            if (Vector3.Distance(item.Value.Trans.position, caster.Trans.position) <= distance)
-                lst.Add(item.Value);
+            if (item.Value.UID == casterRole.UID) continue;
+            if (Vector3.Distance(item.Value.Trans.position, casterRole.Trans.position) <= distance)
+                lst.Add(item.Key);
         }
         return lst;
     }

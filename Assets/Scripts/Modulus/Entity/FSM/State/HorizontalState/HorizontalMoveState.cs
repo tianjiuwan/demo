@@ -19,12 +19,24 @@ public class HorizontalMoveState : BaseState
     {
     }
 
+    /// <summary>
+    /// 方向 距离 时间
+    /// 计算出每帧速度
+    /// 
+    /// </summary>
+    /// <param name="args"></param>
     public override void onEnter(params object[] args)
     {
-        this.dir = (Vector3)args[0];
-        this.dis = (float)args[1];
-        this.dir = this.dir.normalized * 0.1f / scale;
-        this.endFrame = UnityEngine.Mathf.FloorToInt(this.dis * 10 * scale);
+
+        this.endFrame = int.Parse(args[0].ToString());
+        float offset = float.Parse(args[1].ToString());
+        this.dis = float.Parse(args[2].ToString());
+
+        Quaternion rot = Quaternion.Euler(0, offset, 0) * this.agent.Trans.rotation;
+        // Vector3 pos = rot * new Vector3(0, 0, this.dis) + this.agent.Trans.position;
+        this.dir = rot * Vector3.forward; //pos-this.agent.Trans.position;
+        float sc = dis / this.endFrame;
+        this.dir = this.dir.normalized * sc;
     }
 
     public override void onUpdate()
@@ -42,6 +54,6 @@ public class HorizontalMoveState : BaseState
     {
         tickFrame = 1;
         this.agent.transFsm(E_FsmState.Stand, null);
-        this.agent.transAnim("idle",0.2f);
+        this.agent.transAnim("idle", 0.2f);
     }
 }

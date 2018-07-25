@@ -8,6 +8,7 @@ public class CurveMoveState : BaseState
     {
     }
 
+    private int endFrame = 0;
     private float moveTime = 0;
     private float curveSpeed = 1f;
     private Vector3 P0 = Vector3.zero;
@@ -19,13 +20,15 @@ public class CurveMoveState : BaseState
     //1targetPos 2 距离 3 高度
     public override void onEnter(params object[] args)
     {
-        Vector3 target = (Vector3)args[0];
-        float dis = (float)args[1];
-        float height = (float)args[2];
-        curveSpeed = args.Length <= 3 ? curveSpeed : (float)args[3];
+        this.endFrame = int.Parse(args[0].ToString());
+        float offset = float.Parse(args[1].ToString());
+        Quaternion rot = Quaternion.Euler(0, offset, 0) * this.agent.Trans.rotation;
+        Vector3 dir = rot * Vector3.forward;
+        float dis = float.Parse(args[2].ToString());
+        float height = float.Parse(args[3].ToString());
+        curveSpeed = 1f;
         P0 = this.agent.Trans.position;
-        target.y = P0.y;
-        Vector3 dir = (P0 - target).normalized;
+        dir = dir.normalized;
         P1 = (P0 + dir * dis / 2) + Vector3.up * height;
         P2 = P0 + dir * dis;
         //Debug.DrawLine(P0, P1, Color.red, 1f);

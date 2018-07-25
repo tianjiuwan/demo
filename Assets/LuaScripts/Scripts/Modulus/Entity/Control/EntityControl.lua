@@ -32,7 +32,7 @@ function EntityControl:createEntity()
     data.heightOffset = 1
     data.radius = 0.3
     data.resName = "AssetBundle/Prefabs/model/role_ueman/model/role_ueman"
-    data.initPosition = Vector3(10, 0, self.startZ);
+    data.initPosition = Vector3(0, 0, 0);
     local role =LuaExtend.entityMgrCreate(data)
     local lrole = LRole(self.entityId,role)
     EntityMgr:addRole(lrole)

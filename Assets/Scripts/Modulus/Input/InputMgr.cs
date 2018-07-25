@@ -132,30 +132,30 @@ public class InputMgr : MonoBehaviour
     //    }
     //}
 
-    IEnumerator checkAttack(float time)
-    {
-        yield return new WaitForSeconds(time);
-        List<BaseEntity> lst = SearchUtils.getByDistance(this.player, 1.1f);
-        for (int i = 0; i < lst.Count; i++)
-        {
-            BaseEntity role = lst[i];
-            role.transFsm(E_FsmState.HorizontalMove, new object[] { role.Trans.forward * -1, 0.5f });
-            int idx = UnityEngine.Random.Range(1, 2);
-            role.transAnim("beHit" + idx);
-        }
-    }
-    IEnumerator checkAttack2(float time)
-    {
-        yield return new WaitForSeconds(time);
-        List<BaseEntity> lst = SearchUtils.getByDistance(this.player, 2f);
-        for (int i = 0; i < lst.Count; i++)
-        {
-            BaseEntity role = lst[i];
-            role.transFsm(E_FsmState.HorizontalMove, new object[] { role.Trans.forward * -1, 1.5f });
-            int idx = UnityEngine.Random.Range(1, 2);
-            role.transAnim("beHit" + idx);
-        }
-    }
+    //IEnumerator checkAttack(float time)
+    //{
+    //    yield return new WaitForSeconds(time);
+    //    List<BaseEntity> lst = SearchUtils.getByDistance(this.player, 1.1f);
+    //    for (int i = 0; i < lst.Count; i++)
+    //    {
+    //        BaseEntity role = lst[i];
+    //        role.transFsm(E_FsmState.HorizontalMove, new object[] { role.Trans.forward * -1, 0.5f });
+    //        int idx = UnityEngine.Random.Range(1, 2);
+    //        role.transAnim("beHit" + idx);
+    //    }
+    //}
+    //IEnumerator checkAttack2(float time)
+    //{
+    //    yield return new WaitForSeconds(time);
+    //    List<BaseEntity> lst = SearchUtils.getByDistance(this.player, 2f);
+    //    for (int i = 0; i < lst.Count; i++)
+    //    {
+    //        BaseEntity role = lst[i];
+    //        role.transFsm(E_FsmState.HorizontalMove, new object[] { role.Trans.forward * -1, 1.5f });
+    //        int idx = UnityEngine.Random.Range(1, 2);
+    //        role.transAnim("beHit" + idx);
+    //    }
+    //}
 
 }
 

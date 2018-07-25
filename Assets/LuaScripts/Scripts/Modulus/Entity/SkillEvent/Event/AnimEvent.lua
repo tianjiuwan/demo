@@ -11,7 +11,6 @@ function AnimEvent:doEvent()
 	local role = EntityMgr:getRole(self:getRoleId())
 	if role then 
 		local fadeTime = self.animCfg and self.animCfg.fadeTime or 0 
-		print(self.animName,fadeTime)
 		role:transAnim(self.animName,fadeTime)
 	end 
 end 

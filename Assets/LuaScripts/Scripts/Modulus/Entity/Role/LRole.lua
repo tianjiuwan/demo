@@ -51,3 +51,7 @@ end
 function LRole:transAnim(name,time)
     EntityExtend.transAnim(self.id,name,time)
 end 
+
+function LRole:transFsm(flag,...)
+    EntityExtend.transFsm(self.id,flag,...)
+end 
