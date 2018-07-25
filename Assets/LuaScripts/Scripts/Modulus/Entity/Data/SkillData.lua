@@ -14,6 +14,7 @@ function SkillData:__init(uid,roleId,map,cfg,maxFrame)
 	self.eventMap = map 
 	self.skilCfg = cfg 
 	self.maxFrame = maxFrame
+	self.lockLevel = self.skilCfg and self.skilCfg.lockLevel or 0 
 end 
 
 function SkillData:hasEvents(frame)
@@ -34,4 +35,19 @@ end
 
 function SkillData:getRoleId()
 	return self.roleId
+end 
+
+function SkillData:onStart()
+	local role = EntityMgr:getRole(self:getRoleId())
+	print("添加锁定 ",self:getRoleId())
+	if role then 
+		role:setLockLevel(self:getUID(),self.lockLevel)
+	end 
+end 
+function SkillData:onFinish()
+	local role = EntityMgr:getRole(self:getRoleId())
+	print("释放锁定 ",self:getRoleId())
+	if role then 
+		role:setLockLevel(self:getUID(),0)
+	end 
 end 

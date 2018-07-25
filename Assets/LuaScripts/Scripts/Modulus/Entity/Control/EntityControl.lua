@@ -46,26 +46,27 @@ function EntityControl:mainPlayerCastSkill()
       local skillId = 100002
       local skillCfg = ConfigHelper:getConfigByKey('SkillConfig',skillId)
       if skillCfg then 
-          --dict<key,list<data>>
+          local lockLevel = skillCfg.lockLevel
+          if mainRole:getLockLevel() >= lockLevel then 
+             print('无法释放技能 锁定等级不够')
+             return 
+          end 
           local map = { }
           local nowFrame = SkillMgr:getFrame()
+          local roleId = mainRole:getId()
+          local uid = LuaExtend.getUID()
           for i = 1,10 do 
               local frame = skillCfg['event'..i]
               if frame ~= nil then                  
                  local realFrame = nowFrame+frame
-                 print("realFrame ",nowFrame,frame,realFrame)
                  if map[realFrame] == nil then 
                     map[realFrame] = { }
                  end 
-                 local cfg = { }--查找对应表 todo 
-                 local data = SkillFrameData(realFrame,skillCfg['eventType'..i],cfg)
-                 
+                 local data = SkillEventFactory:create(uid,roleId,realFrame,skillCfg['eventType'..i],skillCfg['eventId'..i])--SkillFrameData(realFrame,skillCfg['eventType'..i],cfg)                 
                  table.insert(map[realFrame],data)
               end 
           end 
           local maxFrame = skillCfg.maxFrame+nowFrame
-          local roleId = mainRole:getId()
-          local uid = LuaExtend.getUID()
           local skillData = SkillData(uid,roleId,map,skillCfg,maxFrame)
           SkillMgr:addMainSkill(skillData)
           --mainRole:transAnim(skillCfg.animName,0)
