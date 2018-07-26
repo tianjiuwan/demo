@@ -5,6 +5,7 @@ function LRole:__init_self()
    self.lockUID = 0 
    self.lockLevel = 0
    self.nowCastSkills = { }
+   self.nowHits = { }
 end 
 
 function LRole:__init(id)
@@ -23,19 +24,29 @@ function LRole:setLockLevel(uid,lv)
    end 
 end 
 
+--skill
 function LRole:getLockLevel()
 	return self.lockLevel
 end 
-
 function LRole:addCastSkill(uid)
    self.nowCastSkills[uid] = true 
 end 
 function LRole:removeCastSkill(uid)
 	self.nowCastSkills[uid] = nil 
 end 
-
 function LRole:getCastSkill()
 	return self.nowCastSkills
+end 
+
+--hit
+function LRole:addHit(uid)
+   self.nowHits[uid] = true 
+end 
+function LRole:removeHit(uid)
+  self.nowHits[uid] = nil 
+end 
+function LRole:getHits()
+  return self.nowHits
 end 
 
 --受击

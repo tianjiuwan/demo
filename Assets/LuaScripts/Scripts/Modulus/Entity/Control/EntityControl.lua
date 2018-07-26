@@ -21,8 +21,14 @@ function EntityControl:anyKeyDown(code)
     end 
     --其他输入
     if code == UnityEngine.KeyCode.O then 
-        self:mainPlayerCastSkill()
+        SkillMgr:doSkill(self.mainPlayer,100001)
     end 
+    if code == UnityEngine.KeyCode.P then 
+        SkillMgr:doSkill(self.mainPlayer,100002)
+    end 
+    if code == UnityEngine.KeyCode.F then 
+        SkillMgr:doSkill(self.mainPlayer,100003)
+    end     
 end 
 
 function EntityControl:createEntity()
@@ -38,40 +44,6 @@ function EntityControl:createEntity()
     EntityMgr:addRole(lrole)
     self.entityId = self.entityId + 1
     self.startZ = self.startZ + 2 
-end 
-
-function EntityControl:mainPlayerCastSkill()
-   local mainRole = EntityMgr:getMainRole()
-   if mainRole then 
-      local skillId = 100002
-      local skillCfg = ConfigHelper:getConfigByKey('SkillConfig',skillId)
-      if skillCfg then 
-          local lockLevel = skillCfg.lockLevel
-          if mainRole:getLockLevel() >= lockLevel then 
-             print('无法释放技能 锁定等级不够')
-             return 
-          end 
-          local map = { }
-          local nowFrame = SkillMgr:getFrame()
-          local roleId = mainRole:getId()
-          local uid = LuaExtend.getUID()
-          for i = 1,10 do 
-              local frame = skillCfg['event'..i]
-              if frame ~= nil then                  
-                 local realFrame = nowFrame+frame
-                 if map[realFrame] == nil then 
-                    map[realFrame] = { }
-                 end 
-                 local data = SkillEventFactory:create(uid,roleId,realFrame,skillCfg['eventType'..i],skillCfg['eventId'..i])--SkillFrameData(realFrame,skillCfg['eventType'..i],cfg)                 
-                 table.insert(map[realFrame],data)
-              end 
-          end 
-          local maxFrame = skillCfg.maxFrame+nowFrame
-          local skillData = SkillData(uid,roleId,map,skillCfg,maxFrame)
-          SkillMgr:addMainSkill(skillData)
-          --mainRole:transAnim(skillCfg.animName,0)
-      end       
-   end 
 end 
 
 --Control ClassName--uiEnum--openUI EventCmd--closeUI EventCmd

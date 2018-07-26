@@ -39,14 +39,12 @@ end
 
 function SkillData:onStart()
 	local role = EntityMgr:getRole(self:getRoleId())
-	print("添加锁定 ",self:getRoleId())
 	if role then 
 		role:setLockLevel(self:getUID(),self.lockLevel)
 	end 
 end 
 function SkillData:onFinish()
 	local role = EntityMgr:getRole(self:getRoleId())
-	print("释放锁定 ",self:getRoleId())
 	if role then 
 		role:setLockLevel(self:getUID(),0)
 	end 

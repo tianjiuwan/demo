@@ -7,7 +7,7 @@ end
 
 --子类重写
 function AnimEvent:doEvent()
-	print("<color=red>AnimEvent: </color>",self.tickFrame,SkillEventTypeLang[self.type])
+	--print("<color=red>AnimEvent: </color>",self.tickFrame,SkillEventTypeLang[self.type])
 	local role = EntityMgr:getRole(self:getRoleId())
 	if role then 
 		local fadeTime = self.animCfg and self.animCfg.fadeTime or 0 

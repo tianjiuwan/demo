@@ -26,7 +26,7 @@ public class CurveMoveState : BaseState
         Vector3 dir = rot * Vector3.forward;
         float dis = float.Parse(args[2].ToString());
         float height = float.Parse(args[3].ToString());
-        curveSpeed = 1f;
+        curveSpeed = 1f/this.endFrame;
         P0 = this.agent.Trans.position;
         dir = dir.normalized;
         P1 = (P0 + dir * dis / 2) + Vector3.up * height;
@@ -46,7 +46,7 @@ public class CurveMoveState : BaseState
 
     public override void onUpdate()
     {
-        moveTime += Time.deltaTime * curveSpeed;
+        moveTime += curveSpeed;
         Vector3 bPos = (1 - moveTime) * (1 - moveTime) * P0 + 2 * moveTime * (1 - moveTime) * P1 + moveTime * moveTime * P2;
         moveDir = bPos - this.agent.Trans.position;
         this.agent.ccMove(moveDir);

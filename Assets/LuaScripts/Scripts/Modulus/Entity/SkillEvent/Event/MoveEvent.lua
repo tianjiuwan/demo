@@ -7,7 +7,7 @@ end
 
 --子类重写
 function MoveEvent:doEvent()
-	print("<color=red>MoveEvent: </color>",self.tickFrame,SkillEventTypeLang[self.type])
+	--print("<color=red>MoveEvent: </color>",self.tickFrame,SkillEventTypeLang[self.type])
 	if not self.moveCfg then 
 		return 
 	end 

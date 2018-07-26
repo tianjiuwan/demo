@@ -6,7 +6,7 @@ end
 
 --子类重写
 function AttackEvent:doEvent()
-	print("<color=red>AttackEvent: </color>",self.tickFrame,SkillEventTypeLang[self.type])
+	  --print("<color=red>AttackEvent: </color>",self.tickFrame,SkillEventTypeLang[self.type])
     if not self.attackCfg then 
     	return 
     end 
@@ -15,11 +15,6 @@ function AttackEvent:doEvent()
     if searchType == 1 then 
        local dis = self.attackCfg.searchDis
        local lst = EntityExtend.searchByDistance(self:getRoleId(),dis)
-       if lst then 
-          local ier = lst:GetEnumerator()
-          while ier:MoveNext() do 
-          	 print(ier.Current)
-          end 
-       end 
+       SkillMgr:hitRole(self:getRoleId(),self.attackCfg.hitId,lst)
     end 
 end 

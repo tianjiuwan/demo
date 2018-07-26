@@ -6,14 +6,17 @@ function HitData:__init_self()
 	self.eventMap = nil 
 	self.hitCfg = nil 
 	self.maxFrame = nil 
+	self.casterId = nil 
 end 
 
-function HitData:__init(uid,roleId,map,cfg,maxFrame)
+function HitData:__init(uid,roleId,map,cfg,maxFrame,casterId)
 	self.uid = uid 
 	self.roleId = roleId 
 	self.eventMap = map 
 	self.hitCfg = cfg
 	self.maxFrame = maxFrame
+	self.casterId = casterId 
+	self.lockLevel = self.hitCfg and self.hitCfg.lockLevel or 0 
 end 
 
 function HitData:hasEvents(frame)
@@ -34,4 +37,18 @@ end
 
 function HitData:getRoleId()
 	return self.roleId
+end 
+
+function HitData:onStart()
+	local role = EntityMgr:getRole(self:getRoleId())
+	if role then 
+		role:setLockLevel(self:getUID(),self.lockLevel)
+	end 
+end 
+
+function HitData:onFinish()
+	local role = EntityMgr:getRole(self:getRoleId())
+	if role then 
+		role:setLockLevel(self:getUID(),0)
+	end 
 end 
