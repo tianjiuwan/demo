@@ -10,6 +10,7 @@ function EntityMgr:addRole(role)
 	self.entityPool[id] = role 
 	if self.mainRole == nil then 
 		self.mainRole = role 
+		LuaUtils:setCameraPlayer(id)
 	end 
 end 
 

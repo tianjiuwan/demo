@@ -9,6 +9,8 @@ public class EntityExtendWrap
 		L.BeginStaticLibs("EntityExtend");
 		L.RegFunction("transAnim", transAnim);
 		L.RegFunction("transFsm", transFsm);
+		L.RegFunction("updateFsm", updateFsm);
+		L.RegFunction("move", move);
 		L.RegFunction("searchByDistance", searchByDistance);
 		L.EndStaticLibs();
 	}
@@ -56,6 +58,40 @@ public class EntityExtendWrap
 			int arg1 = (int)LuaDLL.luaL_checknumber(L, 2);
 			object[] arg2 = ToLua.ToParamsObject(L, 3, count - 2);
 			EntityExtend.transFsm(arg0, arg1, arg2);
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int updateFsm(IntPtr L)
+	{
+		try
+		{
+			int count = LuaDLL.lua_gettop(L);
+			int arg0 = (int)LuaDLL.luaL_checknumber(L, 1);
+			object[] arg1 = ToLua.ToParamsObject(L, 2, count - 1);
+			EntityExtend.updateFsm(arg0, arg1);
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int move(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 2);
+			int arg0 = (int)LuaDLL.luaL_checknumber(L, 1);
+			UnityEngine.Vector3 arg1 = ToLua.ToVector3(L, 2);
+			EntityExtend.move(arg0, arg1);
 			return 0;
 		}
 		catch (Exception e)

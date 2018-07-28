@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2960634347
+CRC: 3576178183
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: ef31b4d7500dde921b4081b92d713c4c
+    Hash: 9e2d857a7ed1fb1e46178d7195d6d38a
   TypeTreeHash:
     serializedVersion: 2
     Hash: 46daa0ab816e68f527f38fb18aec3007
@@ -32,3 +32,4 @@ Dependencies:
 - F:/GithubPro/demo/Assets/Res/AssetBundleExport/assetbundle/prefabs/model/role_ueman/clips/leftleggo
 - F:/GithubPro/demo/Assets/Res/AssetBundleExport/assetbundle/prefabs/model/role_ueman/clips/jumploop
 - F:/GithubPro/demo/Assets/Res/AssetBundleExport/assetbundle/prefabs/model/role_ueman/clips/bowright
+- F:/GithubPro/demo/Assets/Res/AssetBundleExport/assetbundle/prefabs/model/role_ueman/clips/run

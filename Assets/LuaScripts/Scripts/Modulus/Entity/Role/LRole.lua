@@ -60,9 +60,16 @@ function LRole:onDie()
 end 
 
 function LRole:transAnim(name,time)
-    EntityExtend.transAnim(self.id,name,time)
+    EntityUtils:transAnim(self.id,name,time)
 end 
 
 function LRole:transFsm(flag,...)
-    EntityExtend.transFsm(self.id,flag,...)
+    EntityUtils:transFsm(self.id,flag,...)
+end 
+function LRole:updateFsm(...)
+    EntityUtils:updateFsm(self.id,...)
+end
+
+function LRole:move(dir)
+    EntityUtils:move(self.id,dir)
 end 

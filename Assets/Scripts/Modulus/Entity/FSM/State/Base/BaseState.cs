@@ -15,6 +15,10 @@ public class BaseState
         this.sType = sType;
     }
 
+    public virtual void updateArgs(params object[] args) {
+
+    }
+
     public virtual void onEnter(params object[] args)
     {
 

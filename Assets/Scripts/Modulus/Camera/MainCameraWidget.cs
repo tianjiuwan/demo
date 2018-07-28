@@ -4,7 +4,7 @@ using UnityEngine;
 public class MainCameraWidget : MonoBehaviour
 {
     Vector3 v3 = Vector3.zero;
-    Vector3 rotOffset = new Vector3(20, 0, 0);
+    Vector3 rotOffset = new Vector3(30, 0, 0);
     Quaternion rot = Quaternion.identity;
     Vector3 shakeV3 = Vector3.zero;
     GameObject followPlayer = null;

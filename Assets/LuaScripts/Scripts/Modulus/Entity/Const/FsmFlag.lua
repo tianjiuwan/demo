@@ -8,6 +8,7 @@ FsmFlag.CurveMove = 5
 FsmFlag.HorizontalMove = 6
 FsmFlag.SuperArmor = 7
 FsmFlag.Stiff = 8
+FsmFlag.Run = 9
 
 --[[
 public enum E_FsmState

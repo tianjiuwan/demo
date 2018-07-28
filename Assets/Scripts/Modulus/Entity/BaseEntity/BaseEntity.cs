@@ -131,6 +131,11 @@ public class BaseEntity : MonoBehaviour
         if (this.fsm != null)
             fsmState = this.fsm.transFsm(flag, args);
     }
+    public void updateFsm(params object[] args)
+    {
+        if (this.fsm != null)
+            this.fsm.updateFsm(args);
+    }
     /// <summary>
     /// 播放动画
     /// </summary>
@@ -215,6 +220,7 @@ public class BaseEntity : MonoBehaviour
         {
             fsm = new FsmAgent();
             fsm.addState(new StandState(this, E_FsmState.Stand));
+            fsm.addState(new RunState(this, E_FsmState.Run));
             fsm.addState(new FlyAirState(this, E_FsmState.FlyAir));
             fsm.addState(new FixedFlyState(this, E_FsmState.FixedFly));
             fsm.addState(new PassivityFlyState(this, E_FsmState.PassivityFly));

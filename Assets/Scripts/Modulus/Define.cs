@@ -45,7 +45,7 @@ public enum E_SkillEventType
 
 public enum E_FsmState
 {
-    Stand,
+    Stand,    
 
     FlyAir,
     PassivityFly,
@@ -56,6 +56,7 @@ public enum E_FsmState
 
     SuperArmor,
     Stiff,
+    Run,
 }
 
 public enum E_JumpState

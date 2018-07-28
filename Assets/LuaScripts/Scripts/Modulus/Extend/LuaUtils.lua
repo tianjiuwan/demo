@@ -3,7 +3,14 @@ local _extend = LuaExtend
 
 --监听输入
 function LuaUtils:inputAddListener(handler)
-	LuaExtend.inputAddListener(handler)
+	 LuaExtend.inputAddListener(handler)
+end 
+--相机
+function LuaUtils:setCameraPlayer(playerId)
+   LuaExtend.setCameraPlayer(playerId)
+end 
+function LuaUtils:setCameraObj(obj)
+   LuaExtend.setCameraObj(obj)
 end 
 
 --gameobject操作

@@ -231,8 +231,7 @@ public static class LuaExtend
     }
     #endregion
     #region 摄像机相关
-    public static void setCameraPlayer(GameObject player)
-    {
+    public static void setCameraObj(GameObject player) {
         if (player == null)
         {
             return;
@@ -275,6 +274,15 @@ public static class LuaExtend
         {
             mw.setFollow(player);
         }
+    }
+    public static void setCameraPlayer(int playerId)
+    {
+        BaseEntity role = EntityMgr.Instance.getEntity(playerId);
+        if (role == null)
+        {
+            return;
+        }
+        setCameraObj(role.gameObject);
     }
     public static void doShake(float time, float att, float hor, float ver)
     {

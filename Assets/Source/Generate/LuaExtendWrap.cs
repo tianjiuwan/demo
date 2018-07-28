@@ -29,6 +29,7 @@ public class LuaExtendWrap
 		L.RegFunction("doFloatTo", doFloatTo);
 		L.RegFunction("killTweener", killTweener);
 		L.RegFunction("lerpRotation", lerpRotation);
+		L.RegFunction("setCameraObj", setCameraObj);
 		L.RegFunction("setCameraPlayer", setCameraPlayer);
 		L.RegFunction("doShake", doShake);
 		L.EndStaticLibs();
@@ -532,12 +533,28 @@ public class LuaExtendWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int setCameraPlayer(IntPtr L)
+	static int setCameraObj(IntPtr L)
 	{
 		try
 		{
 			ToLua.CheckArgsCount(L, 1);
 			UnityEngine.GameObject arg0 = (UnityEngine.GameObject)ToLua.CheckObject(L, 1, typeof(UnityEngine.GameObject));
+			LuaExtend.setCameraObj(arg0);
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int setCameraPlayer(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 1);
+			int arg0 = (int)LuaDLL.luaL_checknumber(L, 1);
 			LuaExtend.setCameraPlayer(arg0);
 			return 0;
 		}

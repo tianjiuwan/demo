@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 2537854386
+CRC: 3698902869
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -170,6 +170,7 @@ AssetBundleManifest:
         Dependency_13: assetbundle/prefabs/model/role_ueman/clips/leftleggo
         Dependency_14: assetbundle/prefabs/model/role_ueman/clips/jumploop
         Dependency_15: assetbundle/prefabs/model/role_ueman/clips/bowright
+        Dependency_16: assetbundle/prefabs/model/role_ueman/clips/run
     Info_42:
       Name: assetbundle/prefabs/model/role_ueman/clips/attack1
       Dependencies: {}
@@ -729,4 +730,7 @@ AssetBundleManifest:
       Dependencies: {}
     Info_221:
       Name: assetbundle/shader/uihead
+      Dependencies: {}
+    Info_222:
+      Name: assetbundle/prefabs/model/role_ueman/clips/run
       Dependencies: {}

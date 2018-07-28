@@ -23,6 +23,10 @@ public class FsmAgent
         }
         return nowState.sType;
     }
+    public void updateFsm( params object[] args) {
+        if (this.nowState != null)
+            this.nowState.updateArgs(args);
+    }
 
     public void onUpdate() {
         if (nextState != null) {
