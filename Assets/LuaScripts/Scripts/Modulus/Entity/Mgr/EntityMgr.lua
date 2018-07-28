@@ -24,4 +24,17 @@ function EntityMgr:getMainRole()
 	return self.mainRole
 end 
 
+function EntityMgr:createEntity(playerId)
+    local data = EntityData()
+    data.playerId = playerId
+    data.height = 2
+    data.heightOffset = 1
+    data.radius = 0.3
+    data.resName = "AssetBundle/Prefabs/model/role_ueman/model/role_ueman"
+    data.initPosition = Vector3(0, 0, 0);
+    local role = LuaUtils:createEntity(data)
+    local lrole = LRole(playerId,role)
+    EntityMgr:addRole(lrole)
+end 
+
 create(EntityMgr)

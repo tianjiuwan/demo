@@ -6,6 +6,7 @@ using UnityEditor;
 
 using BindType = ToLuaMenu.BindType;
 using System.Reflection;
+using UnityEngine.EventSystems;
 
 public static class CustomSettings
 {
@@ -35,6 +36,8 @@ public static class CustomSettings
     public static DelegateType[] customDelegateList = 
     {        
         _DT(typeof(Action)),
+        _DT(typeof(Action<PointerEventData>)),        
+        _DT(typeof(DG.Tweening.Core.DOSetter<float>)),        
         _DT(typeof(Action<GameObject>)),
         _DT(typeof(Action<KeyCode>)),
         _DT(typeof(UnityEngine.Events.UnityAction)),
@@ -60,6 +63,8 @@ public static class CustomSettings
         //-------------------------------------------------------------------        
         _GT(typeof(List<int>)),
         _GT(typeof(EntityData)),
+        _GT(typeof(PointerEventData)),
+        _GT(typeof(EventListener)),        
         _GT(typeof(EntityExtend)),
         _GT(typeof(LuaExtend)),
         _GT(typeof(LuaInjectionStation)),

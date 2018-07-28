@@ -137,13 +137,13 @@ function SkillMgr:doSkill(roleId,skillId)
       local skillCfg = ConfigHelper:getConfigByKey('SkillConfig',skillId)
       if skillCfg then 
           local lockLevel = skillCfg.lockLevel
+          local roleId = role:getId()
           if role:getLockLevel() >= lockLevel then 
-             print('无法释放技能 锁定等级不够')
+             UIMgr:openUI(UIEnum.UpDownAnimUI,roleId.."锁定等级: "..role:getLockLevel())
              return 
           end 
           local map = { }
-          local nowFrame = self:getFrame()
-          local roleId = role:getId()
+          local nowFrame = self:getFrame()          
           local uid = LuaExtend.getUID()
           for i = 1,10 do 
               local frame = skillCfg['event'..i]

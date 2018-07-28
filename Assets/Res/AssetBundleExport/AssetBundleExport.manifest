@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 163250941
+CRC: 2537854386
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -15,8 +15,8 @@ AssetBundleManifest:
       Name: assetbundle/prefabs/ui/testui
       Dependencies:
         Dependency_0: assetbundle/atlas/commonatlas
-        Dependency_1: assetbundle/atlas/facebookatlas
-        Dependency_2: assetbundle/atlas/teamatlas
+        Dependency_1: assetbundle/atlas/teamatlas
+        Dependency_2: assetbundle/atlas/skillatlas
     Info_4:
       Name: assetbundle/textures/common/cz_0
       Dependencies: {}
@@ -227,4 +227,506 @@ AssetBundleManifest:
       Dependencies: {}
     Info_60:
       Name: assetbundle/prefabs/model/role_ueman/clips/bowright
+      Dependencies: {}
+    Info_61:
+      Name: assetbundle/atlas/playerskillatlas
+      Dependencies: {}
+    Info_62:
+      Name: assetbundle/atlas/skillatlas
+      Dependencies: {}
+    Info_63:
+      Name: assetbundle/atlas/titleatlas
+      Dependencies: {}
+    Info_64:
+      Name: assetbundle/prefabs/ui/bottommidui
+      Dependencies:
+        Dependency_0: assetbundle/atlas/commonatlas
+        Dependency_1: assetbundle/materials/uihp
+        Dependency_2: assetbundle/materials/uimp
+        Dependency_3: assetbundle/modeltextures/b
+        Dependency_4: assetbundle/modeltextures/o
+    Info_65:
+      Name: assetbundle/prefabs/ui/bottomskillui
+      Dependencies:
+        Dependency_0: assetbundle/atlas/commonatlas
+        Dependency_1: assetbundle/atlas/playerskillatlas
+    Info_66:
+      Name: assetbundle/prefabs/ui/facebookui
+      Dependencies:
+        Dependency_0: assetbundle/atlas/skillatlas
+    Info_67:
+      Name: assetbundle/prefabs/ui/guildui
+      Dependencies:
+        Dependency_0: assetbundle/atlas/skillatlas
+    Info_68:
+      Name: assetbundle/prefabs/ui/joystickui
+      Dependencies:
+        Dependency_0: assetbundle/atlas/skillatlas
+    Info_69:
+      Name: assetbundle/prefabs/ui/skillui
+      Dependencies:
+        Dependency_0: assetbundle/atlas/facebookatlas
+        Dependency_1: assetbundle/atlas/skillatlas
+    Info_70:
+      Name: assetbundle/prefabs/ui/topleftui
+      Dependencies: {}
+    Info_71:
+      Name: assetbundle/prefabs/ui/uicanvas
+      Dependencies: {}
+    Info_72:
+      Name: assetbundle/prefabs/ui/updownanimui
+      Dependencies:
+        Dependency_0: assetbundle/atlas/facebookatlas
+    Info_73:
+      Name: assetbundle/materials/beam
+      Dependencies: {}
+    Info_74:
+      Name: assetbundle/materials/big_circle
+      Dependencies: {}
+    Info_75:
+      Name: assetbundle/materials/blackhole
+      Dependencies: {}
+    Info_76:
+      Name: assetbundle/materials/blood_puddle
+      Dependencies: {}
+    Info_77:
+      Name: assetbundle/materials/blood_splat
+      Dependencies: {}
+    Info_78:
+      Name: assetbundle/materials/broken_decal
+      Dependencies: {}
+    Info_79:
+      Name: assetbundle/materials/bubble
+      Dependencies: {}
+    Info_80:
+      Name: assetbundle/materials/circle
+      Dependencies: {}
+    Info_81:
+      Name: assetbundle/materials/circle2
+      Dependencies: {}
+    Info_82:
+      Name: assetbundle/materials/ds_equipment_standard
+      Dependencies: {}
+    Info_83:
+      Name: assetbundle/materials/ds_skeleton_standard
+      Dependencies: {}
+    Info_84:
+      Name: assetbundle/materials/electricbomb_explosion
+      Dependencies: {}
+    Info_85:
+      Name: assetbundle/materials/electricbomb_explosion_add
+      Dependencies: {}
+    Info_86:
+      Name: assetbundle/materials/electric_splat_hit
+      Dependencies: {}
+    Info_87:
+      Name: assetbundle/materials/electric_splat_hit_add
+      Dependencies: {}
+    Info_88:
+      Name: assetbundle/materials/fire01
+      Dependencies: {}
+    Info_89:
+      Name: assetbundle/materials/fire_real
+      Dependencies: {}
+    Info_90:
+      Name: assetbundle/materials/fire_smoke01
+      Dependencies: {}
+    Info_91:
+      Name: assetbundle/materials/flamebomb_explosion
+      Dependencies: {}
+    Info_92:
+      Name: assetbundle/materials/flame_explosion
+      Dependencies: {}
+    Info_93:
+      Name: assetbundle/materials/flame_explosion_add
+      Dependencies: {}
+    Info_94:
+      Name: assetbundle/materials/flame_splat_hit
+      Dependencies: {}
+    Info_95:
+      Name: assetbundle/materials/floor
+      Dependencies: {}
+    Info_96:
+      Name: assetbundle/materials/floor_bg
+      Dependencies: {}
+    Info_97:
+      Name: assetbundle/materials/glacialwall_mesh
+      Dependencies: {}
+    Info_98:
+      Name: assetbundle/materials/greenlight_broken_decal
+      Dependencies: {}
+    Info_99:
+      Name: assetbundle/materials/heal_decal
+      Dependencies: {}
+    Info_100:
+      Name: assetbundle/materials/heavy_smoke
+      Dependencies: {}
+    Info_101:
+      Name: assetbundle/materials/icewall_mesh
+      Dependencies: {}
+    Info_102:
+      Name: assetbundle/materials/ice_decal
+      Dependencies: {}
+    Info_103:
+      Name: assetbundle/materials/ice_floor
+      Dependencies: {}
+    Info_104:
+      Name: assetbundle/materials/leaf
+      Dependencies: {}
+    Info_105:
+      Name: assetbundle/materials/light
+      Dependencies: {}
+    Info_106:
+      Name: assetbundle/materials/light2
+      Dependencies: {}
+    Info_107:
+      Name: assetbundle/materials/light3
+      Dependencies: {}
+    Info_108:
+      Name: assetbundle/materials/light_add
+      Dependencies: {}
+    Info_109:
+      Name: assetbundle/materials/light_decal
+      Dependencies: {}
+    Info_110:
+      Name: assetbundle/materials/light_smoke
+      Dependencies: {}
+    Info_111:
+      Name: assetbundle/materials/monster_coco
+      Dependencies: {}
+    Info_112:
+      Name: assetbundle/materials/pulse_smoke
+      Dependencies: {}
+    Info_113:
+      Name: assetbundle/materials/pulse_stretch
+      Dependencies: {}
+    Info_114:
+      Name: assetbundle/materials/pulse_stretch_add
+      Dependencies: {}
+    Info_115:
+      Name: assetbundle/materials/pulse_stretch_m
+      Dependencies: {}
+    Info_116:
+      Name: assetbundle/materials/pulse_wave
+      Dependencies: {}
+    Info_117:
+      Name: assetbundle/materials/rhombus
+      Dependencies: {}
+    Info_118:
+      Name: assetbundle/materials/ring
+      Dependencies: {}
+    Info_119:
+      Name: assetbundle/materials/role_mimi
+      Dependencies: {}
+    Info_120:
+      Name: assetbundle/materials/shield
+      Dependencies: {}
+    Info_121:
+      Name: assetbundle/materials/shield_floor
+      Dependencies: {}
+    Info_122:
+      Name: assetbundle/materials/shine_decal1
+      Dependencies: {}
+    Info_123:
+      Name: assetbundle/materials/shine_decal2
+      Dependencies: {}
+    Info_124:
+      Name: assetbundle/materials/shine_decal3
+      Dependencies: {}
+    Info_125:
+      Name: assetbundle/materials/shine_decal4
+      Dependencies: {}
+    Info_126:
+      Name: assetbundle/materials/smoke
+      Dependencies: {}
+    Info_127:
+      Name: assetbundle/materials/soft_smoke
+      Dependencies: {}
+    Info_128:
+      Name: assetbundle/materials/soil_decal
+      Dependencies: {}
+    Info_129:
+      Name: assetbundle/materials/soot_decal
+      Dependencies: {}
+    Info_130:
+      Name: assetbundle/materials/spark
+      Dependencies: {}
+    Info_131:
+      Name: assetbundle/materials/spark_increase
+      Dependencies: {}
+    Info_132:
+      Name: assetbundle/materials/stone_debris
+      Dependencies: {}
+    Info_133:
+      Name: assetbundle/materials/stretch_hit01
+      Dependencies: {}
+    Info_134:
+      Name: assetbundle/materials/swirl_smoke
+      Dependencies: {}
+    Info_135:
+      Name: assetbundle/materials/sword
+      Dependencies: {}
+    Info_136:
+      Name: assetbundle/materials/terrain
+      Dependencies: {}
+    Info_137:
+      Name: assetbundle/materials/trajectory_blur
+      Dependencies: {}
+    Info_138:
+      Name: assetbundle/materials/trajectory_electro
+      Dependencies: {}
+    Info_139:
+      Name: assetbundle/materials/trajectory_flame
+      Dependencies: {}
+    Info_140:
+      Name: assetbundle/materials/trajectory_flame_add
+      Dependencies: {}
+    Info_141:
+      Name: assetbundle/materials/twinkle
+      Dependencies: {}
+    Info_142:
+      Name: assetbundle/materials/twirl
+      Dependencies: {}
+    Info_143:
+      Name: assetbundle/materials/uienergy
+      Dependencies:
+        Dependency_0: assetbundle/modeltextures/noisedark
+        Dependency_1: assetbundle/shader/uienergy
+    Info_144:
+      Name: assetbundle/materials/uihp
+      Dependencies:
+        Dependency_0: assetbundle/modeltextures/noisedark
+        Dependency_1: assetbundle/shader/uihead
+    Info_145:
+      Name: assetbundle/materials/uimp
+      Dependencies:
+        Dependency_0: assetbundle/modeltextures/noisedark
+        Dependency_1: assetbundle/shader/uihead
+    Info_146:
+      Name: assetbundle/materials/water_splash
+      Dependencies: {}
+    Info_147:
+      Name: assetbundle/materials/wood_mesh
+      Dependencies: {}
+    Info_148:
+      Name: assetbundle/modeltextures/106200001
+      Dependencies: {}
+    Info_149:
+      Name: assetbundle/modeltextures/b
+      Dependencies: {}
+    Info_150:
+      Name: assetbundle/modeltextures/beam
+      Dependencies: {}
+    Info_151:
+      Name: assetbundle/modeltextures/bg
+      Dependencies: {}
+    Info_152:
+      Name: assetbundle/modeltextures/big_circle
+      Dependencies: {}
+    Info_153:
+      Name: assetbundle/modeltextures/blackhole
+      Dependencies: {}
+    Info_154:
+      Name: assetbundle/modeltextures/blood_puddle
+      Dependencies: {}
+    Info_155:
+      Name: assetbundle/modeltextures/blood_splat
+      Dependencies: {}
+    Info_156:
+      Name: assetbundle/modeltextures/broken_decal
+      Dependencies: {}
+    Info_157:
+      Name: assetbundle/modeltextures/bubble
+      Dependencies: {}
+    Info_158:
+      Name: assetbundle/modeltextures/circle2
+      Dependencies: {}
+    Info_159:
+      Name: assetbundle/modeltextures/ds_equipment_standard
+      Dependencies: {}
+    Info_160:
+      Name: assetbundle/modeltextures/ds_skeleton_standard
+      Dependencies: {}
+    Info_161:
+      Name: assetbundle/modeltextures/electricbomb_explosion
+      Dependencies: {}
+    Info_162:
+      Name: assetbundle/modeltextures/electric_splat_hit
+      Dependencies: {}
+    Info_163:
+      Name: assetbundle/modeltextures/fire01
+      Dependencies: {}
+    Info_164:
+      Name: assetbundle/modeltextures/fire_real
+      Dependencies: {}
+    Info_165:
+      Name: assetbundle/modeltextures/fire_smoke01
+      Dependencies: {}
+    Info_166:
+      Name: assetbundle/modeltextures/flamebomb_explosion
+      Dependencies: {}
+    Info_167:
+      Name: assetbundle/modeltextures/flame_explosion
+      Dependencies: {}
+    Info_168:
+      Name: assetbundle/modeltextures/flame_splat_hit
+      Dependencies: {}
+    Info_169:
+      Name: assetbundle/modeltextures/floor
+      Dependencies: {}
+    Info_170:
+      Name: assetbundle/modeltextures/floor_bg
+      Dependencies: {}
+    Info_171:
+      Name: assetbundle/modeltextures/fx_tex_smoke04
+      Dependencies: {}
+    Info_172:
+      Name: assetbundle/modeltextures/glacialwall_mesh
+      Dependencies: {}
+    Info_173:
+      Name: assetbundle/modeltextures/greenlight_broken_decal
+      Dependencies: {}
+    Info_174:
+      Name: assetbundle/modeltextures/ground 1
+      Dependencies: {}
+    Info_175:
+      Name: assetbundle/modeltextures/heal_decal
+      Dependencies: {}
+    Info_176:
+      Name: assetbundle/modeltextures/heavy_smoke
+      Dependencies: {}
+    Info_177:
+      Name: assetbundle/modeltextures/icewall_mesh
+      Dependencies: {}
+    Info_178:
+      Name: assetbundle/modeltextures/ice_decal
+      Dependencies: {}
+    Info_179:
+      Name: assetbundle/modeltextures/ice_floor
+      Dependencies: {}
+    Info_180:
+      Name: assetbundle/modeltextures/leaf
+      Dependencies: {}
+    Info_181:
+      Name: assetbundle/modeltextures/light
+      Dependencies: {}
+    Info_182:
+      Name: assetbundle/modeltextures/light2
+      Dependencies: {}
+    Info_183:
+      Name: assetbundle/modeltextures/light3
+      Dependencies: {}
+    Info_184:
+      Name: assetbundle/modeltextures/light_decal
+      Dependencies: {}
+    Info_185:
+      Name: assetbundle/modeltextures/light_smoke
+      Dependencies: {}
+    Info_186:
+      Name: assetbundle/modeltextures/noisedark
+      Dependencies: {}
+    Info_187:
+      Name: assetbundle/modeltextures/noisewhite
+      Dependencies: {}
+    Info_188:
+      Name: assetbundle/modeltextures/o
+      Dependencies: {}
+    Info_189:
+      Name: assetbundle/modeltextures/pulse_smoke
+      Dependencies: {}
+    Info_190:
+      Name: assetbundle/modeltextures/pulse_stretch
+      Dependencies: {}
+    Info_191:
+      Name: assetbundle/modeltextures/pulse_stretch_m
+      Dependencies: {}
+    Info_192:
+      Name: assetbundle/modeltextures/pulse_wave
+      Dependencies: {}
+    Info_193:
+      Name: assetbundle/modeltextures/rhombus
+      Dependencies: {}
+    Info_194:
+      Name: assetbundle/modeltextures/ring
+      Dependencies: {}
+    Info_195:
+      Name: assetbundle/modeltextures/role_mimi
+      Dependencies: {}
+    Info_196:
+      Name: assetbundle/modeltextures/shield
+      Dependencies: {}
+    Info_197:
+      Name: assetbundle/modeltextures/shield_floor
+      Dependencies: {}
+    Info_198:
+      Name: assetbundle/modeltextures/shine_decal
+      Dependencies: {}
+    Info_199:
+      Name: assetbundle/modeltextures/sjboss_bg
+      Dependencies: {}
+    Info_200:
+      Name: assetbundle/modeltextures/smoke
+      Dependencies: {}
+    Info_201:
+      Name: assetbundle/modeltextures/soft_smoke
+      Dependencies: {}
+    Info_202:
+      Name: assetbundle/modeltextures/soil_decal
+      Dependencies: {}
+    Info_203:
+      Name: assetbundle/modeltextures/soot_decal
+      Dependencies: {}
+    Info_204:
+      Name: assetbundle/modeltextures/spark
+      Dependencies: {}
+    Info_205:
+      Name: assetbundle/modeltextures/spark_increase
+      Dependencies: {}
+    Info_206:
+      Name: assetbundle/modeltextures/stone_debris
+      Dependencies: {}
+    Info_207:
+      Name: assetbundle/modeltextures/stretch_hit01
+      Dependencies: {}
+    Info_208:
+      Name: assetbundle/modeltextures/swirl_smoke
+      Dependencies: {}
+    Info_209:
+      Name: assetbundle/modeltextures/sword
+      Dependencies: {}
+    Info_210:
+      Name: assetbundle/modeltextures/trajectory_blur
+      Dependencies: {}
+    Info_211:
+      Name: assetbundle/modeltextures/trajectory_electro
+      Dependencies: {}
+    Info_212:
+      Name: assetbundle/modeltextures/trajectory_flame
+      Dependencies: {}
+    Info_213:
+      Name: assetbundle/modeltextures/twinkle
+      Dependencies: {}
+    Info_214:
+      Name: assetbundle/modeltextures/twirl
+      Dependencies: {}
+    Info_215:
+      Name: assetbundle/modeltextures/water_splash
+      Dependencies: {}
+    Info_216:
+      Name: assetbundle/modeltextures/wood_mesh
+      Dependencies: {}
+    Info_217:
+      Name: assetbundle/modeltextures/zz_bg
+      Dependencies: {}
+    Info_218:
+      Name: assetbundle/shader/terrain
+      Dependencies: {}
+    Info_219:
+      Name: assetbundle/shader/tuidefault
+      Dependencies: {}
+    Info_220:
+      Name: assetbundle/shader/uienergy
+      Dependencies: {}
+    Info_221:
+      Name: assetbundle/shader/uihead
       Dependencies: {}
