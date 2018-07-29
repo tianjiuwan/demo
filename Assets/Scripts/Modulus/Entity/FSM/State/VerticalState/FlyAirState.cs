@@ -55,7 +55,7 @@ public class FlyAirState : BaseState
     //1 speed浮空力度
     public override void onEnter(params object[] args)
     {
-        float sp = (float)args[0];
+        float sp = float.Parse(args[0].ToString());
         this.upSpeed += sp;
     }
 

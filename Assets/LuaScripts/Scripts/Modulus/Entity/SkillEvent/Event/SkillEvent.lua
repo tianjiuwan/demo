@@ -7,14 +7,16 @@ function SkillEvent:__init_self()
 	self.type = nil 
 	self.cfgId = nil 
 	self.cfg = nil 
+	self.args= nil 
 end 
 
-function SkillEvent:__init(uid,roleId,frame,type,cfgId)
+function SkillEvent:__init(uid,roleId,frame,type,cfgId,...)
 	self.uid = uid 
 	self.roleId = roleId 
 	self.tickFrame = frame 
 	self.type = type 
 	self.cfgId = cfgId 
+	self.args= {...}
 	self:initialize()
 end
 

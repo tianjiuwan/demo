@@ -29,12 +29,11 @@ public class HorizontalMoveState : BaseState
     {
 
         this.endFrame = int.Parse(args[0].ToString());
-        float offset = float.Parse(args[1].ToString());
+        this.dir = (Vector3)args[1];
         this.dis = float.Parse(args[2].ToString());
 
-        Quaternion rot = Quaternion.Euler(0, offset, 0) * this.agent.Trans.rotation;
-        // Vector3 pos = rot * new Vector3(0, 0, this.dis) + this.agent.Trans.position;
-        this.dir = rot * Vector3.forward; //pos-this.agent.Trans.position;
+        // Quaternion rot = Quaternion.Euler(0, offset, 0) * this.agent.Trans.rotation;
+        //  this.dir = rot * Vector3.forward;
         float sc = dis / this.endFrame;
         this.dir = this.dir.normalized * sc;
     }

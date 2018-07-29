@@ -21,6 +21,7 @@ function LRole:setLockLevel(uid,lv)
    if self.lockUID == uid or self.lockUID == 0 or lv > self.lockLevel then 
    	  self.lockUID = uid
    	  self.lockLevel = lv 
+      --print('LRole set lock uid ',uid,lv)
    end 
 end 
 

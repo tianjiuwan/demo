@@ -8,8 +8,8 @@ public class MainCameraWidget : MonoBehaviour
     Quaternion rot = Quaternion.identity;
     Vector3 shakeV3 = Vector3.zero;
     GameObject followPlayer = null;
-    float distance = -10;
-    float height = 6;
+    float distance = -6.5f;
+    float height = 3.5f;
     //相机震动
     float shakeTime = -1;
     float Attenuation = 1;

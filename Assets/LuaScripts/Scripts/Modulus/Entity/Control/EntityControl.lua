@@ -26,7 +26,7 @@ function EntityControl:anyKeyDown(code)
     if code == UnityEngine.KeyCode.P then 
         SkillMgr:doSkill(self.mainPlayer,100002)
     end 
-    if code == UnityEngine.KeyCode.F then 
+    if code == UnityEngine.KeyCode.K then 
         SkillMgr:doSkill(self.mainPlayer,100003)
     end  
     --打开UI

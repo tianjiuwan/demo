@@ -94,7 +94,7 @@ function SkillMgr:hitRole(casterId,hitId,lst)
 	local ier = lst:GetEnumerator()
 	local hitCfg = ConfigHelper:getConfigByKey('HitConfig',hitId)
 	while ier:MoveNext() do 
-		--print('<color=red>hit role </color>',ier.Current)
+	    	--print('<color=red>hit role </color>',ier.Current)
         self:doHit(casterId,hitCfg,ier.Current)
 	end 
 end 
@@ -119,7 +119,7 @@ function SkillMgr:doHit(casterId,hitCfg,roleId)
                  if map[realFrame] == nil then 
                     map[realFrame] = { }
                  end 
-                 local data = SkillEventFactory:create(uid,roleId,realFrame,hitCfg['eventType'..i],hitCfg['eventId'..i])
+                 local data = SkillEventFactory:create(uid,roleId,realFrame,hitCfg['eventType'..i],hitCfg['eventId'..i],casterId)
                  table.insert(map[realFrame],data)
               end 
           end 

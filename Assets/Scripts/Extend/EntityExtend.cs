@@ -52,8 +52,28 @@ public static class EntityExtend
     {
         return SearchUtils.getByDistance(searchId, distance);
     }
+    //扇形搜索
+    public static List<int> searchBySector(int searchId, float angle, float distance)
+    {
+        return SearchUtils.getBySector(searchId, angle, distance);
+    }
     #endregion
-
-
+    //获取实体向前偏移的向量
+    public static Vector3 getDirByOffset(int roleId, float offset)
+    {
+        BaseEntity role = EntityMgr.Instance.getEntity(roleId);
+        if (role == null) return Vector3.zero;
+        if (offset == 0) return role.Trans.forward;
+        Quaternion rot = Quaternion.Euler(0, offset, 0) * role.Trans.rotation;
+        return rot * Vector3.forward;
+    }
+    //获取两个实体间的向量
+    public static Vector3 getDirBy2R(int casterId, int hitRoleId)
+    {
+        BaseEntity caster = EntityMgr.Instance.getEntity(casterId);
+        BaseEntity hitRole = EntityMgr.Instance.getEntity(hitRoleId);
+        if (hitRole == null || caster == null) return Vector3.zero;
+        return  hitRole.Trans.position- caster.Trans.position;
+    }
 }
 

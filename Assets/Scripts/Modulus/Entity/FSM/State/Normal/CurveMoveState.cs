@@ -21,9 +21,9 @@ public class CurveMoveState : BaseState
     public override void onEnter(params object[] args)
     {
         this.endFrame = int.Parse(args[0].ToString());
-        float offset = float.Parse(args[1].ToString());
-        Quaternion rot = Quaternion.Euler(0, offset, 0) * this.agent.Trans.rotation;
-        Vector3 dir = rot * Vector3.forward;
+        Vector3 dir = (Vector3)args[1];// float.Parse(args[1].ToString());
+        //Quaternion rot = Quaternion.Euler(0, offset, 0) * this.agent.Trans.rotation;
+       // Vector3 dir = rot * Vector3.forward;
         float dis = float.Parse(args[2].ToString());
         float height = float.Parse(args[3].ToString());
         curveSpeed = 1f/this.endFrame;

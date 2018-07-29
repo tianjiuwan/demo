@@ -12,6 +12,9 @@ public class EntityExtendWrap
 		L.RegFunction("updateFsm", updateFsm);
 		L.RegFunction("move", move);
 		L.RegFunction("searchByDistance", searchByDistance);
+		L.RegFunction("searchBySector", searchBySector);
+		L.RegFunction("getDirByOffset", getDirByOffset);
+		L.RegFunction("getDirBy2R", getDirBy2R);
 		L.EndStaticLibs();
 	}
 
@@ -110,6 +113,61 @@ public class EntityExtendWrap
 			float arg1 = (float)LuaDLL.luaL_checknumber(L, 2);
 			System.Collections.Generic.List<int> o = EntityExtend.searchByDistance(arg0, arg1);
 			ToLua.PushSealed(L, o);
+			return 1;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int searchBySector(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 3);
+			int arg0 = (int)LuaDLL.luaL_checknumber(L, 1);
+			float arg1 = (float)LuaDLL.luaL_checknumber(L, 2);
+			float arg2 = (float)LuaDLL.luaL_checknumber(L, 3);
+			System.Collections.Generic.List<int> o = EntityExtend.searchBySector(arg0, arg1, arg2);
+			ToLua.PushSealed(L, o);
+			return 1;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int getDirByOffset(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 2);
+			int arg0 = (int)LuaDLL.luaL_checknumber(L, 1);
+			float arg1 = (float)LuaDLL.luaL_checknumber(L, 2);
+			UnityEngine.Vector3 o = EntityExtend.getDirByOffset(arg0, arg1);
+			ToLua.Push(L, o);
+			return 1;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int getDirBy2R(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 2);
+			int arg0 = (int)LuaDLL.luaL_checknumber(L, 1);
+			int arg1 = (int)LuaDLL.luaL_checknumber(L, 2);
+			UnityEngine.Vector3 o = EntityExtend.getDirBy2R(arg0, arg1);
+			ToLua.Push(L, o);
 			return 1;
 		}
 		catch (Exception e)

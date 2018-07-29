@@ -5,5 +5,7 @@ require "Assets.LuaScripts.Scripts.Modulus.Entity.SkillEvent.Event.EffectEvent"
 require "Assets.LuaScripts.Scripts.Modulus.Entity.SkillEvent.Event.MoveEvent"
 require "Assets.LuaScripts.Scripts.Modulus.Entity.SkillEvent.Event.AnimEvent"
 require "Assets.LuaScripts.Scripts.Modulus.Entity.SkillEvent.Event.LockEvent"
+require "Assets.LuaScripts.Scripts.Modulus.Entity.SkillEvent.Event.HitMoveEvent"
+
 
 require "Assets.LuaScripts.Scripts.Modulus.Entity.SkillEvent.SkillEventFactory"

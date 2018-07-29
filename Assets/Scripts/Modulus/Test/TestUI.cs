@@ -6,11 +6,15 @@ using UnityEngine.UI;
 public class TestUI : MonoBehaviour
 {
 
-    public GameObject obj;
+
 
     private void Update()
     {
-
+        //if (Target == null) return;
+        //Debug.DrawRay(this.transform.position, this.transform.forward * 10, Color.red);
+        //Vector3 vec = Target.transform.position - this.transform.position;
+        //Debug.DrawRay(this.transform.position, vec, Color.red);
+        //Debug.Log(Vector3.Angle(this.transform.forward, vec));
 
     }
     public Transform Target;
@@ -30,11 +34,12 @@ public class TestUI : MonoBehaviour
         //Vector3 pos = obj.transform.position + obj.transform.forward * 6;
         //Gizmos.DrawCube(pos, Vector3.one * 0.5f);
 
-        Gizmos.DrawLine(Target.position, Target.forward*10+Target.position);
-        Quaternion rot = Quaternion.Euler(0, 30, 0) * Target.rotation;
-        Vector3 pos = rot * new Vector3(10,0,10)+Target.position;
-        Gizmos.DrawLine(Target.position, pos);
+        //Gizmos.DrawLine(Target.position, Target.forward*10+Target.position);
+        //Quaternion rot = Quaternion.Euler(0, 30, 0) * Target.rotation;
+        //Vector3 pos = rot * new Vector3(10,0,10)+Target.position;
+        //Gizmos.DrawLine(Target.position, pos);
         //Gizmos.DrawLine(Target.position, Target.forward);
+        
     }
 }
 
