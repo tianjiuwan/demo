@@ -26,9 +26,9 @@ public class SearchUtils
         BaseEntity casterRole = EntityMgr.Instance.getEntity(caster);
         if (casterRole == null)
             return null;
-        #if  UNITY_EDITOR
-                drawSector(casterRole, angle, distance);
-        #endif
+#if UNITY_EDITOR
+        drawSector(casterRole, angle, distance);
+#endif
         List<int> lst = new List<int>();
         foreach (var item in EntityMgr.Instance.epool)
         {
@@ -36,20 +36,32 @@ public class SearchUtils
             if (Vector3.Distance(item.Value.Trans.position, casterRole.Trans.position) > distance) continue;
             //计算夹角
             Vector3 vec = item.Value.Trans.position - casterRole.Trans.position;
-            if (Vector3.Angle(casterRole.Trans.forward, vec)<=angle) {
+            if (Vector3.Angle(casterRole.Trans.forward, vec) <= angle)
+            {
                 lst.Add(item.Key);
             }
         }
         return lst;
     }
-    public static void drawSector(BaseEntity role,float angle,float dis) {
+    public static void drawSector(BaseEntity role, float angle, float dis)
+    {
         Quaternion left = Quaternion.Euler(0, angle / 2, 0) * role.Trans.rotation;
         Vector3 leftPos = role.Trans.position + left * Vector3.forward * dis;
         Quaternion right = Quaternion.Euler(0, -angle / 2, 0) * role.Trans.rotation;
         Vector3 rightPos = role.Trans.position + right * Vector3.forward * dis;
-        Debug.DrawLine(role.Trans.position, leftPos,Color.red,2f);
-        Debug.DrawLine(role.Trans.position, rightPos, Color.red,2f);
-        Debug.DrawLine(leftPos, rightPos, Color.red,2f);
+        Debug.DrawLine(role.Trans.position, leftPos, Color.red, 2f);
+        Debug.DrawLine(role.Trans.position, rightPos, Color.red, 2f);
+        //Debug.DrawLine(leftPos, rightPos, Color.red,2f);
+        //绘制曲线
+        int pointCount = Mathf.CeilToInt(angle);
+        Vector3 lastPoint = rightPos;
+        for (int i = 1; i < pointCount + 1; i++)
+        {
+            Quaternion rot = Quaternion.Euler(0, -angle / 2 + i, 0) * role.Trans.rotation;
+            Vector3 pos = role.Trans.position + rot * Vector3.forward * dis;
+            Debug.DrawLine(lastPoint, pos, Color.red, 2f);
+            lastPoint = pos;
+        }
     }
 
 }
