@@ -10,6 +10,7 @@ public class EntityExtendWrap
 		L.RegFunction("transAnim", transAnim);
 		L.RegFunction("transFsm", transFsm);
 		L.RegFunction("updateFsm", updateFsm);
+		L.RegFunction("getFsmFlag", getFsmFlag);
 		L.RegFunction("move", move);
 		L.RegFunction("searchByDistance", searchByDistance);
 		L.RegFunction("searchBySector", searchBySector);
@@ -79,6 +80,23 @@ public class EntityExtendWrap
 			object[] arg1 = ToLua.ToParamsObject(L, 2, count - 1);
 			EntityExtend.updateFsm(arg0, arg1);
 			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int getFsmFlag(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 1);
+			int arg0 = (int)LuaDLL.luaL_checknumber(L, 1);
+			int o = EntityExtend.getFsmFlag(arg0);
+			LuaDLL.lua_pushinteger(L, o);
+			return 1;
 		}
 		catch (Exception e)
 		{

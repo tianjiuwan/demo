@@ -5,6 +5,9 @@ function EntityUtils:transAnim(roleId,animName,fadeTime)
     EntityExtend.transAnim(roleId,animName,fadeTime)
 end
 
+function EntityUtils:getFlag(roleId)
+	return EntityExtend.getFsmFlag(roleId)
+end 
 function EntityUtils:transFsm(roleId,flag,...)
     EntityExtend.transFsm(roleId,flag,...)
 end 

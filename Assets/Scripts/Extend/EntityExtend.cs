@@ -37,6 +37,15 @@ public static class EntityExtend
             role.updateFsm(args);
         }
     }
+    public static int getFsmFlag(int roleId)
+    {
+        BaseEntity role = EntityMgr.Instance.getEntity(roleId);
+        if (role != null)
+        {
+            return (int)role.FsmState;
+        }
+        return -1;
+    }
     //移动
     public static void move(int roleId, Vector3 motion)
     {

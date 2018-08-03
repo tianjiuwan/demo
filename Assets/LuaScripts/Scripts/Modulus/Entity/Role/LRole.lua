@@ -17,6 +17,10 @@ function LRole:getId()
 	return self.id 
 end 
 
+function LRole:getFlag()
+  return EntityUtils:getFlag(self.id)
+end 
+
 function LRole:setLockLevel(uid,lv)   
    if self.lockUID == uid or self.lockUID == 0 or lv > self.lockLevel then 
    	  self.lockUID = uid

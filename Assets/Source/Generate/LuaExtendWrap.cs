@@ -15,6 +15,8 @@ public class LuaExtendWrap
 		L.RegFunction("log", log);
 		L.RegFunction("inputAddListener", inputAddListener);
 		L.RegFunction("inputRemoveListener", inputRemoveListener);
+		L.RegFunction("inputAddUpListener", inputAddUpListener);
+		L.RegFunction("inputRemoveUpListener", inputRemoveUpListener);
 		L.RegFunction("getUID", getUID);
 		L.RegFunction("getVectorAngle", getVectorAngle);
 		L.RegFunction("setUINode", setUINode);
@@ -174,6 +176,38 @@ public class LuaExtendWrap
 			ToLua.CheckArgsCount(L, 1);
 			System.Action<UnityEngine.KeyCode> arg0 = (System.Action<UnityEngine.KeyCode>)ToLua.CheckDelegate<System.Action<UnityEngine.KeyCode>>(L, 1);
 			LuaExtend.inputRemoveListener(arg0);
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int inputAddUpListener(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 1);
+			System.Action<UnityEngine.KeyCode> arg0 = (System.Action<UnityEngine.KeyCode>)ToLua.CheckDelegate<System.Action<UnityEngine.KeyCode>>(L, 1);
+			LuaExtend.inputAddUpListener(arg0);
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int inputRemoveUpListener(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 1);
+			System.Action<UnityEngine.KeyCode> arg0 = (System.Action<UnityEngine.KeyCode>)ToLua.CheckDelegate<System.Action<UnityEngine.KeyCode>>(L, 1);
+			LuaExtend.inputRemoveUpListener(arg0);
 			return 0;
 		}
 		catch (Exception e)

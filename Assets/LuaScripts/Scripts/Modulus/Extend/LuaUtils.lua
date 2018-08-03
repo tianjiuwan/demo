@@ -5,6 +5,16 @@ local _extend = LuaExtend
 function LuaUtils:inputAddListener(handler)
 	 LuaExtend.inputAddListener(handler)
 end 
+function LuaUtils:inputRemoveListener(handler)
+   LuaExtend.inputRemoveListener(handler)
+end 
+
+function LuaUtils:inputAddUpListener(handler)
+   LuaExtend.inputAddUpListener(handler)
+end 
+function LuaUtils:inputRemoveUpListener(handler)
+   LuaExtend.inputRemoveUpListener(handler)
+end 
 --相机
 function LuaUtils:setCameraPlayer(playerId)
    LuaExtend.setCameraPlayer(playerId)

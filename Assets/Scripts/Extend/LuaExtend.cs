@@ -49,6 +49,15 @@ public static class LuaExtend
     {
         InputMgr.Instance.removeListener(handler);
     }
+    public static void inputAddUpListener(Action<KeyCode> handler)
+    {
+        InputMgr.Instance.addUpListener(handler);
+    }
+    public static void inputRemoveUpListener(Action<KeyCode> handler)
+    {
+        InputMgr.Instance.removeUpListener(handler);
+    }
+    
     #endregion
 
     #region  数学相关
