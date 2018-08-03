@@ -67,21 +67,18 @@ public class Loader
         }
         PackAsset pka = null;
         //PC
-        if (Application.platform == RuntimePlatform.Android)
-        {
+#if DEVELOP
             string assetPath = Path.Combine(Define.editorPre, path + ".prefab");
-            UnityEngine.Object obj = AssetDataBaseMgr.load<UnityEngine.Object>(assetPath);
+            UnityEngine.Object obj = AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(assetPath);
             yield return obj;
-            pka = new PackAsset(path, obj);
-        }
-        else
-        {
+            pka = new PackAsset(path, obj);        
+#else        
             //mobile            
             string assetPath = Path.Combine(Define.abPre,this.path);
             AssetBundleCreateRequest req = AssetBundle.LoadFromFileAsync(assetPath);
             yield return req;
-            pka = new PackAsset(path, req.assetBundle);
-        }
+            pka = new PackAsset(path, req.assetBundle);        
+#endif
         //add to cache
         AssetCacheMgr.Instance.add(path, pka);
         onLoadFinish(pka);

@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEditor;
 
 public class SpriteCall
 {
     public string spName;
-    public Action<Sprite,string> callBack;//p1 sprite p2 abName
-    public SpriteCall(string name,Action<Sprite,string> call) {
+    public Action<Sprite, string> callBack;//p1 sprite p2 abName
+    public SpriteCall(string name, Action<Sprite, string> call)
+    {
         spName = name;
         callBack = call;
     }
@@ -48,7 +50,7 @@ public class AtlasMgr
     {
         string atlasPath = Path.Combine(Define.abPre, Define.atlasBundleName);
         var bundle = AssetBundle.LoadFromFile(atlasPath);
-        TextAsset txt =  bundle.LoadAsset<UnityEngine.Object>("atlasCfg") as TextAsset;
+        TextAsset txt = bundle.LoadAsset<UnityEngine.Object>("atlasCfg") as TextAsset;
         string[] cfgs = txt.text.Split('\n');
         for (int i = 0; i < cfgs.Length; i++)
         {
@@ -59,9 +61,10 @@ public class AtlasMgr
                 Uri uri = new Uri(kv[1], UriKind.RelativeOrAbsolute);
                 atlasPool.Add(kv[0], uri.ToString());
             }
-            else {
+            else
+            {
                 Debug.LogWarning("图集有重复名称: name:  " + kv[0] + " path : " + kv[1]);
-            }                  
+            }
         }
         // 压缩包释放掉
         bundle.Unload(false);
@@ -70,30 +73,30 @@ public class AtlasMgr
 
     private string getAtlasPath(string icon)
     {
-        if (atlasPool.ContainsKey(icon)) {
+        if (atlasPool.ContainsKey(icon))
+        {
             return atlasPool[icon];
         }
         return null;
     }
 
     //对外接口
-    public void setImageByName(string name, Action<Sprite,string> callBack)
+    public void setImageByName(string name, Action<Sprite, string> callBack)
     {
         string key = getAtlasPath(name);
-        if (string.IsNullOrEmpty(key)) {
+        if (string.IsNullOrEmpty(key))
+        {
             Debug.LogError("sprite不存在图集中 请重新导出图集配置 " + name);
             return;
         }
-        if (Application.platform == RuntimePlatform.Android)
-        {
+#if DEVELOP
             //编辑器下面是否加载整个图集文件夹 缓存？todo
             string path = Path.Combine(Application.dataPath, Define.editorPre);
              path = Path.Combine(path, key);
             path = Path.Combine(path, name+".png");
-            callBack(AssetDataBaseMgr.load<Sprite>(path), key);
-            return;
-        }
-       
+            callBack(AssetDatabase.LoadAssetAtPath<Sprite>(path), key);
+            return;        
+#else
         if (AssetCacheMgr.Instance.isHas(key))
         {
             PackAsset pka = AssetCacheMgr.Instance.get(key);
@@ -106,8 +109,9 @@ public class AtlasMgr
         {
             callPool.Add(key, new List<SpriteCall>());
         }
-        callPool[key].Add(new SpriteCall(name,callBack));
+        callPool[key].Add(new SpriteCall(name, callBack));
         LoaderMgr.Instance.addTask(key, onLoadFinish);
+#endif
     }
 
     //加载ab完成
@@ -119,7 +123,7 @@ public class AtlasMgr
         {
             if (callPool.ContainsKey(name))
             {
-                List<SpriteCall> handlers = callPool[name];                
+                List<SpriteCall> handlers = callPool[name];
                 for (int i = 0; i < handlers.Count; i++)
                 {
                     Sprite sp = pka.getObj<Sprite>(handlers[i].spName);
