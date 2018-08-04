@@ -44,6 +44,11 @@ public class BasePool
             return cacheLst.Count;
         }
     }
+    public int HandlerCount {
+        get {
+            return handlers.Count;
+        }
+    }
 
     //获取
     public void get(Action<GameObject> callBack)
@@ -71,12 +76,13 @@ public class BasePool
         if (handlers.Count > 0) {
             for (int i = 0; i < handlers.Count; i++)
             {
-                handlers[i].Invoke(getObj());
-            }
-            handlers.Clear();
+                //handlers[i].Invoke(getObj());
+                getObj(handlers[i]);
+            }            
         }
     }
 
+    //同步loadAsset
     private GameObject getObj() {
         GameObject go = null;
         //且 cacheLst>0 从缓存获取
@@ -97,6 +103,36 @@ public class BasePool
         //更新一下使用时间
         this.useTime = TimeUtils.getSecTime();
         return go;
+    }
+
+    //异步loadAsset
+    private void getObj(Action<GameObject> callBack) {
+        GameObject go = null;
+        //且 cacheLst>0 从缓存获取
+        if (cacheLst.Count > 0)
+        {
+            go = cacheLst[0];
+            cacheLst.RemoveAt(0);
+            callBack(go);
+            this.handlers.Remove(callBack);
+        }
+        else
+        {
+            PackAsset pka = AssetCacheMgr.Instance.get(this.path);
+            AssetCoroutine.Instance.StartCoroutine(pka.getObjAsync(insObj, callBack));
+        }
+        //更新一下使用时间
+        this.useTime = TimeUtils.getSecTime();
+    }
+    private void insObj(UnityEngine.Object obj,Action<GameObject> callBack) {
+        GameObject go = GameObject.Instantiate(obj) as GameObject;
+        PoolObj po = go.AddComponent<PoolObj>();
+        po.path = this.path;
+        po.stRefs = this.depends;
+        addRef();
+        callBack(go);
+        this.handlers.Remove(callBack);
+        this.useTime = TimeUtils.getSecTime();
     }
 
     //回收
@@ -157,6 +193,12 @@ public class BasePool
             }
             GameObject.Destroy(obj, 0.3f);
         }
+    }
+
+
+    //是否能够移除
+    public bool canRmove() {
+        return this.handlers.Count <= 0;
     }
 
 }

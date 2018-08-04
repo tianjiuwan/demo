@@ -93,7 +93,7 @@ public class PoolMgr
         double nowTime = TimeUtils.getSecTime();
         foreach (var item in pools)
         {
-            if (nowTime - item.Value.useTime > Define.checkBasePoolSec)
+            if (nowTime - item.Value.useTime > Define.checkBasePoolSec&&item.Value.canRmove())
             {
                 removeKeys.Add(item.Key);
             }

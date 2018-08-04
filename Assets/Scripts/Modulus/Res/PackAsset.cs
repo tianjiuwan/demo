@@ -1,6 +1,7 @@
 ﻿using System.IO;
-using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
+using System;
 
 /// <summary>
 /// 封装一层asset
@@ -55,6 +56,23 @@ public class PackAsset
             return obj;
         }
     }
+    public IEnumerator getObjAsync(Action<UnityEngine.Object,Action<GameObject>> callBack,Action<GameObject> callGo)
+    {
+        if (this.obj != null)
+        {
+            callBack(this.obj, callGo);
+            yield break;
+        }
+        AssetBundleRequest req = ab.LoadAssetAsync(this.abName);
+        yield return req;
+        if (req.isDone)
+        {
+            this.obj = req.asset;
+            callBack(this.obj, callGo);
+            yield break;
+        }
+    }
+
     /// <summary>
     /// 根据类型获取
     /// </summary>
@@ -86,7 +104,7 @@ public class PackAsset
         bool isUnloadAll = refCount <= 0;
         if (this.ab != null)
         {
-            this.ab.Unload(isUnloadAll);            
+            this.ab.Unload(isUnloadAll);
             if (!isUnloadAll)
                 Resources.UnloadUnusedAssets();
         }
@@ -98,7 +116,7 @@ public class PackAsset
     public bool doCheck()
     {
         bool isUnloadAll = refCount <= 0;
-        if (this.ab != null&& isUnloadAll)
+        if (this.ab != null && isUnloadAll)
         {
             this.ab.Unload(isUnloadAll);
         }
