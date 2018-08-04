@@ -16,6 +16,7 @@ public class PoolMgr
             {
                 instance = new PoolMgr();
                 GameObject go = new GameObject("PoolRoot");
+                go.transform.position = new Vector3(10000, 10000, 10000); 
                 instance.PoolRoot = go.transform;
                 GameObject.DontDestroyOnLoad(go);
             }

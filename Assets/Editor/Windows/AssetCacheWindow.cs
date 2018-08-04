@@ -44,32 +44,6 @@ public class AssetCacheWindow : EditorWindow
         GUILayout.BeginHorizontal();
         GUILayout.Space(20);
         GUILayout.BeginVertical();
-        if (GUILayout.Button("实例化一个TestUI", GUILayout.Width(150), GUILayout.Height(30)))
-        {
-            ResMgr.Instance.get(@"AssetBundle\Prefabs\ui\TestUI", (go) =>
-            {
-                go.transform.SetParent(null);
-                go.transform.position = Vector3.zero;
-                testLoadObjs.Add(go);
-                if (uiRoot == null)
-                    uiRoot = GameObject.Find("grid");
-                if (uiRoot != null)
-                {
-                    go.transform.SetParent(uiRoot.transform);
-                    go.transform.localPosition = Vector3.zero;
-                }
-            });
-        }
-        GUILayout.Space(10);
-        if (GUILayout.Button("销毁一个TestUI: " + testLoadObjs.Count, GUILayout.Width(150), GUILayout.Height(30)))
-        {
-            if (testLoadObjs.Count > 0)
-            {
-                GameObject go = testLoadObjs[0];
-                testLoadObjs.RemoveAt(0);
-                ResMgr.Instance.recyle(go);
-            }
-        }
         GUILayout.Space(10);
         if (GUILayout.Button("创建实体 ", GUILayout.Width(220), GUILayout.Height(30)))
         {
@@ -144,6 +118,7 @@ public class AssetCacheWindow : EditorWindow
             GUILayout.Label("PoolName: " + bp.Name, GUILayout.Width(160), GUILayout.Height(30));
             GUILayout.Label("PoolType: " + bp.PoolType, GUILayout.Width(100), GUILayout.Height(30));
             GUILayout.Label("CacheCount: " + bp.CacheCount, GUILayout.Width(100), GUILayout.Height(30));
+            GUILayout.Label("HandlerCount: " + bp.HandlerCount, GUILayout.Width(100), GUILayout.Height(30));
             GUILayout.EndHorizontal();
         }
         GUILayout.EndScrollView();

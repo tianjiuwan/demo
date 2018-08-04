@@ -26,6 +26,7 @@ public class LuaExtendWrap
 		L.RegFunction("setObjPos", setObjPos);
 		L.RegFunction("setActive", setActive);
 		L.RegFunction("getAngle", getAngle);
+		L.RegFunction("setParent2Role", setParent2Role);
 		L.RegFunction("doUpDownScaleAnim", doUpDownScaleAnim);
 		L.RegFunction("doLocalMoveTo", doLocalMoveTo);
 		L.RegFunction("doFloatTo", doFloatTo);
@@ -34,6 +35,8 @@ public class LuaExtendWrap
 		L.RegFunction("setCameraObj", setCameraObj);
 		L.RegFunction("setCameraPlayer", setCameraPlayer);
 		L.RegFunction("doShake", doShake);
+		L.RegFunction("addSecHandler", addSecHandler);
+		L.RegFunction("playEffect", playEffect);
 		L.EndStaticLibs();
 	}
 
@@ -390,6 +393,24 @@ public class LuaExtendWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int setParent2Role(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 3);
+			UnityEngine.GameObject arg0 = (UnityEngine.GameObject)ToLua.CheckObject(L, 1, typeof(UnityEngine.GameObject));
+			int arg1 = (int)LuaDLL.luaL_checknumber(L, 2);
+			UnityEngine.Vector3 arg2 = ToLua.ToVector3(L, 3);
+			LuaExtend.setParent2Role(arg0, arg1, arg2);
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int doUpDownScaleAnim(IntPtr L)
 	{
 		try
@@ -609,6 +630,67 @@ public class LuaExtendWrap
 			float arg2 = (float)LuaDLL.luaL_checknumber(L, 3);
 			float arg3 = (float)LuaDLL.luaL_checknumber(L, 4);
 			LuaExtend.doShake(arg0, arg1, arg2, arg3);
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int addSecHandler(IntPtr L)
+	{
+		try
+		{
+			int count = LuaDLL.lua_gettop(L);
+
+			if (count == 2)
+			{
+				int arg0 = (int)LuaDLL.luaL_checknumber(L, 1);
+				System.Action<int> arg1 = (System.Action<int>)ToLua.CheckDelegate<System.Action<int>>(L, 2);
+				long o = LuaExtend.addSecHandler(arg0, arg1);
+				LuaDLL.tolua_pushint64(L, o);
+				return 1;
+			}
+			else if (count == 3)
+			{
+				int arg0 = (int)LuaDLL.luaL_checknumber(L, 1);
+				System.Action<int> arg1 = (System.Action<int>)ToLua.CheckDelegate<System.Action<int>>(L, 2);
+				System.Action<int> arg2 = (System.Action<int>)ToLua.CheckDelegate<System.Action<int>>(L, 3);
+				long o = LuaExtend.addSecHandler(arg0, arg1, arg2);
+				LuaDLL.tolua_pushint64(L, o);
+				return 1;
+			}
+			else if (count == 4)
+			{
+				int arg0 = (int)LuaDLL.luaL_checknumber(L, 1);
+				System.Action<int> arg1 = (System.Action<int>)ToLua.CheckDelegate<System.Action<int>>(L, 2);
+				System.Action<int> arg2 = (System.Action<int>)ToLua.CheckDelegate<System.Action<int>>(L, 3);
+				int arg3 = (int)LuaDLL.luaL_checknumber(L, 4);
+				long o = LuaExtend.addSecHandler(arg0, arg1, arg2, arg3);
+				LuaDLL.tolua_pushint64(L, o);
+				return 1;
+			}
+			else
+			{
+				return LuaDLL.luaL_throw(L, "invalid arguments to method: LuaExtend.addSecHandler");
+			}
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int playEffect(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 1);
+			UnityEngine.GameObject arg0 = (UnityEngine.GameObject)ToLua.CheckObject(L, 1, typeof(UnityEngine.GameObject));
+			LuaExtend.playEffect(arg0);
 			return 0;
 		}
 		catch (Exception e)

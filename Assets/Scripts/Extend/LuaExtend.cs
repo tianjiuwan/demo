@@ -170,6 +170,16 @@ public static class LuaExtend
         float ang = Vector3.SignedAngle(Vector3.forward, dir.normalized, Vector3.up);
         return ang > 0 ? ang : 360 + ang;
     }
+    //setParent to role
+    public static void setParent2Role(GameObject go, int roleId, Vector3 offset ) {
+        if (go != null) {
+            BaseEntity role = EntityMgr.Instance.getEntity(roleId);
+            if (role != null) {
+                go.transform.SetParent(role.Trans);
+                go.transform.localPosition = offset;
+            }            
+        }
+    }
     //rotation angle scale todo
     #endregion
 
@@ -303,6 +313,22 @@ public static class LuaExtend
             {
                 mw.doShake(time, att, hor, ver);
             }
+        }
+    }
+    #endregion
+
+    #region 计时器
+    //秒 计时器
+    public static long addSecHandler(int endCount, Action<int> eHandler, Action<int> cHandler = null, int interval =1) {
+        return TimerMgr.addSecHandler(endCount, eHandler, cHandler, interval);
+    }
+    #endregion
+
+    #region 特效相关
+    public static void playEffect(GameObject obj) {
+        ParticleSystem ps = obj.GetComponent<ParticleSystem>();
+        if (ps != null) {
+            ps.Play();
         }
     }
     #endregion

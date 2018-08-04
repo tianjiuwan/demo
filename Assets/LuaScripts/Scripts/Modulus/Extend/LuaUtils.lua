@@ -55,11 +55,20 @@ function LuaUtils:getAngle(dir)
    return LuaExtend.getAngle(dir)
 end
 
+function LuaUtils:setParent2Role(obj,roleId,offset)
+   LuaExtend.setParent2Role(obj,roleId,offset)
+end
+
+
 --加载相关操作
 --加载
 function LuaUtils:loadObj(path,callBack)
 	LuaExtend.resGet(path,callBack)
 end 
+--销毁
+function LuaUtils:recyleObj(obj)
+  LuaExtend.resRecyle(obj)
+end
 --创建obj实体
 function LuaUtils:createEntity(data)
 	return LuaExtend.entityMgrCreate(data)
@@ -89,4 +98,15 @@ end
 --dofloat
 function LuaUtils:doFloatTo(call,startVal,endVal,dur,finish)
    return LuaExtend.doFloatTo(call,startVal,endVal,dur,finish)
+end 
+
+--计时器
+function LuaUtils:addSecHandler(count,eHandler,cHandler,interval)
+   interval = interval and interval or 1
+   return LuaExtend.addSecHandler(count,eHandler,cHandler,interval)
+end 
+
+--特效导出
+function LuaUtils:playEffect(obj)
+    LuaExtend.playEffect(obj)
 end 

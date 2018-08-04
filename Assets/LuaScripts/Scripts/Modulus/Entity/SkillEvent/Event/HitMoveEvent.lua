@@ -11,6 +11,7 @@ function HitMoveEvent:doEvent()
 	if not self.moveCfg then 
 		return 
 	end 
+	EffectMgr:createInRole(1001001,self:getRoleId(),Vector3(0,1,0))
 	local flag = self.moveCfg.moveType
 	local role = EntityMgr:getRole(self:getRoleId())
 	if role then 

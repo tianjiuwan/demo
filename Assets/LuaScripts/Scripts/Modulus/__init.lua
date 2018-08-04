@@ -20,3 +20,4 @@ require "Assets.LuaScripts.Scripts.Modulus.Time.__init"
 --功能模块
 require "Assets.LuaScripts.Scripts.Modulus.RootUI.__init"
 require "Assets.LuaScripts.Scripts.Modulus.Entity.__init"
+require "Assets.LuaScripts.Scripts.Modulus.Effect.__init"
