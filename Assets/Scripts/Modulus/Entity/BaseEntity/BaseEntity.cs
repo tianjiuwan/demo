@@ -214,6 +214,7 @@ public class BaseEntity : MonoBehaviour
             cc.height = roleData.height;
             cc.center = new Vector3(0, roleData.heightOffset, 0);
             cc.radius = roleData.radius;
+            cc.skinWidth = 0.01f;
         }
         anim = this.GetComponentInChildren<Animator>();
         if (this.fsm == null)

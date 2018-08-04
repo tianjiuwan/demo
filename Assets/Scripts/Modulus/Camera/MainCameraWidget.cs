@@ -34,7 +34,7 @@ public class MainCameraWidget : MonoBehaviour
         }
     }
 
-    public void Update()
+    public void LateUpdate()
     {
         if (followPlayer == null)
         {
@@ -67,8 +67,8 @@ public class MainCameraWidget : MonoBehaviour
         //  rotOffset.y = followPlayer.transform.eulerAngles.y;
         rot = Quaternion.identity * Quaternion.Euler(rotOffset);
 
-        this.transform.position = Vector3.LerpUnclamped(this.transform.position, v3, 0.75f);
-        this.transform.rotation = Quaternion.Lerp(this.transform.rotation, rot, 0.75f);
+        this.transform.position = Vector3.Lerp(this.transform.position, v3, 0.3f);
+        this.transform.rotation = Quaternion.Lerp(this.transform.rotation, rot, 0.3f);
 
     }
 
