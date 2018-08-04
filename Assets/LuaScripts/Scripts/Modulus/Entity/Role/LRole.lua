@@ -21,6 +21,17 @@ function LRole:getFlag()
   return EntityUtils:getFlag(self.id)
 end 
 
+--flag==stand or run 
+--lock <=0
+function LRole:canMove()
+   local lock = self:getLockLevel()
+   if lock>0 then 
+      return false
+   end 
+   local flag = self:getFlag()
+   return flag == FsmFlag.Stand or flag == FsmFlag.Run 
+end 
+
 function LRole:setLockLevel(uid,lv)   
    if self.lockUID == uid or self.lockUID == 0 or lv > self.lockLevel then 
    	  self.lockUID = uid

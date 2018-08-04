@@ -20,18 +20,21 @@ end
 
 function EntityControl:anyKeyUp(code)
     --移动
-    if code == UnityEngine.KeyCode.UpArrow then 
-        EventMgr:sendMsg(JoyStickCmd.On_End_Drag)
-    end 
-    if code == UnityEngine.KeyCode.DownArrow then 
-        EventMgr:sendMsg(JoyStickCmd.On_End_Drag)
-    end 
-    if code == UnityEngine.KeyCode.LeftArrow then 
-        EventMgr:sendMsg(JoyStickCmd.On_End_Drag)
-    end 
-    if code == UnityEngine.KeyCode.RightArrow then 
-        EventMgr:sendMsg(JoyStickCmd.On_End_Drag)
-    end 
+    local role = EntityMgr:getMainRole()
+    if role and role:canMove() then 
+        if code == UnityEngine.KeyCode.UpArrow then 
+            EventMgr:sendMsg(JoyStickCmd.On_End_Drag)
+        end 
+        if code == UnityEngine.KeyCode.DownArrow then 
+            EventMgr:sendMsg(JoyStickCmd.On_End_Drag)
+        end 
+        if code == UnityEngine.KeyCode.LeftArrow then 
+            EventMgr:sendMsg(JoyStickCmd.On_End_Drag)
+        end 
+        if code == UnityEngine.KeyCode.RightArrow then 
+            EventMgr:sendMsg(JoyStickCmd.On_End_Drag)
+        end 
+    end
 end 
 
 function EntityControl:anyKeyDown(code)
@@ -40,18 +43,21 @@ function EntityControl:anyKeyDown(code)
     end 
     --其他输入
     --移动
-    if code == UnityEngine.KeyCode.UpArrow then 
-        EventMgr:sendMsg(JoyStickCmd.On_Drag,Vector2.up)
-    end 
-    if code == UnityEngine.KeyCode.DownArrow then 
-        EventMgr:sendMsg(JoyStickCmd.On_Drag,Vector2.up * -1)
-    end 
-    if code == UnityEngine.KeyCode.LeftArrow then 
-        EventMgr:sendMsg(JoyStickCmd.On_Drag,Vector2.right * -1)
-    end 
-    if code == UnityEngine.KeyCode.RightArrow then 
-        EventMgr:sendMsg(JoyStickCmd.On_Drag,Vector2.right)
-    end 
+    local role = EntityMgr:getMainRole()
+    if role and role:canMove() then 
+        if code == UnityEngine.KeyCode.UpArrow then 
+            EventMgr:sendMsg(JoyStickCmd.On_Drag,Vector2.up)
+        end 
+        if code == UnityEngine.KeyCode.DownArrow then 
+            EventMgr:sendMsg(JoyStickCmd.On_Drag,Vector2.up * -1)
+        end 
+        if code == UnityEngine.KeyCode.LeftArrow then 
+            EventMgr:sendMsg(JoyStickCmd.On_Drag,Vector2.right * -1)
+        end 
+        if code == UnityEngine.KeyCode.RightArrow then 
+            EventMgr:sendMsg(JoyStickCmd.On_Drag,Vector2.right)
+        end 
+    end
     --技能
     if code == UnityEngine.KeyCode.Q then 
         SkillMgr:doSkill(self.mainPlayer,100001)
