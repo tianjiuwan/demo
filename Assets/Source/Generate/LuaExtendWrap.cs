@@ -58,8 +58,27 @@ public class LuaExtendWrap
 			{
 				string arg0 = ToLua.CheckString(L, 1);
 				System.Action<UnityEngine.GameObject> arg1 = (System.Action<UnityEngine.GameObject>)ToLua.CheckDelegate<System.Action<UnityEngine.GameObject>>(L, 2);
-				E_LoadType arg2 = (E_LoadType)ToLua.CheckObject(L, 3, typeof(E_LoadType));
+				E_PoolMode arg2 = (E_PoolMode)ToLua.CheckObject(L, 3, typeof(E_PoolMode));
 				LuaExtend.resGet(arg0, arg1, arg2);
+				return 0;
+			}
+			else if (count == 4)
+			{
+				string arg0 = ToLua.CheckString(L, 1);
+				System.Action<UnityEngine.GameObject> arg1 = (System.Action<UnityEngine.GameObject>)ToLua.CheckDelegate<System.Action<UnityEngine.GameObject>>(L, 2);
+				E_PoolMode arg2 = (E_PoolMode)ToLua.CheckObject(L, 3, typeof(E_PoolMode));
+				E_PoolType arg3 = (E_PoolType)ToLua.CheckObject(L, 4, typeof(E_PoolType));
+				LuaExtend.resGet(arg0, arg1, arg2, arg3);
+				return 0;
+			}
+			else if (count == 5)
+			{
+				string arg0 = ToLua.CheckString(L, 1);
+				System.Action<UnityEngine.GameObject> arg1 = (System.Action<UnityEngine.GameObject>)ToLua.CheckDelegate<System.Action<UnityEngine.GameObject>>(L, 2);
+				E_PoolMode arg2 = (E_PoolMode)ToLua.CheckObject(L, 3, typeof(E_PoolMode));
+				E_PoolType arg3 = (E_PoolType)ToLua.CheckObject(L, 4, typeof(E_PoolType));
+				float arg4 = (float)LuaDLL.luaL_checknumber(L, 5);
+				LuaExtend.resGet(arg0, arg1, arg2, arg3, arg4);
 				return 0;
 			}
 			else

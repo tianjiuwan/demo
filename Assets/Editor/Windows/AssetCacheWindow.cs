@@ -12,7 +12,7 @@ public class AssetCacheWindow : EditorWindow
     private static AssetCacheWindow _instance = null;
     private bool isInit = false;
 
-    [MenuItem("ToolsWindow/查看AB缓存")]
+    [MenuItem("ToolsWindow/查看AssetBundle")]
     public static void showWindow()
     {
         if (_instance == null)
@@ -41,87 +41,50 @@ public class AssetCacheWindow : EditorWindow
             return;
         }
         GUILayout.BeginVertical();
-        GUILayout.BeginHorizontal();
-        GUILayout.Space(20);
-        GUILayout.BeginVertical();
-        GUILayout.Space(10);
-        if (GUILayout.Button("创建实体 ", GUILayout.Width(220), GUILayout.Height(30)))
-        {
-            EntityData data = new EntityData();
-            data.playerId = roleIndex;
-            data.height = 2f;
-            data.heightOffset = 1f;
-            data.radius = 0.3f;
-            data.initPosition = new Vector3(10, 0, startZ);
-            startZ++;
-            data.resName = @"AssetBundle\Prefabs\model\role_ueman\model\role_ueman";
-            EntityMgr.Instance.createEntity(data);
-            roleIndex++;
-        }
-        GUILayout.Space(10);
-        GUILayout.EndVertical();
-        GUILayout.Space(20);
-        if (GUILayout.Button("Add Main Skill", GUILayout.Width(150), GUILayout.Height(30)))
-        {
-            int index = LogicFrame.Instance.FrameIndex;
-            BaseSkill skill = new BaseSkill(MathUtils.UniqueID, index, null);
-            SkillMgr.Instance.addMainSkill(skill);
-        }
-        GUILayout.Space(20);
-        if (GUILayout.Button("销毁所有池子", GUILayout.Width(150), GUILayout.Height(30)))
-        {
-            PoolMgr.Instance.disposePools();
-        }
-        GUILayout.Space(20);
-        if (GUILayout.Button("卸载所有AB", GUILayout.Width(150), GUILayout.Height(30)))
-        {
-            AssetCacheMgr.Instance.unloadAllAssetBundle(true);
-        }
-        GUILayout.EndHorizontal();
         GUILayout.Label("Time: " + System.DateTime.Now);
-        GUILayout.BeginHorizontal(GUILayout.Width(600), GUILayout.Height(60));
-        GUILayout.Space(20);
-        GUIContent titleContent = new GUIContent();
-        titleContent.text = "等待加载数量: " + LoaderMgr.Instance.getQueueCount();
-        GUIStyle titleStyle = new GUIStyle();
-        titleStyle.fontSize = 22;
-        GUILayout.Label(titleContent, titleStyle, GUILayout.Width(600), GUILayout.Height(60));
-        GUILayout.EndHorizontal();
         //绘制2个滑动框
         GUILayout.BeginHorizontal();
-        scrollPos = GUILayout.BeginScrollView(scrollPos, false, true, GUILayout.Width(600), GUILayout.Height(600));
-        List<PackAsset> lst = AssetCacheMgr.Instance.getAll();
+        scrollPos = GUILayout.BeginScrollView(scrollPos, false, true, GUILayout.Width(1000), GUILayout.Height(600));
+        List<PackAsset> lst = new List<PackAsset>();
+        Dictionary<string, PackAsset> map = AssetMgr.Instance.getAll();
+        lst.AddRange(map.Values);
+        lst.Sort((m, n) =>
+        {
+            return m.RefCount > n.RefCount ? 1 : 0;
+        });
         for (int i = 0; i < lst.Count; i++)
         {
             GUILayout.BeginHorizontal();
             GUILayout.Space(20);
             StringBuilder builder = new StringBuilder();
-            builder.Append("AssetBundleName: ");
-            builder.Append(lst[i].name);
+            builder.Append("<color=white>Name: ");
+            builder.Append(lst[i].Name);
+            builder.Append("</color>");
             GUIContent content = new GUIContent();
             content.text = builder.ToString();
             GUIStyle style = new GUIStyle();
-            style.fontSize = 14;
-            GUILayout.Box(content, style, GUILayout.Width(360), GUILayout.Height(40));
-            style.fontSize = 20;
-            content.text = "RefCount: " + lst[i].refCount;
+            style.fontSize = 12;
+            GUILayout.Box(content, style, GUILayout.Width(600), GUILayout.Height(40));
+            style.fontSize = 16;
+            content.text = "<color=red>RefCount: " + lst[i].RefCount + "</color>";
             GUILayout.Box(content, style, GUILayout.Width(100), GUILayout.Height(40));
             GUILayout.EndHorizontal();
         }
         GUILayout.EndScrollView();
-        poolPos = GUILayout.BeginScrollView(poolPos, false, true, GUILayout.Width(600), GUILayout.Height(600));
-        List<BasePool> pools = PoolMgr.Instance.getPools();
-        for (int i = 0; i < pools.Count; i++)
-        {
-            BasePool bp = pools[i];
-            GUILayout.BeginHorizontal();
-            GUILayout.Label("PoolName: " + bp.Name, GUILayout.Width(160), GUILayout.Height(30));
-            GUILayout.Label("PoolType: " + bp.PoolType, GUILayout.Width(100), GUILayout.Height(30));
-            GUILayout.Label("CacheCount: " + bp.CacheCount, GUILayout.Width(100), GUILayout.Height(30));
-            GUILayout.Label("HandlerCount: " + bp.HandlerCount, GUILayout.Width(100), GUILayout.Height(30));
-            GUILayout.EndHorizontal();
-        }
-        GUILayout.EndScrollView();
+
+        //poolPos = GUILayout.BeginScrollView(poolPos, false, true, GUILayout.Width(600), GUILayout.Height(600));
+        //List<BasePool> pools = PoolMgr.Instance.getPools();
+        //for (int i = 0; i < pools.Count; i++)
+        //{
+        //    BasePool bp = pools[i];
+        //    GUILayout.BeginHorizontal();
+        //    GUILayout.Label("PoolName: " + bp.Name, GUILayout.Width(160), GUILayout.Height(30));
+        //    GUILayout.Label("PoolType: " + bp.PoolType, GUILayout.Width(100), GUILayout.Height(30));
+        //    GUILayout.Label("CacheCount: " + bp.CacheCount, GUILayout.Width(100), GUILayout.Height(30));
+        //    GUILayout.Label("HandlerCount: " + bp.HandlerCount, GUILayout.Width(100), GUILayout.Height(30));
+        //    GUILayout.EndHorizontal();
+        //}
+        // GUILayout.EndScrollView();
         GUILayout.EndHorizontal();
         //结束绘制2个滑动框
         GUILayout.EndVertical();

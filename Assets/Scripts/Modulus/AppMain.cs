@@ -13,10 +13,9 @@ public class AppMain : MonoBehaviour
 
     void Start()
     {
-        InputMgr.Instance.initialize();        
-        LoaderMgr.Instance.initialize();
-        ManifsetMgr.Instance.initislize();
-        AtlasMgr.Instance.initialize();
+        InputMgr.Instance.initialize();
+        ManifestMgr.Init();
+        AtlasMgr.Instance.Init();
 #if UNITY_5 || UNITY_2017 || UNITY_2018
         Application.logMessageReceived += Log;
 #else

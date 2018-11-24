@@ -166,7 +166,7 @@ public class BaseEntity : MonoBehaviour
         if (this.Prefab == null)
         {
             this.loadState = E_EntityLoadState.Loading;
-            ResMgr.Instance.get(roleData.resName, loadFinish);
+            PoolMgr.Instance.getObj(roleData.resName, loadFinish, E_PoolMode.Time, E_PoolType.Model);
         }
     }
     private void loadFinish(GameObject go)
@@ -182,11 +182,11 @@ public class BaseEntity : MonoBehaviour
     {
         if (this.LoadState == E_EntityLoadState.Loading)
         {
-            ResMgr.Instance.unLoad(roleData.resName, loadFinish);
+            PoolMgr.Instance.unLoad(roleData.resName, loadFinish);
         }
         if (this.Prefab != null)
         {
-            ResMgr.Instance.recyle(this.Prefab);
+            PoolMgr.Instance.recyleObj(this.Prefab);
         }
     }
     /// <summary>

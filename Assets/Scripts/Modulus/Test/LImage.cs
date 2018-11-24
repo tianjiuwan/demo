@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Image动态设置sprite addRef
+/// 动态设置sprite的时候释放上一个ref
+/// 大UI进入池子也释放ref
+/// 这里的ref只针对动态ref
+/// </summary>
 public class LImage : MonoBehaviour
 {
 
@@ -18,11 +24,10 @@ public class LImage : MonoBehaviour
                 Image img = this.gameObject.GetComponent<Image>();
                 if (img != null)
                 {
-                    AtlasMgr.Instance.setImageByName("TFJH_change", (sp, abName) =>
+                    PoolMgr.Instance.getObj("TFJH_change", (sp,resName) =>
                     {
                         img.sprite = sp;
-                        //增加引用
-                        addRef(abName);
+                        addRef(resName);
                     });
                 }
             });
@@ -33,7 +38,7 @@ public class LImage : MonoBehaviour
         if (this.rootObj == null) {
             findPoolRoot(this.transform);
         }
-        this.rootObj.addRefPath(abName);
+        this.rootObj.addDeps(abName);
     }
 
     private void findPoolRoot(Transform trans) {

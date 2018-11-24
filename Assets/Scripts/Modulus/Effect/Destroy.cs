@@ -10,7 +10,7 @@ public class Destroy : MonoBehaviour {
 	{
         TimerMgr.addSecHandler(Mathf.CeilToInt(lifetime), null, (val) =>
         {
-            ResMgr.Instance.recyle(this.gameObject);
+            PoolMgr.Instance.recyleObj(this.gameObject);
         });
 	}
 

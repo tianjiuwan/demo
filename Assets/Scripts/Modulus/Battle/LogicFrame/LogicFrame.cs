@@ -34,7 +34,7 @@ public class LogicFrame
         //frameTick = new Thread(startThread);
         luaState = state;
         luaFunc = luaState.GetFunction("TimeMgr.tick");
-        AssetCoroutine.Instance.StartCoroutine(tick());
+        LoadThread.Instance.StartCoroutine(tick());
     }
 
     IEnumerator tick() {

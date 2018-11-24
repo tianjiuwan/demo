@@ -75,7 +75,7 @@ function LuaUtils:createEntity(data)
 end 
 --销毁obj
 function LuaUtils:destroyObj(obj)
-	LuaExtend.resDestroy(obj)
+	LuaExtend.resRecyle(obj)
 end 
 
 --dotween

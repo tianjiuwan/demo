@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 304734699
+CRC: 535720909
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 47e6cacdf85f14affb81cb9525096391
+    Hash: 8f48234ced25ce835f0a4fd87cc48dc2
   TypeTreeHash:
     serializedVersion: 2
     Hash: abb9b9167ab0d9f4af2beeb617361f49
@@ -16,6 +16,6 @@ ClassTypes:
 - Class: 48
   Script: {instanceID: 0}
 Assets:
-- Assets/Res/AssetBundle/Materials/circle.mat
+- Assets/Res/AssetBundle/Materials/Circle.mat
 Dependencies:
-- F:/GithubPro/demo/Assets/Res/AssetBundleExport/assetbundle/modeltextures/circle
+- D:/MyProject/demo/Assets/Res/AssetBundleExport/assetbundle/modeltextures/circle

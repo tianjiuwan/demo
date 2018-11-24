@@ -3,10 +3,10 @@ CRC: 281513746
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 70b5d87a7b9d29a9e5c041c0c20f3438
+    Hash: 647adadbbccee969bdba5f477436ef27
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 75570fe5ca0e8315cfd033882c7d9e75
+    Hash: 06eb04218b78c1b74db87425f9d4f544
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -18,11 +18,11 @@ ClassTypes:
 - Class: 48
   Script: {instanceID: 0}
 - Class: 114
-  Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-- Class: 114
   Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 - Class: 114
   Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+- Class: 114
+  Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 128
@@ -36,5 +36,5 @@ ClassTypes:
 Assets:
 - Assets/Res/AssetBundle/Prefabs/ui/BottomSkillUI.prefab
 Dependencies:
-- F:/GithubPro/demo/Assets/Res/AssetBundleExport/assetbundle/atlas/commonatlas
-- F:/GithubPro/demo/Assets/Res/AssetBundleExport/assetbundle/atlas/playerskillatlas
+- D:/MyProject/demo/Assets/Res/AssetBundleExport/assetbundle/atlas/commonatlas
+- D:/MyProject/demo/Assets/Res/AssetBundleExport/assetbundle/atlas/playerskillatlas

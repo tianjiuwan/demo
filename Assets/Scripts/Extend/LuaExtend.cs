@@ -10,21 +10,21 @@ using DG.Tweening;
 public static class LuaExtend
 {
     #region ResMgr导出
-    public static void resGet(string path, Action<GameObject> callBack, E_LoadType loadType = E_LoadType.None)
+    public static void resGet(string resName, Action<GameObject> callBack, E_PoolMode mode = E_PoolMode.Time, E_PoolType pType = E_PoolType.None, float time = 60)
     {
-        ResMgr.Instance.get(path, callBack, loadType);
+       PoolMgr.Instance.getObj(resName, callBack, mode, pType,time);
     }
     public static void resRecyle(GameObject obj)
     {
-        ResMgr.Instance.recyle(obj);
+        PoolMgr.Instance.recyleObj(obj);
     }
     public static void resUnLoad(string path, Action<GameObject> callBack)
     {
-        ResMgr.Instance.unLoad(path, callBack);
+        PoolMgr.Instance.unLoad(path, callBack);
     }
     public static void resDestroy(GameObject obj)
     {
-        ResMgr.Instance.destroy(obj);
+        //ResMgr.Instance.destroy(obj);
     }
     #endregion
     #region EntityMgr导出
