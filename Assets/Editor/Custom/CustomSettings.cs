@@ -39,6 +39,8 @@ public static class CustomSettings
         _DT(typeof(Action<PointerEventData>)),        
         _DT(typeof(DG.Tweening.Core.DOSetter<float>)),        
         _DT(typeof(Action<GameObject>)),
+        _DT(typeof(Action<Sprite,string>)),
+        _DT(typeof(Action<GameObject,string>)),
         _DT(typeof(Action<KeyCode>)),
         _DT(typeof(UnityEngine.Events.UnityAction)),
         _DT(typeof(System.Predicate<int>)),
@@ -123,6 +125,8 @@ public static class CustomSettings
         _GT(typeof(AsyncOperation)).SetBaseType(typeof(System.Object)),        
         _GT(typeof(LightType)),
         _GT(typeof(SleepTimeout)),
+        _GT(typeof(UnityEngine.UI.Image)),
+        _GT(typeof(UnityEngine.UI.Text)),
 #if UNITY_5_3_OR_NEWER && !UNITY_5_6_OR_NEWER
         _GT(typeof(UnityEngine.Experimental.Director.DirectorPlayer)),
 #endif

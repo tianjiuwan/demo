@@ -21,6 +21,8 @@ public class DelegateFactory
 		dict.Add(typeof(System.Action<UnityEngine.EventSystems.PointerEventData>), factory.System_Action_UnityEngine_EventSystems_PointerEventData);
 		dict.Add(typeof(DG.Tweening.Core.DOSetter<float>), factory.DG_Tweening_Core_DOSetter_float);
 		dict.Add(typeof(System.Action<UnityEngine.GameObject>), factory.System_Action_UnityEngine_GameObject);
+		dict.Add(typeof(System.Action<UnityEngine.Sprite,string>), factory.System_Action_UnityEngine_Sprite_string);
+		dict.Add(typeof(System.Action<UnityEngine.GameObject,string>), factory.System_Action_UnityEngine_GameObject_string);
 		dict.Add(typeof(System.Action<UnityEngine.KeyCode>), factory.System_Action_UnityEngine_KeyCode);
 		dict.Add(typeof(UnityEngine.Events.UnityAction), factory.UnityEngine_Events_UnityAction);
 		dict.Add(typeof(System.Predicate<int>), factory.System_Predicate_int);
@@ -41,6 +43,8 @@ public class DelegateFactory
 		DelegateTraits<System.Action<UnityEngine.EventSystems.PointerEventData>>.Init(factory.System_Action_UnityEngine_EventSystems_PointerEventData);
 		DelegateTraits<DG.Tweening.Core.DOSetter<float>>.Init(factory.DG_Tweening_Core_DOSetter_float);
 		DelegateTraits<System.Action<UnityEngine.GameObject>>.Init(factory.System_Action_UnityEngine_GameObject);
+		DelegateTraits<System.Action<UnityEngine.Sprite,string>>.Init(factory.System_Action_UnityEngine_Sprite_string);
+		DelegateTraits<System.Action<UnityEngine.GameObject,string>>.Init(factory.System_Action_UnityEngine_GameObject_string);
 		DelegateTraits<System.Action<UnityEngine.KeyCode>>.Init(factory.System_Action_UnityEngine_KeyCode);
 		DelegateTraits<UnityEngine.Events.UnityAction>.Init(factory.UnityEngine_Events_UnityAction);
 		DelegateTraits<System.Predicate<int>>.Init(factory.System_Predicate_int);
@@ -61,6 +65,8 @@ public class DelegateFactory
 		TypeTraits<System.Action<UnityEngine.EventSystems.PointerEventData>>.Init(factory.Check_System_Action_UnityEngine_EventSystems_PointerEventData);
 		TypeTraits<DG.Tweening.Core.DOSetter<float>>.Init(factory.Check_DG_Tweening_Core_DOSetter_float);
 		TypeTraits<System.Action<UnityEngine.GameObject>>.Init(factory.Check_System_Action_UnityEngine_GameObject);
+		TypeTraits<System.Action<UnityEngine.Sprite,string>>.Init(factory.Check_System_Action_UnityEngine_Sprite_string);
+		TypeTraits<System.Action<UnityEngine.GameObject,string>>.Init(factory.Check_System_Action_UnityEngine_GameObject_string);
 		TypeTraits<System.Action<UnityEngine.KeyCode>>.Init(factory.Check_System_Action_UnityEngine_KeyCode);
 		TypeTraits<UnityEngine.Events.UnityAction>.Init(factory.Check_UnityEngine_Events_UnityAction);
 		TypeTraits<System.Predicate<int>>.Init(factory.Check_System_Predicate_int);
@@ -81,6 +87,8 @@ public class DelegateFactory
 		StackTraits<System.Action<UnityEngine.EventSystems.PointerEventData>>.Push = factory.Push_System_Action_UnityEngine_EventSystems_PointerEventData;
 		StackTraits<DG.Tweening.Core.DOSetter<float>>.Push = factory.Push_DG_Tweening_Core_DOSetter_float;
 		StackTraits<System.Action<UnityEngine.GameObject>>.Push = factory.Push_System_Action_UnityEngine_GameObject;
+		StackTraits<System.Action<UnityEngine.Sprite,string>>.Push = factory.Push_System_Action_UnityEngine_Sprite_string;
+		StackTraits<System.Action<UnityEngine.GameObject,string>>.Push = factory.Push_System_Action_UnityEngine_GameObject_string;
 		StackTraits<System.Action<UnityEngine.KeyCode>>.Push = factory.Push_System_Action_UnityEngine_KeyCode;
 		StackTraits<UnityEngine.Events.UnityAction>.Push = factory.Push_UnityEngine_Events_UnityAction;
 		StackTraits<System.Predicate<int>>.Push = factory.Push_System_Predicate_int;
@@ -427,6 +435,124 @@ public class DelegateFactory
 	}
 
 	void Push_System_Action_UnityEngine_GameObject(IntPtr L, System.Action<UnityEngine.GameObject> o)
+	{
+		ToLua.Push(L, o);
+	}
+
+	class System_Action_UnityEngine_Sprite_string_Event : LuaDelegate
+	{
+		public System_Action_UnityEngine_Sprite_string_Event(LuaFunction func) : base(func) { }
+		public System_Action_UnityEngine_Sprite_string_Event(LuaFunction func, LuaTable self) : base(func, self) { }
+
+		public void Call(UnityEngine.Sprite param0, string param1)
+		{
+			func.BeginPCall();
+			func.PushSealed(param0);
+			func.Push(param1);
+			func.PCall();
+			func.EndPCall();
+		}
+
+		public void CallWithSelf(UnityEngine.Sprite param0, string param1)
+		{
+			func.BeginPCall();
+			func.Push(self);
+			func.PushSealed(param0);
+			func.Push(param1);
+			func.PCall();
+			func.EndPCall();
+		}
+	}
+
+	public System.Action<UnityEngine.Sprite,string> System_Action_UnityEngine_Sprite_string(LuaFunction func, LuaTable self, bool flag)
+	{
+		if (func == null)
+		{
+			System.Action<UnityEngine.Sprite,string> fn = delegate(UnityEngine.Sprite param0, string param1) { };
+			return fn;
+		}
+
+		if(!flag)
+		{
+			System_Action_UnityEngine_Sprite_string_Event target = new System_Action_UnityEngine_Sprite_string_Event(func);
+			System.Action<UnityEngine.Sprite,string> d = target.Call;
+			target.method = d.Method;
+			return d;
+		}
+		else
+		{
+			System_Action_UnityEngine_Sprite_string_Event target = new System_Action_UnityEngine_Sprite_string_Event(func, self);
+			System.Action<UnityEngine.Sprite,string> d = target.CallWithSelf;
+			target.method = d.Method;
+			return d;
+		}
+	}
+
+	bool Check_System_Action_UnityEngine_Sprite_string(IntPtr L, int pos)
+	{
+		return TypeChecker.CheckDelegateType(typeof(System.Action<UnityEngine.Sprite,string>), L, pos);
+	}
+
+	void Push_System_Action_UnityEngine_Sprite_string(IntPtr L, System.Action<UnityEngine.Sprite,string> o)
+	{
+		ToLua.Push(L, o);
+	}
+
+	class System_Action_UnityEngine_GameObject_string_Event : LuaDelegate
+	{
+		public System_Action_UnityEngine_GameObject_string_Event(LuaFunction func) : base(func) { }
+		public System_Action_UnityEngine_GameObject_string_Event(LuaFunction func, LuaTable self) : base(func, self) { }
+
+		public void Call(UnityEngine.GameObject param0, string param1)
+		{
+			func.BeginPCall();
+			func.PushSealed(param0);
+			func.Push(param1);
+			func.PCall();
+			func.EndPCall();
+		}
+
+		public void CallWithSelf(UnityEngine.GameObject param0, string param1)
+		{
+			func.BeginPCall();
+			func.Push(self);
+			func.PushSealed(param0);
+			func.Push(param1);
+			func.PCall();
+			func.EndPCall();
+		}
+	}
+
+	public System.Action<UnityEngine.GameObject,string> System_Action_UnityEngine_GameObject_string(LuaFunction func, LuaTable self, bool flag)
+	{
+		if (func == null)
+		{
+			System.Action<UnityEngine.GameObject,string> fn = delegate(UnityEngine.GameObject param0, string param1) { };
+			return fn;
+		}
+
+		if(!flag)
+		{
+			System_Action_UnityEngine_GameObject_string_Event target = new System_Action_UnityEngine_GameObject_string_Event(func);
+			System.Action<UnityEngine.GameObject,string> d = target.Call;
+			target.method = d.Method;
+			return d;
+		}
+		else
+		{
+			System_Action_UnityEngine_GameObject_string_Event target = new System_Action_UnityEngine_GameObject_string_Event(func, self);
+			System.Action<UnityEngine.GameObject,string> d = target.CallWithSelf;
+			target.method = d.Method;
+			return d;
+		}
+	}
+
+	bool Check_System_Action_UnityEngine_GameObject_string(IntPtr L, int pos)
+	{
+		return TypeChecker.CheckDelegateType(typeof(System.Action<UnityEngine.GameObject,string>), L, pos);
+	}
+
+	void Push_System_Action_UnityEngine_GameObject_string(IntPtr L, System.Action<UnityEngine.GameObject,string> o)
 	{
 		ToLua.Push(L, o);
 	}

@@ -1,6 +1,6 @@
 BottomSkillUI = SimpleClass(BaseUI)
 
-require "Assets.LuaScripts.Modulus.RootUI.UI.Item.SkillUIItem"
+require "Assets.LuaScripts.Scripts.Modulus.RootUI.UI.Item.SkillUIItem"
 --声明成员变量
 local norPre = "normalSkill"
 local norCount = 4
@@ -42,14 +42,18 @@ function BottomSkillUI:onRefresh()
 	self.base:onRefresh(data)
 	local norLstData = self.vo:getNorSkill()
 	local supLstData = self.vo:getSupSkill()
-	for i = 1,#norLstData do 
-		if i <= norCount then
-		   self.norLst[i]:onRefresh(norLstData[i])
-	    end
-	end 
-	for i = 1,#supLstData do 
-		if i <= supCount then
-		   self.supLst[i]:onRefresh(supLstData[i])
-	    end
-	end 
+	if norLstData then 
+		for i = 1,#norLstData do 
+			if i <= norCount then
+			   self.norLst[i]:onRefresh(norLstData[i])
+		    end
+		end 
+    end 
+    if supLstData then 
+		for i = 1,#supLstData do 
+			if i <= supCount then
+			   self.supLst[i]:onRefresh(supLstData[i])
+		    end
+		end 
+    end 
 end 

@@ -42,6 +42,17 @@ public class AtlasPool : BaseBundlePool
         }
     }
 
+    public override void removeHandler(string spName,Action<Sprite, string> callBack)
+    {
+        if (handler != null)
+        {
+            if (handler.ContainsKey(spName)&&handler[spName].Contains(callBack))
+            {
+                handler[spName].Remove(callBack);
+            }
+        }
+    }
+
     protected override void loadFinish(string name)
     {
         foreach (var item in handler)
@@ -51,6 +62,7 @@ public class AtlasPool : BaseBundlePool
                 getObj(item.Key,item.Value[i], true);
             }
         }
+        handler.Clear();
     }
 }
 

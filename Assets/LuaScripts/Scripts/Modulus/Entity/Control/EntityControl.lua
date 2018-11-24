@@ -72,6 +72,7 @@ function EntityControl:anyKeyDown(code)
     if code == UnityEngine.KeyCode.O then 
         EventMgr:sendMsg(BottomMidCmd.On_Open_UI) 
         EventMgr:sendMsg(JoyStickCmd.On_Open_UI) 
+        EventMgr:sendMsg(BottomSkillCmd.On_Open_UI)         
     end        
 end 
 

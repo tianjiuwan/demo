@@ -110,3 +110,25 @@ end
 function LuaUtils:playEffect(obj)
     LuaExtend.playEffect(obj)
 end 
+
+--UI接口相关
+function LuaUtils:setMaterialFloat(widget,key,val)
+    LuaExtend.setMaterialFloat(widget,key,val)
+end 
+
+function LuaUtils:setSprite(spName,callBack)
+    LuaExtend.setSprite(spName,callBack)
+end 
+
+function LuaUtils:addRef(resName)
+    LuaExtend.addRef(resName)
+end 
+
+function LuaUtils:subRef(resName,count)
+    count = count and count or 1
+    LuaExtend.subRef(resName,count)
+end 
+
+function LuaUtils:unloadSprite(spName,callBack)
+    LuaExtend.unloadSprite(spName,callBack)
+end 

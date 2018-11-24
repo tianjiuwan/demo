@@ -33,7 +33,7 @@ function BaseItem:bindWidget()
    for k,v in pairs(self) do
 		if type(v) == "string" and UIWidget[v] ~= nil then
            --查找并绑定
-           local nodeObj = LuaExtend:getNodeByRecursion(self.obj,k) 
+           local nodeObj = LuaUtils:getNodeByRecursion(self.obj,k) 
            if _G[UIWidget[v]]~=nil then 
            	   local calss = _G[UIWidget[v]]
 	           self[k] = calss(nodeObj,v)
@@ -46,7 +46,7 @@ end
 
 function BaseItem:onHide()
    self:onClose()
-   LuaExtend:setActive(self.obj,false)
+   LuaUtils:setActive(self.obj,false)
 end
 
 function BaseItem:onBaseDispose()

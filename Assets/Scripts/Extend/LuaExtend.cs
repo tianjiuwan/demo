@@ -12,8 +12,9 @@ public static class LuaExtend
     #region ResMgr导出
     public static void resGet(string resName, Action<GameObject> callBack, E_PoolMode mode = E_PoolMode.Time, E_PoolType pType = E_PoolType.None, float time = 60)
     {
-       PoolMgr.Instance.getObj(resName, callBack, mode, pType,time);
+        PoolMgr.Instance.getObj(resName, callBack, mode, pType, time);
     }
+
     public static void resRecyle(GameObject obj)
     {
         PoolMgr.Instance.recyleObj(obj);
@@ -26,11 +27,32 @@ public static class LuaExtend
     {
         //ResMgr.Instance.destroy(obj);
     }
+
+    //添加引用
+    public static void addRef(string resName)
+    {
+        AssetMgr.addRef(resName);
+    }
+    //释放引用
+    public static void subRef(string resName, int count = 1)
+    {
+        AssetMgr.subRef(resName, count);
+    }
+
+    public static void setSprite(string spName, Action<Sprite, string> callBack, E_PoolMode mode = E_PoolMode.Time, E_PoolType pType = E_PoolType.Atlas, float time = 60)
+    {
+        PoolMgr.Instance.getObj(spName, callBack, mode, pType, time);
+    }
+    public static void unloadSprite(string spName, Action<Sprite, string> callBack)
+    {
+        PoolMgr.Instance.unLoad(spName, callBack);
+    }
+
     #endregion
     #region EntityMgr导出
     public static BaseEntity entityMgrCreate(EntityData data)
     {
-       return  EntityMgr.Instance.createEntity(data);
+        return EntityMgr.Instance.createEntity(data);
     }
     #endregion
     #region logger
@@ -57,11 +79,12 @@ public static class LuaExtend
     {
         InputMgr.Instance.removeUpListener(handler);
     }
-    
+
     #endregion
 
     #region  数学相关
-    public static int getUID() {
+    public static int getUID()
+    {
         return MathUtils.UniqueID;
     }
     //获取两个向量的夹角
@@ -73,12 +96,15 @@ public static class LuaExtend
 
     #region GameObject操作
     //设置UI的节点
-    public static void setUINode(GameObject root, GameObject ui, int node) {
-        if (root == null || ui == null) {
+    public static void setUINode(GameObject root, GameObject ui, int node)
+    {
+        if (root == null || ui == null)
+        {
             return;
         }
         Transform nodeTrans = root.transform.GetChild(node);
-        if (nodeTrans) {
+        if (nodeTrans)
+        {
             ui.transform.SetParent(nodeTrans);
             ui.transform.localPosition = Vector3.zero;
             ui.transform.localScale = Vector3.one;
@@ -171,13 +197,16 @@ public static class LuaExtend
         return ang > 0 ? ang : 360 + ang;
     }
     //setParent to role
-    public static void setParent2Role(GameObject go, int roleId, Vector3 offset ) {
-        if (go != null) {
+    public static void setParent2Role(GameObject go, int roleId, Vector3 offset)
+    {
+        if (go != null)
+        {
             BaseEntity role = EntityMgr.Instance.getEntity(roleId);
-            if (role != null) {
+            if (role != null)
+            {
                 go.transform.SetParent(role.Trans);
                 go.transform.localPosition = offset;
-            }            
+            }
         }
     }
     //rotation angle scale todo
@@ -250,7 +279,8 @@ public static class LuaExtend
     }
     #endregion
     #region 摄像机相关
-    public static void setCameraObj(GameObject player) {
+    public static void setCameraObj(GameObject player)
+    {
         if (player == null)
         {
             return;
@@ -319,15 +349,18 @@ public static class LuaExtend
 
     #region 计时器
     //秒 计时器
-    public static long addSecHandler(int endCount, Action<int> eHandler, Action<int> cHandler = null, int interval =1) {
+    public static long addSecHandler(int endCount, Action<int> eHandler, Action<int> cHandler = null, int interval = 1)
+    {
         return TimerMgr.addSecHandler(endCount, eHandler, cHandler, interval);
     }
     #endregion
 
     #region 特效相关
-    public static void playEffect(GameObject obj) {
+    public static void playEffect(GameObject obj)
+    {
         ParticleSystem ps = obj.GetComponent<ParticleSystem>();
-        if (ps != null) {
+        if (ps != null)
+        {
             ps.Play();
         }
     }

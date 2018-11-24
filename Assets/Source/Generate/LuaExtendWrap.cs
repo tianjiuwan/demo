@@ -11,6 +11,10 @@ public class LuaExtendWrap
 		L.RegFunction("resRecyle", resRecyle);
 		L.RegFunction("resUnLoad", resUnLoad);
 		L.RegFunction("resDestroy", resDestroy);
+		L.RegFunction("addRef", addRef);
+		L.RegFunction("subRef", subRef);
+		L.RegFunction("setSprite", setSprite);
+		L.RegFunction("unloadSprite", unloadSprite);
 		L.RegFunction("entityMgrCreate", entityMgrCreate);
 		L.RegFunction("log", log);
 		L.RegFunction("inputAddListener", inputAddListener);
@@ -133,6 +137,122 @@ public class LuaExtendWrap
 			ToLua.CheckArgsCount(L, 1);
 			UnityEngine.GameObject arg0 = (UnityEngine.GameObject)ToLua.CheckObject(L, 1, typeof(UnityEngine.GameObject));
 			LuaExtend.resDestroy(arg0);
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int addRef(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 1);
+			string arg0 = ToLua.CheckString(L, 1);
+			LuaExtend.addRef(arg0);
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int subRef(IntPtr L)
+	{
+		try
+		{
+			int count = LuaDLL.lua_gettop(L);
+
+			if (count == 1)
+			{
+				string arg0 = ToLua.CheckString(L, 1);
+				LuaExtend.subRef(arg0);
+				return 0;
+			}
+			else if (count == 2)
+			{
+				string arg0 = ToLua.CheckString(L, 1);
+				int arg1 = (int)LuaDLL.luaL_checknumber(L, 2);
+				LuaExtend.subRef(arg0, arg1);
+				return 0;
+			}
+			else
+			{
+				return LuaDLL.luaL_throw(L, "invalid arguments to method: LuaExtend.subRef");
+			}
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int setSprite(IntPtr L)
+	{
+		try
+		{
+			int count = LuaDLL.lua_gettop(L);
+
+			if (count == 2)
+			{
+				string arg0 = ToLua.CheckString(L, 1);
+				System.Action<UnityEngine.Sprite,string> arg1 = (System.Action<UnityEngine.Sprite,string>)ToLua.CheckDelegate<System.Action<UnityEngine.Sprite,string>>(L, 2);
+				LuaExtend.setSprite(arg0, arg1);
+				return 0;
+			}
+			else if (count == 3)
+			{
+				string arg0 = ToLua.CheckString(L, 1);
+				System.Action<UnityEngine.Sprite,string> arg1 = (System.Action<UnityEngine.Sprite,string>)ToLua.CheckDelegate<System.Action<UnityEngine.Sprite,string>>(L, 2);
+				E_PoolMode arg2 = (E_PoolMode)ToLua.CheckObject(L, 3, typeof(E_PoolMode));
+				LuaExtend.setSprite(arg0, arg1, arg2);
+				return 0;
+			}
+			else if (count == 4)
+			{
+				string arg0 = ToLua.CheckString(L, 1);
+				System.Action<UnityEngine.Sprite,string> arg1 = (System.Action<UnityEngine.Sprite,string>)ToLua.CheckDelegate<System.Action<UnityEngine.Sprite,string>>(L, 2);
+				E_PoolMode arg2 = (E_PoolMode)ToLua.CheckObject(L, 3, typeof(E_PoolMode));
+				E_PoolType arg3 = (E_PoolType)ToLua.CheckObject(L, 4, typeof(E_PoolType));
+				LuaExtend.setSprite(arg0, arg1, arg2, arg3);
+				return 0;
+			}
+			else if (count == 5)
+			{
+				string arg0 = ToLua.CheckString(L, 1);
+				System.Action<UnityEngine.Sprite,string> arg1 = (System.Action<UnityEngine.Sprite,string>)ToLua.CheckDelegate<System.Action<UnityEngine.Sprite,string>>(L, 2);
+				E_PoolMode arg2 = (E_PoolMode)ToLua.CheckObject(L, 3, typeof(E_PoolMode));
+				E_PoolType arg3 = (E_PoolType)ToLua.CheckObject(L, 4, typeof(E_PoolType));
+				float arg4 = (float)LuaDLL.luaL_checknumber(L, 5);
+				LuaExtend.setSprite(arg0, arg1, arg2, arg3, arg4);
+				return 0;
+			}
+			else
+			{
+				return LuaDLL.luaL_throw(L, "invalid arguments to method: LuaExtend.setSprite");
+			}
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int unloadSprite(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 2);
+			string arg0 = ToLua.CheckString(L, 1);
+			System.Action<UnityEngine.Sprite,string> arg1 = (System.Action<UnityEngine.Sprite,string>)ToLua.CheckDelegate<System.Action<UnityEngine.Sprite,string>>(L, 2);
+			LuaExtend.unloadSprite(arg0, arg1);
 			return 0;
 		}
 		catch (Exception e)

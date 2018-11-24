@@ -139,6 +139,11 @@ public class BasePool : IDispose
             }
         }
     }
+    //移除回调
+    public virtual void removeHandler(string spName, Action<Sprite, string> callBack)
+    {
+
+    }
 
     //回收
     public virtual void recyle(GameObject go)

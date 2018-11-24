@@ -41,8 +41,10 @@ public class PoolMgr : Singleton<PoolMgr>, IDispose
     /// ab的释放 每段时间检查refCount<零释放 todo
     /// </summary>
     /// <param name="resName"></param>
-    public void disposePool(string resName) {
-        if (pools.ContainsKey(resName)) {
+    public void disposePool(string resName)
+    {
+        if (pools.ContainsKey(resName))
+        {
             BasePool bp = pools[resName];
             pools.Remove(resName);
             bp.onDispose();
@@ -58,7 +60,7 @@ public class PoolMgr : Singleton<PoolMgr>, IDispose
     }
 
     //获取Sprite
-    public void getObj(string spName, Action<Sprite,string> callBack, E_PoolMode mode = E_PoolMode.Time, E_PoolType pType = E_PoolType.Atlas, float time = 60)
+    public void getObj(string spName, Action<Sprite, string> callBack, E_PoolMode mode = E_PoolMode.Time, E_PoolType pType = E_PoolType.Atlas, float time = 60)
     {
         if (AtlasMgr.hasKey(spName))
         {
@@ -106,6 +108,20 @@ public class PoolMgr : Singleton<PoolMgr>, IDispose
         {
             PackAsset pka = AssetMgr.get(resName);
             pka.remove(callBack);
+        }
+    }
+    /// <summary>
+    /// 移除sprite回调
+    /// </summary>
+    /// <param name="spName"></param>
+    /// <param name="callBack"></param>
+    public void unLoad(string spName, Action<Sprite, string> callBack)
+    {
+        spName = spName.ToLower();
+        string resName = AtlasMgr.getName(spName);        
+        if (pools.ContainsKey(resName))
+        {
+            pools[resName].removeHandler(spName,callBack);
         }
     }
 

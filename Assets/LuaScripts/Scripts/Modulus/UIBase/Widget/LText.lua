@@ -1,7 +1,7 @@
 LText = SimpleClass(LUIWidget)
 
 function LText:getWidget()
-    return self.widgetObj:GetComponent(CSText) 
+    return self.widgetObj:GetComponent("Text") 
 end 
 
 --LText一些相关操作--todo

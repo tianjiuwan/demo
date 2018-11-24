@@ -11,10 +11,15 @@ function LUIWidget:__init(widgetObj,...)
         return
     end
     _create_my_self(self)
-    self._init = true
     self.widgetObj = widgetObj
     self.widget = self:getWidget()
+    self:initialize()   
+    self._init = true
 end
+
+function LUIWidget:initialize()
+
+end 
 
 --LUIWidget不带组件
 function LUIWidget:getWidget()
