@@ -73,7 +73,10 @@ function EntityControl:anyKeyDown(code)
         EventMgr:sendMsg(BottomMidCmd.On_Open_UI) 
         EventMgr:sendMsg(JoyStickCmd.On_Open_UI) 
         EventMgr:sendMsg(BottomSkillCmd.On_Open_UI)         
-    end        
+    end  
+    if code == UnityEngine.KeyCode.K then 
+        EventMgr:sendMsg(BottomSkillCmd.On_Close_UI)         
+    end         
 end 
 
 function EntityControl:createEntity()

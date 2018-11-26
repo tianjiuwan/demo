@@ -30,6 +30,18 @@ function BottomSkillUI:initLayout()
     end   
 end 
 
+function BottomSkillUI:onDispose()
+	if self.base then 
+		self.base:onBaseDispose()
+	end 
+    for i = 1,self.norLst do 
+        self.norLst[i]:onBaseDispose()
+    end 
+     for i = 1,supLst do 
+        self.supLst[i]:onBaseDispose()
+    end  
+end 
+
 function BottomSkillUI:onOpen()
 
 end 
