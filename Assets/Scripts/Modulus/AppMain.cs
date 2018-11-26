@@ -29,6 +29,7 @@ public class AppMain : MonoBehaviour
         lua.AddSearchPath(fullPath);
         lua.DoFile("__init.lua");
         LogicFrame.Instance.initialize(lua);
+        GameSocket.Instance.run("192.168.1.108", "8007");
     }
 
 

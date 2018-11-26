@@ -49,7 +49,7 @@ function BaseItem:onHide()
    LuaUtils:setActive(self.obj,false)
 end
 
-function BaseItem:onBaseDispose()
+function BaseItem:onDestroy()
 	self:onDispose()
 	for i =1,#self.widgetPool do 
 		self[self.widgetPool[i]]:onBaseDispose()

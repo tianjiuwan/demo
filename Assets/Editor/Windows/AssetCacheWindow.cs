@@ -11,6 +11,8 @@ public class AssetCacheWindow : EditorWindow
 
     private static AssetCacheWindow _instance = null;
     private bool isInit = false;
+    private Texture2D icon1;
+    private Texture2D icon2;
 
     [MenuItem("ToolsWindow/查看AssetBundle")]
     public static void showWindow()
@@ -21,6 +23,7 @@ public class AssetCacheWindow : EditorWindow
             _instance.maxSize = new Vector2(1280, 720);
             GUIContent content = new GUIContent();
             content.text = "查看AB缓存";
+
             _instance.titleContent = content;
             _instance.isInit = true;
         }
@@ -40,6 +43,11 @@ public class AssetCacheWindow : EditorWindow
             testLoadObjs.Clear();
             return;
         }
+        if (icon1 == null)
+        {
+            icon1 = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/Res/Arts/DefaultSkin/icon1.png");
+            icon2 = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/Res/Arts/DefaultSkin/icon2.png");
+        }
         GUILayout.BeginVertical();
         GUILayout.Label("Time: " + System.DateTime.Now);
         //绘制2个滑动框
@@ -50,24 +58,40 @@ public class AssetCacheWindow : EditorWindow
         lst.AddRange(map.Values);
         lst.Sort((m, n) =>
         {
-            return m.RefCount > n.RefCount ? 1 : 0;
+            if (m.RefCount > n.RefCount)
+            {
+                return -1;
+            }
+            else
+            {
+                if (m.RefCount < n.RefCount)
+                {
+                    return 1;
+                }
+            }
+            return 0;
         });
         for (int i = 0; i < lst.Count; i++)
         {
             GUILayout.BeginHorizontal();
             GUILayout.Space(20);
             StringBuilder builder = new StringBuilder();
-            builder.Append("<color=white>Name: ");
+            string colorName = i % 2 == 0 ? "white" : "#808080";
+            builder.Append("<color=");
+            builder.Append(colorName);
+            builder.Append(">Name: ");
             builder.Append(lst[i].Name);
             builder.Append("</color>");
-            GUIContent content = new GUIContent();
-            content.text = builder.ToString();
+            GUIContent content = new GUIContent(builder.ToString());
             GUIStyle style = new GUIStyle();
-            style.fontSize = 12;
-            GUILayout.Box(content, style, GUILayout.Width(600), GUILayout.Height(40));
             style.fontSize = 16;
-            content.text = "<color=red>RefCount: " + lst[i].RefCount + "</color>";
-            GUILayout.Box(content, style, GUILayout.Width(100), GUILayout.Height(40));
+            style.alignment = TextAnchor.MiddleLeft;
+            style.normal.background = i % 2 == 0 ? icon1 : icon2;
+            GUILayout.Label(content, style, GUILayout.Width(600), GUILayout.Height(40));
+            style.fontSize = 18;
+            builder.Replace(lst[i].Name, lst[i].RefCount.ToString());
+            content.text = builder.ToString();
+            GUILayout.Label(content, style, GUILayout.Width(100), GUILayout.Height(40));
             GUILayout.EndHorizontal();
         }
         GUILayout.EndScrollView();

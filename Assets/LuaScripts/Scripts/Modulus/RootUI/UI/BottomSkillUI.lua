@@ -32,13 +32,13 @@ end
 
 function BottomSkillUI:onDispose()
 	if self.base then 
-		self.base:onBaseDispose()
+		self.base:onDestroy()
 	end 
-    for i = 1,self.norLst do 
-        self.norLst[i]:onBaseDispose()
+    for i = 1,#self.norLst do 
+        self.norLst[i]:onDestroy()
     end 
-     for i = 1,supLst do 
-        self.supLst[i]:onBaseDispose()
+     for i = 1,#self.supLst do 
+        self.supLst[i]:onDestroy()
     end  
 end 
 
