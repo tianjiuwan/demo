@@ -21,16 +21,26 @@ public class GameSocket : Singleton<GameSocket>
         IPAddress ip = IPAddress.Parse(ipAdd);
         IPEndPoint point = new IPEndPoint(ip, int.Parse(port));
         _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-        _socket.Connect(point);
-        _receiveThread = new Thread(onReceive);
-        _receiveThread.IsBackground = true;
-        _receiveThread.Start();
+        //_socket.Connect(point);
+        _socket.ReceiveBufferSize = MAX_BUFFER_SIZE;
+        _socket.NoDelay = true;
+        IAsyncResult connResult = _socket.BeginConnect(ip, int.Parse(port), null, null);
+        connResult.AsyncWaitHandle.WaitOne(2000, true);  //等待2秒
+
+        if (connResult.IsCompleted)
+        {
+            UnityEngine.Debug.LogError("连接服务器成功 开始接受");
+            _receiveThread = new Thread(new ThreadStart(onReceive));
+            _receiveThread.IsBackground = true;
+            if (!_receiveThread.IsAlive)
+                _receiveThread.Start();
+        }
     }
 
 
-    private void onReceive()
+    public void onReceive()
     {
-        while (true)
+        do
         {
             //缓冲剩余的大小
             int size = MAX_BUFFER_SIZE - now;
@@ -39,12 +49,10 @@ public class GameSocket : Singleton<GameSocket>
                 //接受 now起点 size大小 bytesRead接受的字节大小
                 bytesRead = _socket.Receive(_recvBuffer, now, size, SocketFlags.None);
                 now += bytesRead;
+                UnityEngine.Debug.LogError("接受到服务器消息 bytesRead ----> " + bytesRead);
+                splitPacket();                
             }
-            else
-            {
-                //mmp 缓冲都不够了
-            }
-        }
+        } while (true);
     }
 
     //拆包
@@ -55,13 +63,15 @@ public class GameSocket : Singleton<GameSocket>
             //包头信息有了 解出包长
             int len = getPacketLen();
             //如果有整包的长度            
-            if (now > len)
+            if (now >= len)
             {
                 byte[] packet = new byte[len];
                 Buffer.BlockCopy(_recvBuffer, 0, packet, 0, len);
                 //前移buffer
                 Buffer.BlockCopy(_recvBuffer, len, _recvBuffer, 0, now - len);
+                now -= len;                
                 decoderPacket(packet);
+                splitPacket();
             }
         }
     }
@@ -78,12 +88,12 @@ public class GameSocket : Singleton<GameSocket>
         short code = byteBuffer.ReadShort();
         long playerId = byteBuffer.ReadLong();
         int encryId = byteBuffer.ReadInt();
+        len -= HEAD_LEN;
         byte[] data = new byte[len];
         byteBuffer.ReadBytes(data, 0, len);
-        pb.PlayerSnapShootMsg msg= ProtobufSerializer.DeSerialize<pb.PlayerSnapShootMsg>(data);
+        pb.PlayerSnapShootMsg msg = ProtobufSerializer.DeSerialize<pb.PlayerSnapShootMsg>(data);
         UnityEngine.Debug.LogError("msg user name " + msg.username);
     }
-
 
     /// <summary>
     /// 获取包长
@@ -105,15 +115,8 @@ public class GameSocket : Singleton<GameSocket>
         return len;
     }
 
-    private void onReceivedMsg(byte[] buffer)
+    public void Send(ByteBuffer byteBuffer)
     {
-        //收到消息 
-        // 1 2 3 4 5 6 7 8 9 
-        //        e s     e
-
-    }
-
-    public void Send(ByteBuffer byteBuffer) {
         byte[] buffer = new byte[byteBuffer.ReadableBytes()];
         byteBuffer.ReadBytes(buffer, 0, byteBuffer.ReadableBytes());
         onSend(buffer);
@@ -123,8 +126,20 @@ public class GameSocket : Singleton<GameSocket>
     {
         if (_socket != null && _socket.Connected)
         {
-            _socket.Send(buffer);
+            _socket.Send(buffer, 0, buffer.Length, SocketFlags.None);
         }
+    }
+
+    public void onDispose()
+    {
+        if (_receiveThread != null && _receiveThread.IsAlive)
+        {
+            _receiveThread.Abort();
+        }
+        _receiveThread = null;
+        if (_socket != null)
+            _socket.Close();
+        _socket = null;
     }
 
 }

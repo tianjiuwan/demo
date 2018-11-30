@@ -50,7 +50,7 @@ public class AppMain : MonoBehaviour
             buffer.WriteLong(90000001001);
             buffer.WriteInt(0);
             buffer.WriteBytes(data);
-            GameSocket.Instance.Send(buffer);
+            GameSocket.Instance.Send(buffer);           
             Debug.LogError("发送一条消息给服务器");
         }
     }
@@ -64,6 +64,7 @@ public class AppMain : MonoBehaviour
 
     void OnApplicationQuit()
     {
+        GameSocket.Instance.onDispose();
         lua.Dispose();
         lua = null;
 #if UNITY_5 || UNITY_2017 || UNITY_2018	
