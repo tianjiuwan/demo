@@ -24,6 +24,12 @@ public class AppMain : MonoBehaviour
         lua = new LuaState();
         lua.Start();
         LuaBinder.Bind(lua);
+        lua.OpenLibs(LuaDLL.luaopen_pb);
+        lua.OpenLibs(LuaDLL.luaopen_struct);
+        lua.OpenLibs(LuaDLL.luaopen_lpeg);
+#if UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX
+        luaState.OpenLibs(LuaDLL.luaopen_bit);
+#endif
         DelegateFactory.Register();
         string fullPath = Path.Combine(Application.dataPath, "LuaScripts/Scripts");
         lua.AddSearchPath(fullPath);
@@ -51,7 +57,27 @@ public class AppMain : MonoBehaviour
             buffer.WriteInt(0);
             buffer.WriteBytes(data);
             GameSocket.Instance.Send(buffer);           
-            Debug.LogError("发送一条消息给服务器");
+            Debug.LogError("发送一条消息给服务器1");
+        }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            int HEAD_LEN = 18;//包头长度
+            short HEAD_FIX = 0x71ab;
+
+            pb.PlayerSnapShootMsg msg = new pb.PlayerSnapShootMsg();
+            msg.playerId = 909090;
+            msg.username = "luacocotang";
+            byte[] data = ProtobufSerializer.Serialize<pb.PlayerSnapShootMsg>(msg);
+            int len = data.Length;
+            ByteBuffer buffer = ByteBuffer.Allocate(len + HEAD_LEN);
+            buffer.WriteShort(HEAD_FIX);
+            buffer.WriteShort((short)(HEAD_LEN + len));
+            buffer.WriteShort(2001);
+            buffer.WriteLong(90000001001);
+            buffer.WriteInt(0);
+            buffer.WriteBytes(data);
+            GameSocket.Instance.Send(buffer);
+            Debug.LogError("发送一条消息给服务器2");
         }
     }
 

@@ -6,6 +6,7 @@ function create(class)
    end
 end 
 --基础模块
+require "Assets.LuaScripts.Scripts.Modulus.Net.__init"
 require "Assets.LuaScripts.Scripts.Modulus.Cmd.__init"
 require "Assets.LuaScripts.Scripts.Modulus.Extend.__init"
 require "Assets.LuaScripts.Scripts.Modulus.ClassBase.__init"

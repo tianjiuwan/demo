@@ -41,6 +41,7 @@ public class LuaExtendWrap
 		L.RegFunction("doShake", doShake);
 		L.RegFunction("addSecHandler", addSecHandler);
 		L.RegFunction("playEffect", playEffect);
+		L.RegFunction("sendNetMsg", sendNetMsg);
 		L.EndStaticLibs();
 	}
 
@@ -830,6 +831,24 @@ public class LuaExtendWrap
 			ToLua.CheckArgsCount(L, 1);
 			UnityEngine.GameObject arg0 = (UnityEngine.GameObject)ToLua.CheckObject(L, 1, typeof(UnityEngine.GameObject));
 			LuaExtend.playEffect(arg0);
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int sendNetMsg(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 3);
+			long arg0 = LuaDLL.tolua_checkint64(L, 1);
+			short arg1 = (short)LuaDLL.luaL_checknumber(L, 2);
+			byte[] arg2 = ToLua.CheckByteBuffer(L, 3);
+			LuaExtend.sendNetMsg(arg0, arg1, arg2);
 			return 0;
 		}
 		catch (Exception e)

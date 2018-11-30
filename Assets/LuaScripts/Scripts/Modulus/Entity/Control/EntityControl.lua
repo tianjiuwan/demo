@@ -76,7 +76,15 @@ function EntityControl:anyKeyDown(code)
     end  
     if code == UnityEngine.KeyCode.K then 
         EventMgr:sendMsg(BottomSkillCmd.On_Close_UI)         
-    end         
+    end       
+
+    if code == UnityEngine.KeyCode.N then 
+        local msg = Protol.PlayerSnapShootMsg_pb.PlayerSnapShootMsg()
+        msg.username = 'luacocotang'
+        msg.playerId = 909090
+        local pb_data = msg:SerializeToString() 
+        LuaUtils:sendNetMsg(90000001001,12001,pb_data)    
+    end     
 end 
 
 function EntityControl:createEntity()

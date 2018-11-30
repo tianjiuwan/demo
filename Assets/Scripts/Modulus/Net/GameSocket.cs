@@ -29,7 +29,6 @@ public class GameSocket : Singleton<GameSocket>
 
         if (connResult.IsCompleted)
         {
-            UnityEngine.Debug.LogError("连接服务器成功 开始接受");
             _receiveThread = new Thread(new ThreadStart(onReceive));
             _receiveThread.IsBackground = true;
             if (!_receiveThread.IsAlive)
@@ -49,7 +48,6 @@ public class GameSocket : Singleton<GameSocket>
                 //接受 now起点 size大小 bytesRead接受的字节大小
                 bytesRead = _socket.Receive(_recvBuffer, now, size, SocketFlags.None);
                 now += bytesRead;
-                UnityEngine.Debug.LogError("接受到服务器消息 bytesRead ----> " + bytesRead);
                 splitPacket();                
             }
         } while (true);

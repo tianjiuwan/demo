@@ -365,5 +365,22 @@ public static class LuaExtend
         }
     }
     #endregion
+
+    #region 导出Net接口
+    public static void sendNetMsg(long playerId, short cmd, byte[] data) {
+        int HEAD_LEN = 18;//包头长度
+        short HEAD_FIX = 0x71ab;
+        int len = data.Length;
+        ByteBuffer buffer = ByteBuffer.Allocate(len + HEAD_LEN);
+        buffer.WriteShort(HEAD_FIX);
+        buffer.WriteShort((short)(HEAD_LEN + len));
+        buffer.WriteShort(cmd);
+        buffer.WriteLong(playerId);
+        buffer.WriteInt(0);
+        buffer.WriteBytes(data);
+        GameSocket.Instance.Send(buffer);
+        Debug.LogError("发送一条消息给服务器lua ");
+    }
+    #endregion
 }
 

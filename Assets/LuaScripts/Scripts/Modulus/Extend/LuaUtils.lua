@@ -132,3 +132,8 @@ end
 function LuaUtils:unloadSprite(spName,callBack)
     LuaExtend.unloadSprite(spName,callBack)
 end 
+
+--Net
+function LuaUtils:sendNetMsg(playerId,cmd,data)
+   LuaExtend.sendNetMsg(playerId,cmd,data)
+end 
