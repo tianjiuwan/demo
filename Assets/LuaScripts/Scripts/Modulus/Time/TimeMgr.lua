@@ -11,10 +11,10 @@ local function onNetMsg(pbMessage)
     local cmd = pbMessage.cmd
     local playerId = pbMessage.playerId
     local buffer = pbMessage.data
-
+    
 	local msg = Protol.PlayerSnapShootMsg_pb.PlayerSnapShootMsg()
 	msg:ParseFromString(buffer)
-	print('lua反序列化协议完成 usename '..msg.username)
+	print("lua解析协议 玩家快照 username "..msg.username)
 end 
 
 --赋值成员

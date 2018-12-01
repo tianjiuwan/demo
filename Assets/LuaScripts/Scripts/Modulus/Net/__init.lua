@@ -1,1 +1,3 @@
-require "Assets.LuaScripts.Scripts.Modulus.Net.Protos.PlayerSnapShootMsg_pb"
+require "Assets.LuaScripts.Scripts.Modulus.Net.Protos.__init"
+
+require "Assets.LuaScripts.Scripts.Modulus.Net.ProtocolMgr"

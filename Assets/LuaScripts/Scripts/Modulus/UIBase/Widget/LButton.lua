@@ -1,7 +1,7 @@
 LButton = SimpleClass(LUIWidget)
 
 function LButton:getWidget()
-    return self.widgetObj:GetComponent(CSButton) 
+    return self.widgetObj:GetComponent("Button") 
 end 
 
 --LButton一些相关操作--todo
