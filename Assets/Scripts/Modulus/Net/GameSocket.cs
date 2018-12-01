@@ -13,8 +13,8 @@ public class GameSocket : Singleton<GameSocket>
 
     private Socket _socket;
     private Thread _receiveThread;
-    private Queue<byte[]> _recQueue = new Queue<byte[]>();
-    private byte[] _recvBuffer = new byte[MAX_BUFFER_SIZE];
+    private byte[] _recvBuffer = new byte[MAX_BUFFER_SIZE];//缓冲区
+    private Queue<PBMessage> pbQueue = new Queue<PBMessage>();//解析出来的包
 
     public void run(string ipAdd, string port)
     {
@@ -75,7 +75,7 @@ public class GameSocket : Singleton<GameSocket>
     }
 
     /// <summary>
-    /// 完整的包
+    /// 拆完整的包
     /// </summary>
     /// <param name="packet"></param>
     private void decoderPacket(byte[] packet)
@@ -89,8 +89,21 @@ public class GameSocket : Singleton<GameSocket>
         len -= HEAD_LEN;
         byte[] data = new byte[len];
         byteBuffer.ReadBytes(data, 0, len);
-        pb.PlayerSnapShootMsg msg = ProtobufSerializer.DeSerialize<pb.PlayerSnapShootMsg>(data);
-        UnityEngine.Debug.LogError("msg user name " + msg.username);
+        //测试反序列化
+        //pb.PlayerSnapShootMsg msg = ProtobufSerializer.DeSerialize<pb.PlayerSnapShootMsg>(data);
+        //UnityEngine.Debug.LogError("msg user name " + msg.username);
+        PBMessage pbs = new PBMessage();
+        pbs.playerId = playerId;
+        pbs.cmd = code;
+        pbs.data = data;
+        pbQueue.Enqueue(pbs);
+    }
+
+    public PBMessage getMsg() {
+        if (pbQueue.Count > 0) {
+            return pbQueue.Dequeue();
+        }
+        return null;
     }
 
     /// <summary>

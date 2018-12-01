@@ -29,6 +29,9 @@ public class DelegateFactory
 		dict.Add(typeof(System.Action<int>), factory.System_Action_int);
 		dict.Add(typeof(System.Comparison<int>), factory.System_Comparison_int);
 		dict.Add(typeof(System.Func<int,int>), factory.System_Func_int_int);
+		dict.Add(typeof(System.Predicate<byte>), factory.System_Predicate_byte);
+		dict.Add(typeof(System.Action<byte>), factory.System_Action_byte);
+		dict.Add(typeof(System.Comparison<byte>), factory.System_Comparison_byte);
 		dict.Add(typeof(DG.Tweening.TweenCallback), factory.DG_Tweening_TweenCallback);
 		dict.Add(typeof(UnityEngine.Camera.CameraCallback), factory.UnityEngine_Camera_CameraCallback);
 		dict.Add(typeof(UnityEngine.Application.LowMemoryCallback), factory.UnityEngine_Application_LowMemoryCallback);
@@ -51,6 +54,9 @@ public class DelegateFactory
 		DelegateTraits<System.Action<int>>.Init(factory.System_Action_int);
 		DelegateTraits<System.Comparison<int>>.Init(factory.System_Comparison_int);
 		DelegateTraits<System.Func<int,int>>.Init(factory.System_Func_int_int);
+		DelegateTraits<System.Predicate<byte>>.Init(factory.System_Predicate_byte);
+		DelegateTraits<System.Action<byte>>.Init(factory.System_Action_byte);
+		DelegateTraits<System.Comparison<byte>>.Init(factory.System_Comparison_byte);
 		DelegateTraits<DG.Tweening.TweenCallback>.Init(factory.DG_Tweening_TweenCallback);
 		DelegateTraits<UnityEngine.Camera.CameraCallback>.Init(factory.UnityEngine_Camera_CameraCallback);
 		DelegateTraits<UnityEngine.Application.LowMemoryCallback>.Init(factory.UnityEngine_Application_LowMemoryCallback);
@@ -73,6 +79,9 @@ public class DelegateFactory
 		TypeTraits<System.Action<int>>.Init(factory.Check_System_Action_int);
 		TypeTraits<System.Comparison<int>>.Init(factory.Check_System_Comparison_int);
 		TypeTraits<System.Func<int,int>>.Init(factory.Check_System_Func_int_int);
+		TypeTraits<System.Predicate<byte>>.Init(factory.Check_System_Predicate_byte);
+		TypeTraits<System.Action<byte>>.Init(factory.Check_System_Action_byte);
+		TypeTraits<System.Comparison<byte>>.Init(factory.Check_System_Comparison_byte);
 		TypeTraits<DG.Tweening.TweenCallback>.Init(factory.Check_DG_Tweening_TweenCallback);
 		TypeTraits<UnityEngine.Camera.CameraCallback>.Init(factory.Check_UnityEngine_Camera_CameraCallback);
 		TypeTraits<UnityEngine.Application.LowMemoryCallback>.Init(factory.Check_UnityEngine_Application_LowMemoryCallback);
@@ -95,6 +104,9 @@ public class DelegateFactory
 		StackTraits<System.Action<int>>.Push = factory.Push_System_Action_int;
 		StackTraits<System.Comparison<int>>.Push = factory.Push_System_Comparison_int;
 		StackTraits<System.Func<int,int>>.Push = factory.Push_System_Func_int_int;
+		StackTraits<System.Predicate<byte>>.Push = factory.Push_System_Predicate_byte;
+		StackTraits<System.Action<byte>>.Push = factory.Push_System_Action_byte;
+		StackTraits<System.Comparison<byte>>.Push = factory.Push_System_Comparison_byte;
 		StackTraits<DG.Tweening.TweenCallback>.Push = factory.Push_DG_Tweening_TweenCallback;
 		StackTraits<UnityEngine.Camera.CameraCallback>.Push = factory.Push_UnityEngine_Camera_CameraCallback;
 		StackTraits<UnityEngine.Application.LowMemoryCallback>.Push = factory.Push_UnityEngine_Application_LowMemoryCallback;
@@ -905,6 +917,187 @@ public class DelegateFactory
 	}
 
 	void Push_System_Func_int_int(IntPtr L, System.Func<int,int> o)
+	{
+		ToLua.Push(L, o);
+	}
+
+	class System_Predicate_byte_Event : LuaDelegate
+	{
+		public System_Predicate_byte_Event(LuaFunction func) : base(func) { }
+		public System_Predicate_byte_Event(LuaFunction func, LuaTable self) : base(func, self) { }
+
+		public bool Call(byte param0)
+		{
+			func.BeginPCall();
+			func.Push(param0);
+			func.PCall();
+			bool ret = func.CheckBoolean();
+			func.EndPCall();
+			return ret;
+		}
+
+		public bool CallWithSelf(byte param0)
+		{
+			func.BeginPCall();
+			func.Push(self);
+			func.Push(param0);
+			func.PCall();
+			bool ret = func.CheckBoolean();
+			func.EndPCall();
+			return ret;
+		}
+	}
+
+	public System.Predicate<byte> System_Predicate_byte(LuaFunction func, LuaTable self, bool flag)
+	{
+		if (func == null)
+		{
+			System.Predicate<byte> fn = delegate(byte param0) { return false; };
+			return fn;
+		}
+
+		if(!flag)
+		{
+			System_Predicate_byte_Event target = new System_Predicate_byte_Event(func);
+			System.Predicate<byte> d = target.Call;
+			target.method = d.Method;
+			return d;
+		}
+		else
+		{
+			System_Predicate_byte_Event target = new System_Predicate_byte_Event(func, self);
+			System.Predicate<byte> d = target.CallWithSelf;
+			target.method = d.Method;
+			return d;
+		}
+	}
+
+	bool Check_System_Predicate_byte(IntPtr L, int pos)
+	{
+		return TypeChecker.CheckDelegateType(typeof(System.Predicate<byte>), L, pos);
+	}
+
+	void Push_System_Predicate_byte(IntPtr L, System.Predicate<byte> o)
+	{
+		ToLua.Push(L, o);
+	}
+
+	class System_Action_byte_Event : LuaDelegate
+	{
+		public System_Action_byte_Event(LuaFunction func) : base(func) { }
+		public System_Action_byte_Event(LuaFunction func, LuaTable self) : base(func, self) { }
+
+		public void Call(byte param0)
+		{
+			func.BeginPCall();
+			func.Push(param0);
+			func.PCall();
+			func.EndPCall();
+		}
+
+		public void CallWithSelf(byte param0)
+		{
+			func.BeginPCall();
+			func.Push(self);
+			func.Push(param0);
+			func.PCall();
+			func.EndPCall();
+		}
+	}
+
+	public System.Action<byte> System_Action_byte(LuaFunction func, LuaTable self, bool flag)
+	{
+		if (func == null)
+		{
+			System.Action<byte> fn = delegate(byte param0) { };
+			return fn;
+		}
+
+		if(!flag)
+		{
+			System_Action_byte_Event target = new System_Action_byte_Event(func);
+			System.Action<byte> d = target.Call;
+			target.method = d.Method;
+			return d;
+		}
+		else
+		{
+			System_Action_byte_Event target = new System_Action_byte_Event(func, self);
+			System.Action<byte> d = target.CallWithSelf;
+			target.method = d.Method;
+			return d;
+		}
+	}
+
+	bool Check_System_Action_byte(IntPtr L, int pos)
+	{
+		return TypeChecker.CheckDelegateType(typeof(System.Action<byte>), L, pos);
+	}
+
+	void Push_System_Action_byte(IntPtr L, System.Action<byte> o)
+	{
+		ToLua.Push(L, o);
+	}
+
+	class System_Comparison_byte_Event : LuaDelegate
+	{
+		public System_Comparison_byte_Event(LuaFunction func) : base(func) { }
+		public System_Comparison_byte_Event(LuaFunction func, LuaTable self) : base(func, self) { }
+
+		public int Call(byte param0, byte param1)
+		{
+			func.BeginPCall();
+			func.Push(param0);
+			func.Push(param1);
+			func.PCall();
+			int ret = (int)func.CheckNumber();
+			func.EndPCall();
+			return ret;
+		}
+
+		public int CallWithSelf(byte param0, byte param1)
+		{
+			func.BeginPCall();
+			func.Push(self);
+			func.Push(param0);
+			func.Push(param1);
+			func.PCall();
+			int ret = (int)func.CheckNumber();
+			func.EndPCall();
+			return ret;
+		}
+	}
+
+	public System.Comparison<byte> System_Comparison_byte(LuaFunction func, LuaTable self, bool flag)
+	{
+		if (func == null)
+		{
+			System.Comparison<byte> fn = delegate(byte param0, byte param1) { return 0; };
+			return fn;
+		}
+
+		if(!flag)
+		{
+			System_Comparison_byte_Event target = new System_Comparison_byte_Event(func);
+			System.Comparison<byte> d = target.Call;
+			target.method = d.Method;
+			return d;
+		}
+		else
+		{
+			System_Comparison_byte_Event target = new System_Comparison_byte_Event(func, self);
+			System.Comparison<byte> d = target.CallWithSelf;
+			target.method = d.Method;
+			return d;
+		}
+	}
+
+	bool Check_System_Comparison_byte(IntPtr L, int pos)
+	{
+		return TypeChecker.CheckDelegateType(typeof(System.Comparison<byte>), L, pos);
+	}
+
+	void Push_System_Comparison_byte(IntPtr L, System.Comparison<byte> o)
 	{
 		ToLua.Push(L, o);
 	}

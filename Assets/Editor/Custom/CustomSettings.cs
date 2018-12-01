@@ -64,7 +64,9 @@ public static class CustomSettings
         //_GT(typeof(TestExport.Space)),
         //-------------------------------------------------------------------        
         _GT(typeof(List<int>)),
+        _GT(typeof(List<byte>)),
         _GT(typeof(EntityData)),
+        _GT(typeof(PBMessage)),
         _GT(typeof(PointerEventData)),
         _GT(typeof(EventListener)),        
         _GT(typeof(EntityExtend)),
