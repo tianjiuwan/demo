@@ -10,7 +10,8 @@ public class BuildAsset
     //资源路径
     private const string assetPath = "Res/AssetBundle";
     //ab导出路径
-    private const string exportABPath = "Assets/Res/AssetBundleExport";
+    //private const string exportABPath = "Assets/Res/AssetBundleExport";
+    private const string exportABPath = "Assets/StreamingAssets";
     //图集文件夹 图集文件夹下面的每个文件夹打一个ab
     private const string atlasPathSuff = "Atlas";
 

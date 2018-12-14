@@ -1,1 +1,0 @@
-require "Assets.LuaScripts.Scripts.Modulus.Effect.Mgr.EffectMgr"

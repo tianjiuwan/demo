@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 /// <summary>
 /// 池子类型
@@ -98,9 +99,21 @@ public class Define
     /// <summary>
     /// ab资源前缀
     /// </summary>
-    public const string abPre = "Assets/Res/AssetBundleExport/";
-    public const string atlasBundleName = "AssetBundle/cfgs/atlasCfg";
+    private static string ePre = "Assets/Res/AssetBundleExport/";
 
+    public static string abPre
+    {
+        get
+        {
+            if (Application.platform == RuntimePlatform.WindowsPlayer)
+            {
+                return Application.streamingAssetsPath;
+            }
+            else {
+                return ePre;
+            }
+        }
+    }
 
     public const int checkAssetBundleCacheSec = 10;
     public const int checkBasePoolSec = 60;

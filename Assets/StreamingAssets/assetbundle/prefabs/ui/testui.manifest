@@ -1,0 +1,29 @@
+ManifestFileVersion: 0
+CRC: 728203694
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 2a1ddcff5ab5454c4417b57ae7e24a7d
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 72fcfa1a74b27af4856e63f48fa870e6
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 222
+  Script: {instanceID: 0}
+- Class: 224
+  Script: {instanceID: 0}
+Assets:
+- Assets/Res/AssetBundle/Prefabs/ui/TestUI.prefab
+Dependencies:
+- D:/MyProject/demo/Assets/StreamingAssets/assetbundle/atlas/commonatlas
+- D:/MyProject/demo/Assets/StreamingAssets/assetbundle/atlas/skillatlas
+- D:/MyProject/demo/Assets/StreamingAssets/assetbundle/atlas/teamatlas

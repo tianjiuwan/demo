@@ -1,0 +1,21 @@
+ManifestFileVersion: 0
+CRC: 2115974168
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: e27f294c025c01e778091e905a8fdf1d
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: abb9b9167ab0d9f4af2beeb617361f49
+HashAppended: 0
+ClassTypes:
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+Assets:
+- Assets/Res/AssetBundle/Materials/ground.mat
+Dependencies:
+- D:/MyProject/demo/Assets/StreamingAssets/assetbundle/modeltextures/ground

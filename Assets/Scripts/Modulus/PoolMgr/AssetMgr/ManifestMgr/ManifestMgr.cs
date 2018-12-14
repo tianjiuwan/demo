@@ -1,12 +1,24 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class ManifestMgr : Singleton<ManifestMgr>
 {
-    private string manifestPath = Define.abPre + "AssetBundleExport";
-    AssetBundleManifest assetBundleManifest = null;//初始化获取依赖 todo
+    AssetBundleManifest assetBundleManifest = null;//初始化获取依赖
+    private string manifestName {
+        get {
+            if (Application.platform == RuntimePlatform.WindowsPlayer)
+            {
+                return "StreamingAssets";
+            }
+            else {
+                return "AssetBundleExport";
+            }
+        }
+    }
+
 
     protected override void initialize()
     {
@@ -21,7 +33,8 @@ public class ManifestMgr : Singleton<ManifestMgr>
     void loadManifest()
     {
         //LoadFromFile不可以有.assetbundle后缀
-        AssetBundle bundle = AssetBundle.LoadFromFile(manifestPath);
+        string path = Path.Combine(Define.abPre, manifestName);
+        AssetBundle bundle = AssetBundle.LoadFromFile(path);
         assetBundleManifest = bundle.LoadAsset<AssetBundleManifest>("AssetBundleManifest");
         // 压缩包释放掉
         bundle.Unload(false);

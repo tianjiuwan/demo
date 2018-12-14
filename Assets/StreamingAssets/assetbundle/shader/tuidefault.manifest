@@ -1,0 +1,16 @@
+ManifestFileVersion: 0
+CRC: 840477334
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 1a111108edd89178f216c4ece31e5f06
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 7e9ee104d6bb707fb2602b751e6f78b1
+HashAppended: 0
+ClassTypes:
+- Class: 48
+  Script: {instanceID: 0}
+Assets:
+- Assets/Res/AssetBundle/Shader/TUIDefault.shader
+Dependencies: []

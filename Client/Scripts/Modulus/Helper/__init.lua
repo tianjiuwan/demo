@@ -1,0 +1,1 @@
+require "Client.Scripts.Modulus.Helper.ConfigHelper"

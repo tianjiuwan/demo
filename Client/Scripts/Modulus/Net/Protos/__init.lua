@@ -1,0 +1,1 @@
+require "Client.Scripts.Modulus.Net.Protos.PlayerSnapShootMsg_pb"

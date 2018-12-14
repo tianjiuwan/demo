@@ -1,1 +1,0 @@
-require "Assets.LuaScripts.Scripts.Modulus.Helper.ConfigHelper"

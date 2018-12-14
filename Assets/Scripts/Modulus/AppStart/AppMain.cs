@@ -31,9 +31,11 @@ public class AppMain : MonoBehaviour
         luaState.OpenLibs(LuaDLL.luaopen_bit);
 #endif
         DelegateFactory.Register();
-        string fullPath = Path.Combine(Application.dataPath, "LuaScripts/Scripts");
-        lua.AddSearchPath(fullPath);
-        lua.DoFile("__init.lua");
+        string dataPath = Application.dataPath;
+        int index= dataPath.LastIndexOf("/");
+        dataPath = dataPath.Substring(0, index);
+        //lua.AddSearchPath(fullPath);
+        lua.DoFile(Path.Combine(dataPath, "Client/Scripts/__init.lua"));
         LogicFrame.Instance.initialize(lua);
         GameSocket.Instance.run("192.168.1.108", "8007");
     }

@@ -1,0 +1,35 @@
+ManifestFileVersion: 0
+CRC: 1260938564
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 1ed88ce2c211c4da7765acb5e69c907c
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 6fbce3ef9a5fc5659b1adb35d7d47216
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 20
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 90
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+- Class: 95
+  Script: {instanceID: 0}
+- Class: 137
+  Script: {instanceID: 0}
+Assets:
+- Assets/Res/AssetBundle/Prefabs/Model/role_fistgirl/model/role_fistgirl.prefab
+Dependencies:
+- D:/MyProject/demo/Assets/StreamingAssets/assetbundle/prefabs/model/role_fistgirl/animator/role_fistgirl_controller

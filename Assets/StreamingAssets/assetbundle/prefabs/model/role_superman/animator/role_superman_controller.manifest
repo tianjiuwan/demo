@@ -1,0 +1,26 @@
+ManifestFileVersion: 0
+CRC: 2028965625
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 68d597a0743741efb6fe6e36e4c385b0
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 46daa0ab816e68f527f38fb18aec3007
+HashAppended: 0
+ClassTypes:
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+Assets:
+- Assets/Res/AssetBundle/Prefabs/Model/role_superman/animator/role_superman_Controller.controller
+Dependencies:
+- D:/MyProject/demo/Assets/StreamingAssets/assetbundle/prefabs/model/role_superman/clips/jumpup
+- D:/MyProject/demo/Assets/StreamingAssets/assetbundle/prefabs/model/role_superman/clips/run
+- D:/MyProject/demo/Assets/StreamingAssets/assetbundle/prefabs/model/role_superman/clips/idle
+- D:/MyProject/demo/Assets/StreamingAssets/assetbundle/prefabs/model/role_superman/clips/hart
+- D:/MyProject/demo/Assets/StreamingAssets/assetbundle/prefabs/model/role_superman/clips/attack
+- D:/MyProject/demo/Assets/StreamingAssets/assetbundle/prefabs/model/role_superman/clips/liedown
+- D:/MyProject/demo/Assets/StreamingAssets/assetbundle/prefabs/model/role_superman/clips/jumpdown
+- D:/MyProject/demo/Assets/StreamingAssets/assetbundle/prefabs/model/role_superman/clips/die
